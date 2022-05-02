@@ -1,0 +1,24 @@
+{
+  "name": "copium-226",
+  "version": "1.0.0-dev.1",
+  "description": "A serious game about renewable energies.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/picaratss/copium-226.git"
+  },
+  "author": "Picarats",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/picaratss/copium-226/issues"
+  },
+  "homepage": "https://github.com/picaratss/copium-226#readme",
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "nodemon": "^2.0.16"
+  }
+}
