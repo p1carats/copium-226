@@ -1,3 +1,6 @@
+import {blink, fadeOut} from "../lib/animations";
+import timer from "../lib/timer";
+
 export default class SplashScreen extends Phaser.Scene {
 
 	constructor() {
@@ -17,29 +20,13 @@ export default class SplashScreen extends Phaser.Scene {
 		let logo = this.add.image(900, 500, 'logo');
 		startingAudio.play();
 
-		this.tweens.add({
-			targets: text,
-			alpha: 1,
-			duration: 1500,
-			yoyo: true,
-			loop: -1
-		});
+		blink(this, text, 1500);
 
 		this.input.on('pointerdown', () => {
-			// fade in effect
-			this.tweens.add({
-				targets: [logo, text],
-				alpha: 0,
-				duration: 1500,
-				repeat: -1
-			});
+
+			fadeOut(this, [text, logo], 1500);
 			// changing scene with phaser timer
-			this.time.addEvent({
-				delay: 1500,
-				callback: () => this.scene.start('TitleScreen'),
-				callbackScope: this,
-				loop: false
-			});
+			timer(this, 1500, () => this.scene.start('TitleScreen'), false, 0);
 		});
 	}
 }

@@ -1,5 +1,5 @@
 import TemplateDialogue from './templatediag';
-import { buttonEvents } from '../events';
+import { buttonEvents } from '../lib/events';
 
 export default class TitleScreen extends Phaser.Scene {
 
