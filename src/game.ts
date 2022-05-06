@@ -1,30 +1,20 @@
 import * as Phaser from 'phaser';
- 
-class PlayGame extends Phaser.Scene {
-	image: Phaser.GameObjects.Image;
-	constructor() {
-		super("Copium-226");
-	}
-	preload(): void {
-		this.load.image('logo', 'assets/logo.png');
-	}
-	create(): void {
-		this.image = this.add.image(400, 300, 'logo');
-	}
-	update(): void {
-		this.image.rotation += 0.01;   
-	}
-}
- 
-let configObject: Phaser.Types.Core.GameConfig = {
+
+import TemplateDialogue from './scenes/templatediag';
+import SplashScreen from './scenes/splashscreen';
+import TitleScreen from './scenes/titlescreen';
+
+let config = {
 	scale: {
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
 		parent: 'copium-226',
-		width: 800,
-		height: 600
+		width: 1920,
+		height: 1080
 	},
-	scene: PlayGame
+	type: Phaser.AUTO,
+	pixelArt: true,
+	scene: [SplashScreen, TitleScreen]
 };
 
-new Phaser.Game(configObject);
+export default new Phaser.Game(config);
