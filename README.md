@@ -39,3 +39,5 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ```
+
+All the musics of this game are composed by [TAD](https://opengameart.org/users/tad) and are licensed under [CC-BY-4.0](assets/LICENSE) too.

@@ -1,8 +1,8 @@
 import * as Phaser from 'phaser';
 
-import TemplateDialogue from './scenes/templatediag';
 import SplashScreen from './scenes/splashscreen';
 import TitleScreen from './scenes/titlescreen';
+import TemplateDialogue from './scenes/templatediag';
 
 let config = {
 	scale: {
@@ -14,7 +14,7 @@ let config = {
 	},
 	type: Phaser.AUTO,
 	pixelArt: true,
-	scene: [SplashScreen, TitleScreen]
+	scene: [SplashScreen, TitleScreen, TemplateDialogue]
 };
 
 export default new Phaser.Game(config);
