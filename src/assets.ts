@@ -23,6 +23,7 @@ export function assetsLoader(game) {
 	game.load.image('dialogBox', 'assets/dialogbox.png');
 	game.load.image('boss', 'assets/characters/Boss_Green_Horizon.png');
 	// load all sounds
+	game.load.audio('menu_theme', 'assets/sounds/menu.ogg');
 	game.load.audio('startingAudio', 'assets/sounds/start.ogg');
 	game.load.audio('main_theme', 'assets/sounds/theme.ogg');
 	game.load.audio('room_theme', 'assets/sounds/room.ogg');

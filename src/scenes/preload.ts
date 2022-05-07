@@ -61,12 +61,11 @@ export default class SplashScreen extends Phaser.Scene {
 		this.input.on('pointerdown', () => {
 			this.sound.add('startingAudio').play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
-		}, this);
-
-		this.cameras.main.once('camerafadeoutcomplete', () => {
-			this.time.delayedCall(1000, () => {
-				this.scene.start('TitleScreen');
+			this.cameras.main.once('camerafadeoutcomplete', () => {
+				this.time.delayedCall(1000, () => {
+					this.scene.start('TitleScreen');
+				});
 			});
-		});
+		}, this);
 	}
 }

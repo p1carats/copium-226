@@ -42,7 +42,7 @@ export default class TitleScreen extends Phaser.Scene {
 				{ key: 'titlescreen2' },
 				{ key: 'titlescreen3' },
 				{ key: 'titlescreen4' },
-				{	key: 'titlescreen5' },
+				{ key: 'titlescreen5' },
 				{ key: 'titlescreen6' },
 			],
 			frameRate: 2,
@@ -52,43 +52,74 @@ export default class TitleScreen extends Phaser.Scene {
 		// menu music (looped) and click sound
 		let menuMusic = this.sound.add('main_theme');
 		let clickedSound = this.sound.add('click');
-		//menuMusic.setLoop(true);
+		// menuMusic.setLoop(true);
 		menuMusic.play();
 
-		// display
+		// background
 		this.add.sprite(960, 540, 'titlescreen1').play('titlescreenAnim');
 
-		// tween
-		let title = this.add.sprite(950, 300, 'title');
-
 		// buttons
-		let playButton = this.add.sprite(850, 540, 'playButton').setInteractive();
-		let settingsButton = this.add.sprite(1100, 500, 'settingsButton').setInteractive();
-		let aboutButton = this.add.sprite(1100, 580, 'aboutButton').setInteractive();
+		const title = this.add.sprite(950, 300, 'title').setAlpha(0);
+		const playButton = this.add.sprite(850, 540, 'playButton').setAlpha(0);
+		const settingsButton = this.add.sprite(1100, 500, 'settingsButton').setAlpha(0);
+		const aboutButton = this.add.sprite(1100, 580, 'aboutButton').setAlpha(0);
+
+		// fade in effect
+		this.time.delayedCall(2500, () => {
+			this.tweens.add({
+				targets: [title, playButton, settingsButton, aboutButton],
+				alpha: 1,
+				duration: 2000,
+				repeat: 0
+			});
+			playButton.setInteractive();
+			settingsButton.setInteractive();
+			aboutButton.setInteractive();
+		});
 
 		// settings/about pop-up
 		let backgroundMenu = this.add.sprite(900, 540, 'bgMenu').setAlpha(0.4).setVisible(false);
 		let exitButton = this.add.sprite(1615, 240, 'exitButton').setScale(0.2, 0.2).setVisible(false);
 
-		// assign buttons actions
-		buttonEvents(playButton, 'playButton', 'playButtonHover', () => {
+		// play button actions
+		playButton.on('pointerover', () => { playButton.setTexture('playButtonHover') });
+		playButton.on('pointerout', () => { playButton.setTexture('playButton') });
+		playButton.on('pointerdown', () => {
+			clickedSound.play(),
 			this.tweens.add({
-        targets: menuMusic,
-        volume: 0,
-        ease: 'Linear',
-        duration: 1500
-      });
+				targets: menuMusic,
+				volume: 0,
+				ease: 'Linear',
+				duration: 1500
+			});
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
-			clickedSound
-		}, clickedSound);
-
-		buttonEvents(settingsButton, 'settingsButton', 'settingsButtonHover', showOverMenu, clickedSound);
-		buttonEvents(aboutButton, 'aboutButton', 'aboutButtonHover', showOverMenu, clickedSound);
-
-		this.cameras.main.once('camerafadeoutcomplete', () => {
-			this.time.delayedCall(2000, () => {
-				this.scene.start('TemplateDialogue');
+			this.cameras.main.once('camerafadeoutcomplete', () => {
+				this.time.delayedCall(2000, () => {
+					this.scene.start('TemplateDialogue');
+				});
 			});
 		});
+
+		// settings button actions
+		settingsButton.on('pointerover', () => { settingsButton.setTexture('settingsButtonHover') });
+		settingsButton.on('pointerout', () => { settingsButton.setTexture('settingsButton') });
+		settingsButton.on('pointerdown', () => {
+			clickedSound.play(),
+			this.tweens.add({
+				targets: menuMusic,
+				volume: 0,
+				ease: 'Linear',
+				duration: 1500
+			});
+			this.cameras.main.fadeOut(1000, 0, 0, 0);
+			this.cameras.main.once('camerafadeoutcomplete', () => {
+				this.time.delayedCall(1000, () => {
+					this.scene.start('SettingsScene');
+				});
+			});
+		});
+
+		// about (legacy)
+		buttonEvents(aboutButton, 'aboutButton', 'aboutButtonHover', showOverMenu, clickedSound);
 	}
 }

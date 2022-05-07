@@ -40,4 +40,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ```
 
-All the musics of this game are composed by [TAD](https://opengameart.org/users/tad) and are licensed under [CC-BY-4.0](assets/LICENSE) too.
+All the songs are composed by [TAD](https://opengameart.org/users/tad) and are licensed under [CC-BY-4.0](assets/LICENSE).
+
+Font is [monogram](https://datagoblin.itch.io/monogram), licensed under [CC0](https://creativecommons.org/publicdomain/zero/1.0).
