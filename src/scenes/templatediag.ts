@@ -8,18 +8,18 @@ export default class TemplateDialogue extends Phaser.Scene {
 	}
 
 	preload() {
-		// allows us to specify images, audio, or other assets to load before starting the scene
-		this.load.image('background', 'assets/background/scenes/bedroom.jpg');
-		this.load.image('dialogBox', 'assets/dialogbox.png');
-		this.load.image('boss', 'assets/characters/Boss_Green_Horizon.png');
-		this.load.audio('room_theme', 'assets/sounds/room.ogg');
+		// preload
 	}
 
 	create() {
-		this.cameras.main.fadeIn(1000, 0, 0, 0);
+		this.cameras.main.fadeIn(2000, 0, 0, 0);
 
 		// background
-		this.add.sprite(920, 470, 'background').setScale(2, 2);
+		let background = this.add.sprite(920, 470, 'bedroombg').setScale(2, 2);
+		background.setPipeline('Light2D');
+
+		this.lights.addLight(900, 280, 400, 0xffffff, 1);
+    this.lights.enable().setAmbientColor(0x555555);
 
 		// content
 		let dialogBox = this.add.sprite(-500, 800, 'dialogBox').setAlpha(0.9);

@@ -6,28 +6,8 @@ export default class TitleScreen extends Phaser.Scene {
 		super('TitleScreen');
 	}
 
-	// allows us to specify images, audio, and other assets to load before starting the scene
 	preload() {
-		// load all images
-		this.load.image('titlescreen1', 'assets/background/title/titlescreen1.png');
-		this.load.image('titlescreen2', 'assets/background/title/titlescreen2.png');
-		this.load.image('titlescreen3', 'assets/background/title/titlescreen3.png');
-		this.load.image('titlescreen4', 'assets/background/title/titlescreen4.png');
-		this.load.image('titlescreen5', 'assets/background/title/titlescreen5.png');
-		this.load.image('titlescreen6', 'assets/background/title/titlescreen6.png');
-		this.load.image('bgMenu', 'assets/background/bgmenu.png');
-		this.load.image('title', 'assets/title.png');
-		this.load.image('exitButton', 'assets/buttons/exit.png');
-		this.load.image('exitButtonHover', 'assets/buttons/exit_hover.png');
-		this.load.image('playButton', 'assets/buttons/play.png');
-		this.load.image('playButtonHover', 'assets/buttons/play_hover.png');
-		this.load.image('settingsButton', 'assets/buttons/settings.png');
-		this.load.image('settingsButtonHover', 'assets/buttons/settings_hover.png');
-		this.load.image('aboutButton', 'assets/buttons/about.png');
-		this.load.image('aboutButtonHover', 'assets/buttons/about_hover.png');
-		// load all sounds
-		this.load.audio('main_theme', 'assets/sounds/theme.ogg');
-		this.load.audio('click', 'assets/sounds/click.ogg');
+		//
 	}
 
 	// called once all the assets for the scene have been loaded
@@ -36,7 +16,7 @@ export default class TitleScreen extends Phaser.Scene {
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
 		// menu : 0 for settings and 1 for help/about
-		function showOverMenu(menu) {
+		const showOverMenu = (menu) => {
 			buttonEvents(exitButton, 'exitButton', 'exitButtonHover', hideOverMenu, clickedSound);
 			backgroundMenu.setVisible(true);
 			exitButton.setVisible(true);
@@ -44,14 +24,15 @@ export default class TitleScreen extends Phaser.Scene {
 			playButton.setVisible(false);
 			settingsButton.setVisible(false);
 			aboutButton.setVisible(false);
-		}
-		function hideOverMenu() {
+		};
+
+		const hideOverMenu = () => {
 			backgroundMenu.setVisible(false);
 			exitButton.setVisible(false);
 			playButton.setVisible(true);
 			settingsButton.setVisible(true);
 			aboutButton.setVisible(true	);
-		}
+		};
 
 		// background effect
 		this.anims.create({
@@ -76,7 +57,9 @@ export default class TitleScreen extends Phaser.Scene {
 
 		// display
 		this.add.sprite(960, 540, 'titlescreen1').play('titlescreenAnim');
-		this.add.sprite(950, 300, 'title');
+
+		// tween
+		let title = this.add.sprite(950, 300, 'title');
 
 		// buttons
 		let playButton = this.add.sprite(850, 540, 'playButton').setInteractive();
@@ -89,11 +72,23 @@ export default class TitleScreen extends Phaser.Scene {
 
 		// assign buttons actions
 		buttonEvents(playButton, 'playButton', 'playButtonHover', () => {
-			menuMusic.stop(),
-			this.scene.start('TemplateDialogue'),
+			this.tweens.add({
+        targets: menuMusic,
+        volume: 0,
+        ease: 'Linear',
+        duration: 1500
+      });
+			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			clickedSound
 		}, clickedSound);
+
 		buttonEvents(settingsButton, 'settingsButton', 'settingsButtonHover', showOverMenu, clickedSound);
 		buttonEvents(aboutButton, 'aboutButton', 'aboutButtonHover', showOverMenu, clickedSound);
+
+		this.cameras.main.once('camerafadeoutcomplete', () => {
+			this.time.delayedCall(2000, () => {
+				this.scene.start('TemplateDialogue');
+			});
+		});
 	}
 }

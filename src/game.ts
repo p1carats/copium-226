@@ -1,18 +1,18 @@
 import * as Phaser from 'phaser';
 
-import SplashScreen from './scenes/splashscreen';
+import SplashScreen from './scenes/preload';
 import TitleScreen from './scenes/titlescreen';
 import TemplateDialogue from './scenes/templatediag';
 
-let config = {
-	scale: {
+const config: Phaser.Types.Core.GameConfig = {
+	type: Phaser.AUTO,
+	scale: { 
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
 		parent: 'copium-226',
 		width: 1920,
 		height: 1080
 	},
-	type: Phaser.AUTO,
 	pixelArt: true,
 	scene: [SplashScreen, TitleScreen, TemplateDialogue]
 };
