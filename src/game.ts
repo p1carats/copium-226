@@ -3,6 +3,7 @@ import * as Phaser from 'phaser';
 import SplashScreen from './scenes/preload';
 import TitleScreen from './scenes/titlescreen';
 import SettingsScene from './scenes/settings';
+import PauseMenu from './scenes/pause';
 import TemplateDialogue from './scenes/templatediag';
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -15,7 +16,7 @@ const config: Phaser.Types.Core.GameConfig = {
 		height: 1080
 	},
 	pixelArt: true,
-	scene: [SplashScreen, TitleScreen, SettingsScene, TemplateDialogue]
+	scene: [SplashScreen, TitleScreen, SettingsScene, PauseMenu, TemplateDialogue]
 };
 
 export default new Phaser.Game(config);

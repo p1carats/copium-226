@@ -21,7 +21,7 @@ export default class SettingsScene extends Phaser.Scene {
 		});
 
 		// let text = this.add.bitmapText(845, 750, 'monogram', 'Retour au menu principal', 30);
-		let text = this.add.text(845, 750, 'Retour au menu principal', { font: '30px monogram', color: 'white' }).setInteractive();
+		let text = this.add.text(845, 480, 'Retour au menu principal', { font: '72px monogram', color: 'white' }).setInteractive();
 
 		// test
 		text.on('pointerdown', () => {

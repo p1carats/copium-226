@@ -7,7 +7,7 @@ export default class TitleScreen extends Phaser.Scene {
 	}
 
 	preload() {
-		//
+		// preload
 	}
 
 	// called once all the assets for the scene have been loaded
@@ -52,8 +52,7 @@ export default class TitleScreen extends Phaser.Scene {
 		// menu music (looped) and click sound
 		let menuMusic = this.sound.add('main_theme');
 		let clickedSound = this.sound.add('click');
-		// menuMusic.setLoop(true);
-		menuMusic.play();
+		menuMusic.play('', { loop: true });
 
 		// background
 		this.add.sprite(960, 540, 'titlescreen1').play('titlescreenAnim');
@@ -77,7 +76,7 @@ export default class TitleScreen extends Phaser.Scene {
 			aboutButton.setInteractive();
 		});
 
-		// settings/about pop-up
+		// about pop-up
 		let backgroundMenu = this.add.sprite(900, 540, 'bgMenu').setAlpha(0.4).setVisible(false);
 		let exitButton = this.add.sprite(1615, 240, 'exitButton').setScale(0.2, 0.2).setVisible(false);
 
@@ -119,7 +118,7 @@ export default class TitleScreen extends Phaser.Scene {
 			});
 		});
 
-		// about (legacy)
+		// about pop-up (legacy)
 		buttonEvents(aboutButton, 'aboutButton', 'aboutButtonHover', showOverMenu, clickedSound);
 	}
 }
