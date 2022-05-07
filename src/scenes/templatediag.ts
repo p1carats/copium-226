@@ -1,3 +1,7 @@
+import { createDialogBox } from "../lib/animations";
+import timer from "../lib/timer";
+import PauseMenu from "./pause";
+
 export default class TemplateDialogue extends Phaser.Scene {
 
 	constructor() {
@@ -5,44 +9,45 @@ export default class TemplateDialogue extends Phaser.Scene {
 	}
 
 	preload() {
-		// allows us to specify images, audio, or other assets to load before starting the scene
-		this.load.image('background', 'assets/background/scenes/bedroom.jpg');
-		this.load.image('dialogBox', 'assets/dialogbox.png');
-		this.load.image('boss', 'assets/characters/Boss_Green_Horizon.png');
+		// preload
 	}
 
 	create() {
-		function move(...sprites) {
-			for (let sprite of sprites)
-			sprite.setX(sprite.x + 8);
-		}
+		this.cameras.main.fadeIn(2000, 0, 0, 0);
 
-		let slider = () => {
-			let dialogBox = this.add.image(-500, 800, 'dialogBox');
-			dialogBox.alpha = 0.4;
-			let perso = this.add.image(-700, 545, 'boss');
-			let callback = () => move(perso, dialogBox);
-			let timer = this.time.addEvent({
-				delay: 2,
-				repeat: 130,
-				callbackScope: this,
-				callback: callback
-			});
-		}
+		// background
+		let background = this.add.sprite(920, 470, 'bedroombg').setScale(2, 2);
+		background.setPipeline('Light2D');
 
-		let background = this.add.image(920, 470, 'background').setScale(2, 2).setAlpha(0);
+		// light effects
+		this.lights.addLight(900, 280, 400, 0xffffff, 1);
+		this.lights.enable().setAmbientColor(0x555555);
 
-		this.tweens.add({
-			targets: background,
-			alpha: 1,
-			duration: 3500,
-			repeat: 0
-		});
+		// pause button (settings texture, this is temporary)
+		let pauseButton = this.add.sprite(70, 70, 'settingsButton').setInteractive();
 
-		this.time.addEvent({
-			delay: 3500,
-			callbackScope: this,
-			callback: slider
+		// content
+		let dialogBox = this.add.sprite(-500, 800, 'dialogBox').setAlpha(0.9);
+		let perso = this.add.sprite(-730, 538, 'boss');
+
+		// music (room theme, looped) and click sound
+		let clickedSound = this.sound.add('click');
+		let roomMusic = this.sound.add('room_theme');
+		roomMusic.play('', { loop: true });
+
+		// dialogbox
+		let callback = () => createDialogBox(this, dialogBox, perso, ['', '', '']);
+		timer(this, 3000, callback, false, 0);
+
+		// pause trigger
+		pauseButton.on('pointerover', () => { pauseButton.setTexture('settingsButtonHover') });
+		pauseButton.on('pointerout', () => { pauseButton.setTexture('settingsButton') });
+		pauseButton.on('pointerdown', () => {
+			clickedSound.play(),
+			roomMusic.pause(),
+			this.scene.launch('PauseMenu').setActive,
+			// button is not visible for now (but clickable), i'm working on it!
+			this.scene.pause()
 		});
 	}
 }

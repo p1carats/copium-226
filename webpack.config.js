@@ -5,20 +5,22 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
 	entry: {
+		// phaser custom build (lighter)
+		// WIP engine: './lib/phaser.custom.ts',
 		// this is our entry point, the main TypeScript file
-		game: "./src/game.ts"
+		game: './src/game.ts'
 	},
 	output: {
 		// this is the path of the output bundle, the /dist folder
 		path: path.resolve(__dirname, 'dist'),
 		// and this is our output file, the one which bundles all libraries
-		filename: "[name]-[contenthash].bundle.js",
+		filename: '[name]-[contenthash].bundle.js',
 	},
 	resolve: {
 		// list of extensions to resolve (in specific order)
 		extensions: ['.ts', '.tsx', '.js']
 	},
-	devtool: "inline-source-map",
+	devtool: 'inline-source-map',
 	devServer: {
 		static: {
 			directory: path.join(__dirname, 'assets'),
@@ -32,7 +34,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.ts$/,
-				loader: "ts-loader",
+				loader: 'ts-loader',
 				exclude: /node_modules/
 			}
 		]
@@ -40,7 +42,8 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: "Copium 226"
+			title: 'Copium 226',
+			template: 'src/index.html'
 		})
 	]
 };
