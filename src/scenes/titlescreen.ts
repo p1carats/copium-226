@@ -1,5 +1,3 @@
-import { buttonEvents } from '../lib/events';
-
 export default class TitleScreen extends Phaser.Scene {
 
 	constructor() {
@@ -14,25 +12,6 @@ export default class TitleScreen extends Phaser.Scene {
 	create() {
 		// fade in scene
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
-
-		// menu : 0 for settings and 1 for help/about
-		const showOverMenu = (menu) => {
-			buttonEvents(exitButton, 'exitButton', 'exitButtonHover', hideOverMenu, clickedSound);
-			backgroundMenu.setVisible(true);
-			exitButton.setVisible(true);
-			exitButton.setInteractive();
-			playButton.setVisible(false);
-			settingsButton.setVisible(false);
-			aboutButton.setVisible(false);
-		};
-
-		const hideOverMenu = () => {
-			backgroundMenu.setVisible(false);
-			exitButton.setVisible(false);
-			playButton.setVisible(true);
-			settingsButton.setVisible(true);
-			aboutButton.setVisible(true	);
-		};
 
 		// background effect
 		this.anims.create({
@@ -54,11 +33,11 @@ export default class TitleScreen extends Phaser.Scene {
 		let clickedSound = this.sound.add('click');
 		menuMusic.play('', { loop: true });
 
-		// background
+		// layout (background and title)	
 		this.add.sprite(960, 540, 'titlescreen1').play('titlescreenAnim');
+		const title = this.add.sprite(this.scale.width/2, this.scale.height/4, 'title').setAlpha(0);
 
 		// buttons
-		const title = this.add.sprite(950, 300, 'title').setAlpha(0);
 		const playButton = this.add.sprite(850, 540, 'playButton').setAlpha(0);
 		const settingsButton = this.add.sprite(1100, 500, 'settingsButton').setAlpha(0);
 		const aboutButton = this.add.sprite(1100, 580, 'aboutButton').setAlpha(0);
@@ -118,7 +97,10 @@ export default class TitleScreen extends Phaser.Scene {
 			});
 		});
 
-		// about pop-up (legacy)
-		buttonEvents(aboutButton, 'aboutButton', 'aboutButtonHover', showOverMenu, clickedSound);
+		aboutButton.on('pointerover', () => { aboutButton.setTexture('aboutButtonHover') });
+		aboutButton.on('pointerout', () => { aboutButton.setTexture('aboutButton') });
+		settingsButton.on('pointerdown', () => {
+			// to-do
+		});
 	}
 }

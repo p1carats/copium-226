@@ -1,6 +1,5 @@
 import { createDialogBox } from "../lib/animations";
 import timer from "../lib/timer";
-import PauseMenu from "./pause";
 
 export default class TemplateDialogue extends Phaser.Scene {
 
@@ -9,7 +8,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 	}
 
 	preload() {
-		// preload
 	}
 
 	create() {
@@ -22,9 +20,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 		// light effects
 		this.lights.addLight(900, 280, 400, 0xffffff, 1);
 		this.lights.enable().setAmbientColor(0x555555);
-
-		// pause button (settings texture, this is temporary)
-		let pauseButton = this.add.sprite(70, 70, 'settingsButton').setInteractive();
 
 		// content
 		let dialogBox = this.add.sprite(-500, 800, 'dialogBox').setAlpha(0.9);
@@ -39,14 +34,15 @@ export default class TemplateDialogue extends Phaser.Scene {
 		let callback = () => createDialogBox(this, dialogBox, perso, ['', '', '']);
 		timer(this, 3000, callback, false, 0);
 
-		// pause trigger
-		pauseButton.on('pointerover', () => { pauseButton.setTexture('settingsButtonHover') });
-		pauseButton.on('pointerout', () => { pauseButton.setTexture('settingsButton') });
+		// pause button and trigger
+		let pauseButton = this.add.sprite(0, 0, 'pauseButton').setOrigin(0).setInteractive();
+		pauseButton.on('pointerover', () => { pauseButton.setTexture('pauseButtonHover') });
+		pauseButton.on('pointerout', () => { pauseButton.setTexture('pauseButton') });
 		pauseButton.on('pointerdown', () => {
 			clickedSound.play(),
+			pauseButton.setVisible(false),
 			roomMusic.pause(),
-			this.scene.launch('PauseMenu').setActive,
-			// button is not visible for now (but clickable), i'm working on it!
+			this.scene.launch('PauseMenu'),
 			this.scene.pause()
 		});
 	}

@@ -42,8 +42,7 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'Copium 226',
-			template: 'src/index.html'
+			title: 'Copium 226'
 		})
 	]
 };

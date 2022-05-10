@@ -10,17 +10,17 @@ export default class PauseMenu extends Phaser.Scene {
 
 	create() {
 		let clickedSound = this.sound.add('click');
-		// temporary textures and emplacements
-		let resumeButton = this.add.sprite(850, 540, 'playButton').setInteractive();
-		let quitButton = this.add.sprite(280, 540, 'playButton').setOrigin(0).setInteractive();
 
 		// resume game
+		const resumeButton = this.add.sprite(850, 540, 'playButton').setInteractive();
 		resumeButton.on('pointerdown', () => {
 			clickedSound.play(),
-			this.scene.resume('TemplateDialogue')
+			this.scene.resume('TemplateDialogue'),
+			this.scene.stop
 		});
 
 		// quit game
+		const quitButton = this.add.sprite(280, 540, 'playButton').setOrigin(0).setInteractive();
 		quitButton.on('pointerdown', () => {
 			clickedSound.play(),
 			this.scene.stop('TemplateDialogue'),

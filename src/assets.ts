@@ -1,7 +1,13 @@
 // allows us to specify images, audio, or other assets to load before starting the game
 export function assetsLoader(game) {
-	// this.load.bitmapFont('monogram', 'assets/fonts/monogram-bitmap.json');
-	// load all images
+	// font
+	game.load.rexWebFont({
+		custom: {
+			families: ['monogram'],
+			urls: ['assets/fonts/fonts.css']
+		}
+	});
+	// load all textures/sprites images
 	game.load.image('logo', 'assets/logo.png');
 	game.load.image('titlescreen1', 'assets/background/title/titlescreen1.png');
 	game.load.image('titlescreen2', 'assets/background/title/titlescreen2.png');
@@ -17,11 +23,13 @@ export function assetsLoader(game) {
 	game.load.image('playButtonHover', 'assets/buttons/play_hover.png');
 	game.load.image('settingsButton', 'assets/buttons/settings.png');
 	game.load.image('settingsButtonHover', 'assets/buttons/settings_hover.png');
+	game.load.image('pauseButton', 'assets/buttons/pause.png');
+	game.load.image('pauseButtonHover', 'assets/buttons/pause_hover.png');
 	game.load.image('aboutButton', 'assets/buttons/about.png');
 	game.load.image('aboutButtonHover', 'assets/buttons/about_hover.png');
 	game.load.image('bedroombg', 'assets/background/scenes/bedroom.png');
 	game.load.image('dialogBox', 'assets/dialogbox.png');
-	game.load.image('boss', 'assets/characters/Boss_Green_Horizon.png');
+	game.load.image('boss', 'assets/characters/george_left.png');
 	// load all sounds
 	game.load.audio('menu_theme', 'assets/sounds/menu.ogg');
 	game.load.audio('startingAudio', 'assets/sounds/start.ogg');

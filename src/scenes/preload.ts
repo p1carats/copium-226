@@ -10,15 +10,12 @@ export default class SplashScreen extends Phaser.Scene {
 
 		let progressBar = this.add.graphics().fillStyle(0x85edd0, 0.8).fillRect(250, 270, 320, 50);
 		let progressBox = this.add.graphics();
-		
-		let width = this.cameras.main.width;
-		let height = this.cameras.main.height;
 
-		let loadingText = this.add.text(width/2, height/2-50, 'Loading...', { font: '30px monogram', color: '#ffffff' }).setOrigin(0.5, 0.5);
+		let loadingText = this.add.text(this.scale.width/2, this.scale.height/2-50, 'Loading...', { font: '30px monogram', color: '#ffffff' }).setOrigin(0.5, 0.5);
 		
 		let percentText = this.add.text(
-			width / 2,
-			height / 2 - 5,
+			this.scale.width/2,
+			(this.scale.height/2)-5,
 			'0%',
 			{
 				font: '30px monogram',
@@ -31,7 +28,7 @@ export default class SplashScreen extends Phaser.Scene {
 			percentText.setText((value*100).toFixed(0) + '%');
 			progressBar.clear();
 			progressBar.fillStyle(0x85edd0, 1);
-			progressBar.fillRect(250, 280, value*300, 30);
+			progressBar.fillRect((this.scale.width/2)-150, (this.scale.height/2)-15, value*300, 30);
 		});
 
 		this.load.on('complete', () => {
@@ -47,9 +44,8 @@ export default class SplashScreen extends Phaser.Scene {
 	create() {
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
-		let logo = this.add.image(960, 500, 'logo');
-		// let text = this.add.bitmapText(845, 750, 'monogram', 'Please click to start...', 30);
-		let text = this.add.text(845, 750, 'Please click to start...', { font: '30px monogram', color: 'white' });
+		let logo = this.add.image(this.scale.width/2, this.scale.height/2, 'logo');
+		let text = this.add.text(845, 800, 'Please click to start...', { font: '30px monogram', color: 'white' });
 		this.tweens.add({
 			targets: text,
 			alpha: 0,

@@ -1,5 +1,9 @@
 import * as Phaser from 'phaser';
 
+import WebFontLoaderPlugin from 'phaser3-rex-plugins/plugins/webfontloader-plugin';
+import FSMPlugin from 'phaser3-rex-plugins/plugins/fsm-plugin';
+import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
+
 import SplashScreen from './scenes/preload';
 import TitleScreen from './scenes/titlescreen';
 import SettingsScene from './scenes/settings';
@@ -11,12 +15,35 @@ const config: Phaser.Types.Core.GameConfig = {
 	scale: { 
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
-		parent: 'copium-226',
-		width: 1920,
-		height: 1080
+		width: 1920, // window.innerWidth
+		height: 1080 // window.innerHeight
 	},
 	pixelArt: true,
-	scene: [SplashScreen, TitleScreen, SettingsScene, PauseMenu, TemplateDialogue]
+	scene: [
+		SplashScreen,
+		TitleScreen,
+		SettingsScene,
+		PauseMenu,
+		TemplateDialogue
+	],
+	plugins: {
+		global: [{
+			key: 'rexWebFontLoader',
+			plugin: WebFontLoaderPlugin,
+			start: true
+		},
+		{
+			key: 'rexFSM',
+			plugin: FSMPlugin,
+			start: true
+		}],
+		scene: [{
+			key: 'rexUI',
+			plugin: UIPlugin,
+			mapping: 'rexUI'
+		}]
+	},
+	seed: [(Date.now()*Math.random()).toString()]
 };
 
 export default new Phaser.Game(config);
