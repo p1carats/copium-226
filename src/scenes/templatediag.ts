@@ -1,6 +1,5 @@
 import { Textures } from "../assets";
-import { createDialogBox } from "../lib/animations";
-import timer from "../lib/timer";
+import dialogBox from "../objects/dialogBox";
 
 export default class TemplateDialogue extends Phaser.Scene {
 
@@ -23,18 +22,13 @@ export default class TemplateDialogue extends Phaser.Scene {
 		this.lights.addLight(900, 280, 400, 0xffffff, 1);
 		this.lights.enable().setAmbientColor(0x555555);
 
-		// content
-		let dialogBox = this.add.sprite(-500, 800, 'dialogBox').setAlpha(0.9);
-		let perso = this.add.sprite(-730, 538, 'boss');
-
 		// music (room theme, looped) and click sound
 		let clickedSound = this.sound.add('click');
 		let roomMusic = this.sound.add('room_theme');
 		roomMusic.play('', { loop: true });
 
 		// dialogbox
-		let callback = () => createDialogBox(this, dialogBox, perso, ['', '', '']);
-		timer(this, 3000, callback, false, 0);
+		dialogBox(this, Textures.GeorgeRight, 'This is Elon Musk');
 
 		// pause button and trigger
 		let pauseButton = this.add.sprite(0, 0, 'pauseButton').setOrigin(0).setInteractive();

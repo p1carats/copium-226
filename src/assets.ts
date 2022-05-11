@@ -29,7 +29,9 @@ export function assetsLoader(game:any) {
 	game.load.image('villagebg', 'assets/background/scenes/village.png');
 	game.load.image('bedroombg', 'assets/background/scenes/bedroom.png');
 	game.load.image('dialogBox', 'assets/dialogbox.png');
-	game.load.image('boss', 'assets/characters/george_left.png');
+	game.load.image('georgeLeft', 'assets/characters/george_left.png');
+	game.load.image('georgeRight', 'assets/characters/george_right.png');
+	game.load.image('lineBreak', 'assets/buttons/line_break.png');
 	// load all sounds
 	game.load.audio('menu_theme', 'assets/sounds/menu.ogg');
 	game.load.audio('startingAudio', 'assets/sounds/start.ogg');
@@ -57,5 +59,9 @@ export enum Textures {
 	PauseButtonHover = 'pauseButtonHover',
 	AboutButton = 'aboutButton',
 	AboutButtonHover = 'aboutButtonHover',
-	Village = 'villagebg'
+	Village = 'villagebg',
+	DialogBox = 'dialogBox',
+	LineBreak = 'lineBreak',
+	GeorgeLeft = 'georgeLeft',
+	GeorgeRight = 'georgeRight'
 }
