@@ -1,5 +1,5 @@
 // allows us to specify images, audio, or other assets to load before starting the game
-export function assetsLoader(game) {
+export function assetsLoader(game:any) {
 	// font
 	game.load.rexWebFont({
 		custom: {
@@ -15,7 +15,6 @@ export function assetsLoader(game) {
 	game.load.image('titlescreen4', 'assets/background/title/titlescreen4.png');
 	game.load.image('titlescreen5', 'assets/background/title/titlescreen5.png');
 	game.load.image('titlescreen6', 'assets/background/title/titlescreen6.png');
-	game.load.image('bgMenu', 'assets/background/bgmenu.png');
 	game.load.image('title', 'assets/title.png');
 	game.load.image('exitButton', 'assets/buttons/exit.png');
 	game.load.image('exitButtonHover', 'assets/buttons/exit_hover.png');
@@ -27,6 +26,7 @@ export function assetsLoader(game) {
 	game.load.image('pauseButtonHover', 'assets/buttons/pause_hover.png');
 	game.load.image('aboutButton', 'assets/buttons/about.png');
 	game.load.image('aboutButtonHover', 'assets/buttons/about_hover.png');
+	game.load.image('villagebg', 'assets/background/scenes/village.png');
 	game.load.image('bedroombg', 'assets/background/scenes/bedroom.png');
 	game.load.image('dialogBox', 'assets/dialogbox.png');
 	game.load.image('boss', 'assets/characters/george_left.png');
@@ -36,4 +36,26 @@ export function assetsLoader(game) {
 	game.load.audio('main_theme', 'assets/sounds/theme.ogg');
 	game.load.audio('room_theme', 'assets/sounds/room.ogg');
 	game.load.audio('click', 'assets/sounds/click.ogg');
+}
+
+export enum Textures {
+	Logo = 'logo',
+	TitleScreen1 = 'titlescreen1',
+	TitleScreen2 = 'titlescreen2',
+	TitleScreen3 = 'titlescreen3',
+	TitleScreen4 = 'titlescreen4',
+	TitleScreen5 = 'titlescreen5',
+	TitleScreen6 = 'titlescreen6',
+	Title = 'title',
+	ExitButton = 'exitButton',
+	ExitButtonHover = 'exitButtonHover',
+	PlayButton = 'playButton',
+	PlayButtonHover = 'playButtonHover',
+	SettingsButton = 'settingsButton',
+	SettingsButtonHover = 'settingsButtonHover',
+	PauseButton = 'pauseButton',
+	PauseButtonHover = 'pauseButtonHover',
+	AboutButton = 'aboutButton',
+	AboutButtonHover = 'aboutButtonHover',
+	Village = 'villagebg'
 }

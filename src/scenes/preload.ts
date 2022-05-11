@@ -1,4 +1,4 @@
-import { assetsLoader } from '../assets';
+import { assetsLoader, Textures } from '../assets';
 
 export default class SplashScreen extends Phaser.Scene {
 
@@ -9,10 +9,7 @@ export default class SplashScreen extends Phaser.Scene {
 	preload() {
 
 		let progressBar = this.add.graphics().fillStyle(0x85edd0, 0.8).fillRect(250, 270, 320, 50);
-		let progressBox = this.add.graphics();
-
 		let loadingText = this.add.text(this.scale.width/2, this.scale.height/2-50, 'Loading...', { font: '30px monogram', color: '#ffffff' }).setOrigin(0.5, 0.5);
-		
 		let percentText = this.add.text(
 			this.scale.width/2,
 			(this.scale.height/2)-5,
@@ -33,7 +30,6 @@ export default class SplashScreen extends Phaser.Scene {
 
 		this.load.on('complete', () => {
 			progressBar.destroy();
-			progressBox.destroy();
 			loadingText.destroy();
 			percentText.destroy();
 		});
@@ -44,8 +40,8 @@ export default class SplashScreen extends Phaser.Scene {
 	create() {
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
-		let logo = this.add.image(this.scale.width/2, this.scale.height/2, 'logo');
-		let text = this.add.text(845, 800, 'Please click to start...', { font: '30px monogram', color: 'white' });
+		let logo = this.add.image(this.scale.width/2, this.scale.height/2, Textures.Logo);
+		let text = this.add.text((this.scale.width/2)-165, (this.scale.height/4)*3, 'Please click to start...', { font: '40px monogram', color: 'white' }).setOrigin(0.5, 0.5);
 		this.tweens.add({
 			targets: text,
 			alpha: 0,
@@ -62,6 +58,6 @@ export default class SplashScreen extends Phaser.Scene {
 					this.scene.start('TitleScreen');
 				});
 			});
-		}, this);
+		});
 	}
 }

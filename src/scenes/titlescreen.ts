@@ -1,3 +1,5 @@
+import { Textures } from "../assets";
+
 export default class TitleScreen extends Phaser.Scene {
 
 	constructor() {
@@ -17,12 +19,12 @@ export default class TitleScreen extends Phaser.Scene {
 		this.anims.create({
 			key: 'titlescreenAnim',
 			frames: [
-				{ key: 'titlescreen1' },
-				{ key: 'titlescreen2' },
-				{ key: 'titlescreen3' },
-				{ key: 'titlescreen4' },
-				{ key: 'titlescreen5' },
-				{ key: 'titlescreen6' },
+				{ key: Textures.TitleScreen1 },
+				{ key: Textures.TitleScreen2 },
+				{ key: Textures.TitleScreen3 },
+				{ key: Textures.TitleScreen4 },
+				{ key: Textures.TitleScreen5 },
+				{ key: Textures.TitleScreen6 },
 			],
 			frameRate: 2,
 			repeat: -1
@@ -34,13 +36,13 @@ export default class TitleScreen extends Phaser.Scene {
 		menuMusic.play('', { loop: true });
 
 		// layout (background and title)	
-		this.add.sprite(960, 540, 'titlescreen1').play('titlescreenAnim');
-		const title = this.add.sprite(this.scale.width/2, this.scale.height/4, 'title').setAlpha(0);
+		this.add.sprite(960, 540, Textures.TitleScreen1).play('titlescreenAnim');
+		const title = this.add.sprite(this.scale.width/2, this.scale.height/4, Textures.Title).setAlpha(0);
 
 		// buttons
-		const playButton = this.add.sprite(850, 540, 'playButton').setAlpha(0);
-		const settingsButton = this.add.sprite(1100, 500, 'settingsButton').setAlpha(0);
-		const aboutButton = this.add.sprite(1100, 580, 'aboutButton').setAlpha(0);
+		const playButton = this.add.sprite(850, 540, Textures.PlayButton).setAlpha(0);
+		const settingsButton = this.add.sprite(1100, 500, Textures.SettingsButton).setAlpha(0);
+		const aboutButton = this.add.sprite(1100, 580, Textures.AboutButton).setAlpha(0);
 
 		// fade in effect
 		this.time.delayedCall(2500, () => {
@@ -55,13 +57,9 @@ export default class TitleScreen extends Phaser.Scene {
 			aboutButton.setInteractive();
 		});
 
-		// about pop-up
-		let backgroundMenu = this.add.sprite(900, 540, 'bgMenu').setAlpha(0.4).setVisible(false);
-		let exitButton = this.add.sprite(1615, 240, 'exitButton').setScale(0.2, 0.2).setVisible(false);
-
 		// play button actions
-		playButton.on('pointerover', () => { playButton.setTexture('playButtonHover') });
-		playButton.on('pointerout', () => { playButton.setTexture('playButton') });
+		playButton.on('pointerover', () => { playButton.setTexture(Textures.PlayButtonHover) });
+		playButton.on('pointerout', () => { playButton.setTexture(Textures.PlayButton) });
 		playButton.on('pointerdown', () => {
 			clickedSound.play(),
 			this.tweens.add({
@@ -79,8 +77,8 @@ export default class TitleScreen extends Phaser.Scene {
 		});
 
 		// settings button actions
-		settingsButton.on('pointerover', () => { settingsButton.setTexture('settingsButtonHover') });
-		settingsButton.on('pointerout', () => { settingsButton.setTexture('settingsButton') });
+		settingsButton.on('pointerover', () => { settingsButton.setTexture(Textures.SettingsButtonHover) });
+		settingsButton.on('pointerout', () => { settingsButton.setTexture(Textures.SettingsButton) });
 		settingsButton.on('pointerdown', () => {
 			clickedSound.play(),
 			this.tweens.add({
@@ -97,8 +95,8 @@ export default class TitleScreen extends Phaser.Scene {
 			});
 		});
 
-		aboutButton.on('pointerover', () => { aboutButton.setTexture('aboutButtonHover') });
-		aboutButton.on('pointerout', () => { aboutButton.setTexture('aboutButton') });
+		aboutButton.on('pointerover', () => { aboutButton.setTexture(Textures.AboutButtonHover) });
+		aboutButton.on('pointerout', () => { aboutButton.setTexture(Textures.AboutButton) });
 		settingsButton.on('pointerdown', () => {
 			// to-do
 		});

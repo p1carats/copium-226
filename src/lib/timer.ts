@@ -1,4 +1,4 @@
-export default function timer(game, delay, callback, loop, repeat) {
+export default function timer(game:any, delay:number, callback:any, loop:any, repeat:any) {
 	game.time.addEvent({
 		delay: delay,
 		callback: callback,
@@ -6,4 +6,4 @@ export default function timer(game, delay, callback, loop, repeat) {
 		loop: loop,
 		repeat: repeat
 	});
-}
+};

@@ -1,3 +1,4 @@
+import { Textures } from "../assets";
 import { createDialogBox } from "../lib/animations";
 import timer from "../lib/timer";
 
@@ -14,6 +15,7 @@ export default class TemplateDialogue extends Phaser.Scene {
 		this.cameras.main.fadeIn(2000, 0, 0, 0);
 
 		// background
+		// let background = this.add.tileSprite(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, Textures.Village);
 		let background = this.add.sprite(920, 470, 'bedroombg').setScale(2, 2);
 		background.setPipeline('Light2D');
 
