@@ -30,7 +30,7 @@ function createTextBox(scene, x, y, config) {
 			text: 10,
 		}
 	}).setOrigin(0).setScale(0.75, 0.75).setInteractive().layout();
-	
+
 	textBox.on('pointerdown', function() {
 		let icon = this.getElement('action').setVisible(false);
 		this.resetChildVisibleState(icon);
@@ -40,7 +40,7 @@ function createTextBox(scene, x, y, config) {
 			this.typeNextPage();
 		}
 	}, textBox)
-	
+
 	textBox.on('pageend', function() {
 		if (this.isLastPage) {
 			return;
@@ -61,9 +61,17 @@ function createTextBox(scene, x, y, config) {
 	return textBox;
 }
 
-export default function dialogBox(game, texture, text) {
-	let perso = game.add.sprite(300, 650, texture);
-	createTextBox(game, 100, 800, {
+// sens : 0 right / 1 left
+export default function dialogBox(game, texture, text, sens) {
+
+	let position;
+	if (sens === 0){
+		position = [300, 650, 100, 800];
+	}else{
+		position = [1600, 650, 1000, 800];
+	}
+	let perso = game.add.sprite(position[0], position[1], texture);
+	createTextBox(game, position[2], position[3], {
 		wrapWidth: 800,
 		fixedWidth: 900,
 		fixedHeight: 225,
