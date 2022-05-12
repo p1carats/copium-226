@@ -1,5 +1,6 @@
 import { Textures } from "../assets";
 import dialogBox from "../objects/dialogBox";
+import pauseMenu from "../objects/pause";
 
 export default class TemplateDialogue extends Phaser.Scene {
 
@@ -22,7 +23,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 		this.lights.enable().setAmbientColor(0x555555);
 
 		// music (room theme, looped) and click sound
-		let clickedSound = this.sound.add('click');
 		let roomMusic = this.sound.add('room_theme');
 		roomMusic.play('', { loop: true });
 
@@ -31,19 +31,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 		dialogBox(this, Textures.GeorgeRight, content);
 
 		// pause button and trigger
-		let pauseButton = this.add.sprite(0, 0, 'pauseButton').setOrigin(0).setInteractive();
-		pauseButton.on('pointerover', () => { pauseButton.setTexture('pauseButtonHover') });
-		pauseButton.on('pointerout', () => { pauseButton.setTexture('pauseButton') });
-		pauseButton.on('pointerdown', () => {
-			clickedSound.play(),
-			pauseButton.setVisible(false),
-			roomMusic.pause(),
-			/*this.cameras.main.setPostPipeline(KawaseBlurPostFx, {
-				blur: 4,
-				quality: 3
-			}),*/
-			this.scene.launch('PauseMenu'),
-			this.scene.pause()
-		});
+		pauseMenu(this);
 	}
 }

@@ -35,7 +35,7 @@ export default class TitleScreen extends Phaser.Scene {
 		let clickedSound = this.sound.add('click');
 		menuMusic.play('', { loop: true });
 
-		// layout (background and title)	
+		// layout (background and title)
 		this.add.sprite(960, 540, Textures.TitleScreen1).play('titlescreenAnim');
 		const title = this.add.sprite(this.scale.width/2, this.scale.height/4, Textures.Title).setAlpha(0);
 
@@ -90,7 +90,7 @@ export default class TitleScreen extends Phaser.Scene {
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(1000, () => {
-					this.scene.start('SettingsScene');
+					this.scene.start('PauseMenu');
 				});
 			});
 		});

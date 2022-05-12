@@ -42,6 +42,7 @@ export function assetsLoader(game:any) {
 
 export enum Textures {
 	Logo = 'logo',
+	Click = 'click',
 	TitleScreen1 = 'titlescreen1',
 	TitleScreen2 = 'titlescreen2',
 	TitleScreen3 = 'titlescreen3',
