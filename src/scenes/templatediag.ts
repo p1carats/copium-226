@@ -1,9 +1,8 @@
 import { Textures } from "../assets";
 import dialogBox from "../objects/dialogBox";
 import choiceBox from "../objects/choice";
-import pauseMenu from "../objects/pause";
 
-import * as data from "../../assets/story_part1.json";
+// import * as data from "../../assets/story_part1.json";
 
 export default class TemplateDialogue extends Phaser.Scene {
 
@@ -12,13 +11,14 @@ export default class TemplateDialogue extends Phaser.Scene {
 	}
 
 	preload() {
+		// preload
 	}
 
 	create() {
 		this.cameras.main.fadeIn(2000, 0, 0, 0);
 
 		// background
-		let background = this.add.sprite(0, 0, 'bedroombg').setOrigin(0).setScale(2.13, 2.52);
+		let background: Phaser.GameObjects.Sprite = this.add.sprite(0, 0, 'bedroombg').setOrigin(0).setScale(2.13, 2.52);
 		background.setPipeline('Light2D');
 
 		// light effects
@@ -26,7 +26,8 @@ export default class TemplateDialogue extends Phaser.Scene {
 		this.lights.enable().setAmbientColor(0x555555);
 
 		// music (room theme, looped) and click sound
-		let roomMusic = this.sound.add('room_theme');
+		let clickedSound: Phaser.Sound.BaseSound = this.sound.add('click');
+		let roomMusic: Phaser.Sound.BaseSound = this.sound.add('room_theme');
 		roomMusic.play('', { loop: true });
 
 		// dialogbox
@@ -35,6 +36,19 @@ export default class TemplateDialogue extends Phaser.Scene {
 		dialogBox(this, Textures.GeorgeLeft, content, 1);
 
 		// pause button and trigger
-		pauseMenu(this);
+		let pauseButton = this.add.sprite(70, 70, Textures.PauseButton).setOrigin(0).setInteractive();
+		pauseButton.on('pointerover', () => { pauseButton.setTexture(Textures.PauseButtonHover) });
+		pauseButton.on('pointerout', () => { pauseButton.setTexture(Textures.PauseButton) });
+		pauseButton.on('pointerdown', () => {
+			clickedSound.play();
+			roomMusic.pause();
+			/*this.cameras.main.setPostPipeline(KawaseBlurPostFx, {
+				blur: 6,
+				quality: 3
+			});*/
+			this.scene.launch('PauseMenu').bringToTop();
+			this.scene.sendToBack();
+			this.scene.pause();
+		});
 	}
 }

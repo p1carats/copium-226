@@ -3,7 +3,7 @@ export function assetsLoader(game:any) {
 	// font
 	game.load.rexWebFont({
 		custom: {
-			families: ['monogram'],
+			families: ['monogramextended'],
 			urls: ['assets/fonts/fonts.css']
 		}
 	});
@@ -26,7 +26,10 @@ export function assetsLoader(game:any) {
 	game.load.image('pauseButtonHover', 'assets/buttons/pause_hover.png');
 	game.load.image('aboutButton', 'assets/buttons/about.png');
 	game.load.image('aboutButtonHover', 'assets/buttons/about_hover.png');
-	game.load.image('villagebg', 'assets/background/scenes/village.png');
+	game.load.image('muteButton', 'assets/buttons/mute.png');
+	game.load.image('muteButtonHover', 'assets/buttons/mute_hover.png');
+	game.load.image('demuteButton', 'assets/buttons/demute.png');
+	game.load.image('demuteButtonHover', 'assets/buttons/demute_hover.png');
 	game.load.image('bedroombg', 'assets/background/scenes/bedroom.png');
 	game.load.image('dialogBox', 'assets/dialogbox.png');
 	game.load.image('georgeLeft', 'assets/characters/george_left.png');
@@ -60,7 +63,10 @@ export enum Textures {
 	PauseButtonHover = 'pauseButtonHover',
 	AboutButton = 'aboutButton',
 	AboutButtonHover = 'aboutButtonHover',
-	Village = 'villagebg',
+	MuteButton = 'muteButton',
+	MuteButtonHover = 'muteButtonHover',
+	DeMuteButton = 'demuteButton',
+	DeMuteButtonHover = 'demuteButtonHover',
 	DialogBox = 'dialogBox',
 	LineBreak = 'lineBreak',
 	GeorgeLeft = 'georgeLeft',

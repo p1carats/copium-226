@@ -1,5 +1,3 @@
-import {Textures} from "../assets";
-
 export default class PauseMenu extends Phaser.Scene {
 
 	constructor() {
@@ -13,22 +11,42 @@ export default class PauseMenu extends Phaser.Scene {
 	create() {
 		let clickedSound = this.sound.add('click');
 
+		// title
+		this.add.text(this.scale.width/2, this.scale.height/3, 'Pause', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
+
 		// resume game
-		const resumeButton = this.add.sprite(850, 540, 'playButton').setInteractive();
-		resumeButton.setVisible(true);
-		resumeButton.on('pointerdown', () => {
+		let resume = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
+		resume.on('pointerdown', () => {
+			let otherscene = this.scene.get('TemplateDialogue');
 			clickedSound.play();
-			this.scene.run('TemplateDialogue');
-			this.scene.sleep();
+			this.scene.wake('TemplateDialogue');
+			this.scene.stop();
+		});
+
+		// option menu
+		let options = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
+		options.on('pointerdown', () => {
+			clickedSound.play();
+			this.cameras.main.fadeOut(1000, 0, 0, 0);
+			this.cameras.main.once('camerafadeoutcomplete', () => {
+				this.time.delayedCall(2000, () => {
+					this.scene.start('SettingsScene', { sceneFrom: this.scene.key });
+					this.scene.stop();
+				});
+			});
 		});
 
 		// quit game
-		const quitButton = this.add.sprite(280, 540, 'playButton').setOrigin(0).setInteractive();
-		quitButton.setVisible(true);
-		quitButton.on('pointerdown', () => {
+		let quit = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
+		quit.on('pointerdown', () => {
 			clickedSound.play();
-			this.scene.stop('TemplateDialogue');
-			this.scene.start('TitleScreen');
+			this.cameras.main.fadeOut(1000, 0, 0, 0);
+			this.cameras.main.once('camerafadeoutcomplete', () => {
+				this.time.delayedCall(2000, () => {
+					this.scene.start('TitleScreen');
+					this.scene.stop();
+				});
+			});
 		});
 	}
 }

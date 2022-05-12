@@ -3,7 +3,7 @@ import { Textures } from "../assets";
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	return scene.add.text(0, 0, '', {
 		fontSize: '52px',
-		fontFamily : 'monogram',
+		fontFamily : 'monogramextended',
 		wordWrap: {
 			width: wrapWidth
 		},

@@ -37,12 +37,12 @@ export default class TitleScreen extends Phaser.Scene {
 
 		// layout (background and title)
 		this.add.sprite(960, 540, Textures.TitleScreen1).play('titlescreenAnim');
-		const title = this.add.sprite(this.scale.width/2, this.scale.height/4, Textures.Title).setAlpha(0);
+		let title: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/4, Textures.Title).setAlpha(0);
 
 		// buttons
-		const playButton = this.add.sprite(850, 540, Textures.PlayButton).setAlpha(0);
-		const settingsButton = this.add.sprite(1100, 500, Textures.SettingsButton).setAlpha(0);
-		const aboutButton = this.add.sprite(1100, 580, Textures.AboutButton).setAlpha(0);
+		let playButton: Phaser.GameObjects.Sprite = this.add.sprite(850, 540, Textures.PlayButton).setAlpha(0);
+		let settingsButton: Phaser.GameObjects.Sprite = this.add.sprite(1100, 500, Textures.SettingsButton).setAlpha(0);
+		let aboutButton: Phaser.GameObjects.Sprite = this.add.sprite(1100, 580, Textures.AboutButton).setAlpha(0);
 
 		// fade in effect
 		this.time.delayedCall(2500, () => {
@@ -90,7 +90,7 @@ export default class TitleScreen extends Phaser.Scene {
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(1000, () => {
-					this.scene.start('PauseMenu');
+					this.scene.start('SettingsScene', { sceneFrom: this.scene.key });
 				});
 			});
 		});
