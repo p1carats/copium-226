@@ -3,7 +3,7 @@ import * as Phaser from 'phaser';
 import WebFontLoaderPlugin from 'phaser3-rex-plugins/plugins/webfontloader-plugin';
 import FSMPlugin from 'phaser3-rex-plugins/plugins/fsm-plugin';
 import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin';
-import KawaseBlurPostFx from 'phaser3-rex-plugins/plugins/kawaseblurpipeline';
+import KawaseBlurPipelinePlugin from 'phaser3-rex-plugins/plugins/kawaseblurpipeline-plugin';
 
 import SplashScreen from './scenes/preload';
 import TitleScreen from './scenes/titlescreen';
@@ -37,6 +37,11 @@ const config: Phaser.Types.Core.GameConfig = {
 			key: 'rexFSM',
 			plugin: FSMPlugin,
 			start: true
+		},
+		{
+			key: 'rexKawaseBlurPipeline',
+			plugin: KawaseBlurPipelinePlugin,
+			start: true
 		}],
 		scene: [{
 			key: 'rexUI',
@@ -44,7 +49,6 @@ const config: Phaser.Types.Core.GameConfig = {
 			mapping: 'rexUI'
 		}]
 	},
-	pipeline: <any> [KawaseBlurPostFx],
 	seed: [(Date.now()*Math.random()).toString()]
 };
 

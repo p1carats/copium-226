@@ -3,7 +3,7 @@ import { Textures } from "../assets";
 export default class SettingsScene extends Phaser.Scene {
 
 	constructor() {
-		super('SettingsScene');
+		super({ key: 'SettingsScene' });
 	}
 
 	preload() {
@@ -36,10 +36,8 @@ export default class SettingsScene extends Phaser.Scene {
 			clickedSound.play();
 		});
 
-		// return
-		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/3)*2, 'Retour', { font: '72px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
-
 		// return to menu
+		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/3)*2, 'Retour', { font: '72px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		text.on('pointerdown', () => {
 			clickedSound.play();
 			this.tweens.add({

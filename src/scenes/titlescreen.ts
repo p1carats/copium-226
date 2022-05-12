@@ -3,7 +3,7 @@ import { Textures } from "../assets";
 export default class TitleScreen extends Phaser.Scene {
 
 	constructor() {
-		super('TitleScreen');
+		super({ key: 'TitleScreen' });
 	}
 
 	preload() {

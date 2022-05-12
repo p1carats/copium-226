@@ -3,7 +3,7 @@ import { assetsLoader, Textures } from '../assets';
 export default class SplashScreen extends Phaser.Scene {
 
 	constructor() {
-		super('SplashScreen');
+		super({ key: 'SplashScreen' });
 	}
 
 	preload() {

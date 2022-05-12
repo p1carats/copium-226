@@ -1,7 +1,7 @@
 export default class PauseMenu extends Phaser.Scene {
 
 	constructor() {
-		super('PauseMenu');
+		super({ key: 'PauseMenu' });
 	}
 
 	preload() {
