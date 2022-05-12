@@ -1,4 +1,3 @@
-import Phaser from "phaser";
 import {Textures} from "../assets";
 
 const GetValue = Phaser.Utils.Objects.GetValue;
