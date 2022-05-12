@@ -19,7 +19,7 @@ export default class SettingsScene extends Phaser.Scene {
 			seek: 35
 		});
 
-		let text = this.add.text(845, 480, 'Retour au menu principal', { font: '72px monogram', color: 'white' }).setInteractive();
+		let text = this.add.text(this.scale.width/2, this.scale.height/2, 'Retour au menu principal', { font: '72px monogram', color: 'white' }).setInteractive();
 
 		// return to menu
 		text.on('pointerdown', () => {

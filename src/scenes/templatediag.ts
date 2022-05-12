@@ -14,8 +14,7 @@ export default class TemplateDialogue extends Phaser.Scene {
 		this.cameras.main.fadeIn(2000, 0, 0, 0);
 
 		// background
-		// let background = this.add.tileSprite(this.scale.width/2, this.scale.height/2, this.scale.width, this.scale.height, Textures.Village);
-		let background = this.add.sprite(920, 470, 'bedroombg').setScale(2, 2);
+		let background = this.add.sprite(0, 0, 'bedroombg').setOrigin(0).setScale(2.13, 2.52);
 		background.setPipeline('Light2D');
 
 		// light effects

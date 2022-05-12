@@ -2,7 +2,7 @@ import * as Phaser from 'phaser';
 
 import WebFontLoaderPlugin from 'phaser3-rex-plugins/plugins/webfontloader-plugin';
 import FSMPlugin from 'phaser3-rex-plugins/plugins/fsm-plugin';
-import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
+import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin';
 
 import SplashScreen from './scenes/preload';
 import TitleScreen from './scenes/titlescreen';
@@ -11,7 +11,7 @@ import PauseMenu from './scenes/pause';
 import TemplateDialogue from './scenes/templatediag';
 
 const config: Phaser.Types.Core.GameConfig = {
-	type: Phaser.AUTO,
+	type: Phaser.WEBGL,
 	scale: { 
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
