@@ -21,8 +21,11 @@ export default class SettingsScene extends Phaser.Scene {
 			seek: 35
 		});
 
+		// background
+		let background = this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0x000000, 1).setOrigin(0);
+
 		// title
-		let title: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/3, 'Settings', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
+		let title: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/3, 'Réglages', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 
 		// mute/demute global sound
 		let isMuted: boolean = !this.sound.mute;

@@ -7,7 +7,6 @@ export default class SplashScreen extends Phaser.Scene {
 	}
 
 	preload() {
-
 		let progressBar: Phaser.GameObjects.Graphics = this.add.graphics().fillStyle(0x85edd0, 0.8).fillRect(250, 270, 320, 50);
 		let loadingText: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/2-50, 'Loading...', { font: '42px monogramextended', color: 'white' }).setOrigin(0.5, 0.5);
 		let percentText: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)-5, '0%', { font: '30px monogramextended', color: 'black' }).setOrigin(0.5);

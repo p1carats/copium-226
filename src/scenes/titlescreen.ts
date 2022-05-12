@@ -31,8 +31,8 @@ export default class TitleScreen extends Phaser.Scene {
 		});
 
 		// menu music (looped) and click sound
-		let menuMusic = this.sound.add('main_theme');
-		let clickedSound = this.sound.add('click');
+		let menuMusic: Phaser.Sound.BaseSound = this.sound.add('main_theme');
+		let clickedSound: Phaser.Sound.BaseSound = this.sound.add('click');
 		menuMusic.play('', { loop: true });
 
 		// layout (background and title)
