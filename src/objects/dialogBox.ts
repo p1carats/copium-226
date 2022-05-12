@@ -1,7 +1,5 @@
 import { Textures } from "../assets";
 
-const GetValue = Phaser.Utils.Objects.GetValue;
-
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	return scene.add.text(0, 0, '', {
 		fontSize: '52px',
@@ -14,10 +12,10 @@ let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 }
 
 function createTextBox(scene, x, y, config) {
-	let wrapWidth = GetValue(config, 'wrapWidth', 0);
-	let fixedWidth = GetValue(config, 'fixedWidth', 0);
-	let fixedHeight = GetValue(config, 'fixedHeight', 0);
-	let backgroundTexture = scene.add.image(0, 0, Textures.DialogBox).alpha(0.9);
+	let wrapWidth = Phaser.Utils.Objects.GetValue(config, 'wrapWidth', 0);
+	let fixedWidth = Phaser.Utils.Objects.GetValue(config, 'fixedWidth', 0);
+	let fixedHeight = Phaser.Utils.Objects.GetValue(config, 'fixedHeight', 0);
+	let backgroundTexture = scene.add.image(0, 0, Textures.DialogBox).setAlpha(0.9);
 	let textBox = scene.rexUI.add.textBox({
 		x: x,
 		y: y,
@@ -33,7 +31,7 @@ function createTextBox(scene, x, y, config) {
 		}
 	}).setOrigin(0).setScale(0.75, 0.75).setInteractive().layout();
 	
-	textBox.on('pointerdown', () => {
+	textBox.on('pointerdown', function() {
 		let icon = this.getElement('action').setVisible(false);
 		this.resetChildVisibleState(icon);
 		if (this.isTyping) {
@@ -43,11 +41,11 @@ function createTextBox(scene, x, y, config) {
 		}
 	}, textBox)
 	
-	textBox.on('pageend', () => {
-		let icon = this.getElement('action').setVisible(true);
+	textBox.on('pageend', function() {
 		if (this.isLastPage) {
 			return;
-		} 
+		}
+		let icon = this.getElement('action').setVisible(true);
 		this.resetChildVisibleState(icon);
 		icon.y -= 30;
 		let tween = scene.tweens.add({
