@@ -1,3 +1,5 @@
+import { Assets } from "../assets";
+
 export default class PauseMenu extends Phaser.Scene {
 
 	constructor() {
@@ -8,8 +10,9 @@ export default class PauseMenu extends Phaser.Scene {
 		// preload
 	}
 
-	create() {
-		let clickedSound: Phaser.Sound.BaseSound = this.sound.add('click');
+	create(data) {
+		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
+		let otherscene: Phaser.Scene = this.scene.get(data.sceneFrom);
 
 		// title
 		let title: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/3, 'Pause', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
@@ -17,16 +20,15 @@ export default class PauseMenu extends Phaser.Scene {
 		// resume game
 		let resume: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		resume.on('pointerdown', () => {
-			let otherscene = this.scene.get('TemplateDialogue').sound.resumeAll;
-			clickedSound.play();
-			this.scene.wake('TemplateDialogue');
+			click.play();
+			this.scene.wake(data.sceneFrom);
 			this.scene.stop();
 		});
 
 		// option menu
 		let options: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		options.on('pointerdown', () => {
-			clickedSound.play();
+			click.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {
@@ -39,7 +41,7 @@ export default class PauseMenu extends Phaser.Scene {
 		// quit game
 		let quit: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		quit.on('pointerdown', () => {
-			clickedSound.play();
+			click.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {

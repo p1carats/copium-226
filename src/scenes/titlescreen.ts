@@ -1,4 +1,4 @@
-import { Textures } from "../assets";
+import { Assets } from "../assets";
 
 export default class TitleScreen extends Phaser.Scene {
 
@@ -10,7 +10,6 @@ export default class TitleScreen extends Phaser.Scene {
 		// preload
 	}
 
-	// called once all the assets for the scene have been loaded
 	create() {
 		// fade in scene
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
@@ -19,30 +18,30 @@ export default class TitleScreen extends Phaser.Scene {
 		this.anims.create({
 			key: 'titlescreenAnim',
 			frames: [
-				{ key: Textures.TitleScreen1 },
-				{ key: Textures.TitleScreen2 },
-				{ key: Textures.TitleScreen3 },
-				{ key: Textures.TitleScreen4 },
-				{ key: Textures.TitleScreen5 },
-				{ key: Textures.TitleScreen6 },
+				{ key: Assets.TitleScreen1 },
+				{ key: Assets.TitleScreen2 },
+				{ key: Assets.TitleScreen3 },
+				{ key: Assets.TitleScreen4 },
+				{ key: Assets.TitleScreen5 },
+				{ key: Assets.TitleScreen6 },
 			],
 			frameRate: 2,
 			repeat: -1
 		});
 
 		// menu music (looped) and click sound
-		let menuMusic: Phaser.Sound.BaseSound = this.sound.add('main_theme');
-		let clickedSound: Phaser.Sound.BaseSound = this.sound.add('click');
+		let menuMusic: Phaser.Sound.BaseSound = this.sound.add(Assets.MainTheme);
+		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
 		menuMusic.play('', { loop: true });
 
 		// layout (background and title)
-		this.add.sprite(960, 540, Textures.TitleScreen1).play('titlescreenAnim');
-		let title: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/4, Textures.Title).setAlpha(0);
+		let background: Phaser.GameObjects.Sprite = this.add.sprite(0, 0, Assets.TitleScreen1).setOrigin(0).play('titlescreenAnim');
+		let title: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/4, Assets.Title).setAlpha(0);
 
 		// buttons
-		let playButton: Phaser.GameObjects.Sprite = this.add.sprite(850, 540, Textures.PlayButton).setAlpha(0);
-		let settingsButton: Phaser.GameObjects.Sprite = this.add.sprite(1100, 500, Textures.SettingsButton).setAlpha(0);
-		let aboutButton: Phaser.GameObjects.Sprite = this.add.sprite(1100, 580, Textures.AboutButton).setAlpha(0);
+		let playButton: Phaser.GameObjects.Sprite = this.add.sprite(850, 540, Assets.PlayButton).setAlpha(0);
+		let settingsButton: Phaser.GameObjects.Sprite = this.add.sprite(1100, 500, Assets.SettingsButton).setAlpha(0);
+		let aboutButton: Phaser.GameObjects.Sprite = this.add.sprite(1100, 580, Assets.AboutButton).setAlpha(0);
 
 		// fade in effect
 		this.time.delayedCall(2500, () => {
@@ -58,10 +57,10 @@ export default class TitleScreen extends Phaser.Scene {
 		});
 
 		// play button actions
-		playButton.on('pointerover', () => { playButton.setTexture(Textures.PlayButtonHover) });
-		playButton.on('pointerout', () => { playButton.setTexture(Textures.PlayButton) });
+		playButton.on('pointerover', () => { playButton.setTexture(Assets.PlayButtonHover) });
+		playButton.on('pointerout', () => { playButton.setTexture(Assets.PlayButton) });
 		playButton.on('pointerdown', () => {
-			clickedSound.play(),
+			click.play(),
 			this.tweens.add({
 				targets: menuMusic,
 				volume: 0,
@@ -71,16 +70,16 @@ export default class TitleScreen extends Phaser.Scene {
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {
-					this.scene.start('TemplateDialogue');
+					this.scene.start('MiniGameScene');
 				});
 			});
 		});
 
 		// settings button actions
-		settingsButton.on('pointerover', () => { settingsButton.setTexture(Textures.SettingsButtonHover) });
-		settingsButton.on('pointerout', () => { settingsButton.setTexture(Textures.SettingsButton) });
+		settingsButton.on('pointerover', () => { settingsButton.setTexture(Assets.SettingsButtonHover) });
+		settingsButton.on('pointerout', () => { settingsButton.setTexture(Assets.SettingsButton) });
 		settingsButton.on('pointerdown', () => {
-			clickedSound.play(),
+			click.play(),
 			this.tweens.add({
 				targets: menuMusic,
 				volume: 0,
@@ -95,10 +94,10 @@ export default class TitleScreen extends Phaser.Scene {
 			});
 		});
 
-		aboutButton.on('pointerover', () => { aboutButton.setTexture(Textures.AboutButtonHover) });
-		aboutButton.on('pointerout', () => { aboutButton.setTexture(Textures.AboutButton) });
-		settingsButton.on('pointerdown', () => {
-			// to-do
+		aboutButton.on('pointerover', () => { aboutButton.setTexture(Assets.AboutButtonHover) });
+		aboutButton.on('pointerout', () => { aboutButton.setTexture(Assets.AboutButton) });
+		aboutButton.on('pointerdown', () => {
+			click.play();
 		});
 	}
 }

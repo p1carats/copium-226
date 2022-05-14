@@ -1,4 +1,4 @@
-import { assetsLoader, Textures } from '../assets';
+import { assetsLoader, Assets } from '../assets';
 
 export default class SplashScreen extends Phaser.Scene {
 
@@ -30,7 +30,8 @@ export default class SplashScreen extends Phaser.Scene {
 	create() {
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
-		let logo: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/2, Textures.Logo);
+		let clickedSound: Phaser.Sound.BaseSound = this.sound.add(Assets.StartSound);
+		let logo: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/2, Assets.Logo);
 		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/4)*3, 'Please click to start...', { font: '42px monogramextended', color: 'white' }).setOrigin(0.5, 0.5);
 		this.tweens.add({
 			targets: text,
@@ -41,7 +42,7 @@ export default class SplashScreen extends Phaser.Scene {
 		});
 
 		this.input.on('pointerdown', () => {
-			this.sound.add('startingAudio').play();
+			clickedSound.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(1000, () => {
