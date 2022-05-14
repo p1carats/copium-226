@@ -1,5 +1,4 @@
 import { Assets } from "../assets";
-import game from "../game";
 
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	return scene.add.text(0, 0, '', {
@@ -69,7 +68,6 @@ function createTextBox(scene, perso, x, y, config) {
 			scene.emitter.emit('nextDialog');
 		});
 	});
-
 	return textBox;
 }
 
