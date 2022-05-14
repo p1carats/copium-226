@@ -40,7 +40,7 @@ export default class TemplateDialogue extends Phaser.Scene {
 		this.emitter = new Phaser.Events.EventEmitter();
 
 		this.emitter.on('nextDialog', () => {
-			if (index < 4){
+			if (index < 4) {
 				dialogBox(this, persoArray[index], dialogArray[index], index % 2 === 0 ? 1 : 0);
 				index++;
 			}

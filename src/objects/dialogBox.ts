@@ -76,7 +76,7 @@ export default function dialogBox(game, texture, text, sens) {
 	let position;
 	if (sens === 0) {
 		position = [300, 650, 100, 800];
-	}else{
+	} else {
 		position = [700, 650, 100, 800];
 	}
 	let perso = game.add.sprite(position[0], position[1], texture);

@@ -21,7 +21,7 @@ export default class MiniGameScene extends Phaser.Scene {
 		});
 
 		// background
-		let background: Phaser.GameObjects.Sprite = this.add.sprite(0, 0, Assets.ControlRoomScene).setOrigin(0).setPipeline('Light2D');;
+		let background: Phaser.GameObjects.Sprite = this.add.sprite(0, 0, Assets.ControlRoomScene).setOrigin(0);
 
 		// drawings (tmp)
 		let bg1 = this.add.rectangle(600, 150, 720, 360, 0xffffff, 1).setOrigin(0);
