@@ -53,6 +53,8 @@ function createChoiceBox(game, text, x, y, choicesArray) {
 
 	game.print = game.add.text(0, 0, '');
 	dialog.on('button.click', function (button, groupName, index) {
+		game.choix.push(index);
+		game.emitter.emit('choice', game);
 		console.log("Le bouton " + index + " a été choisi !");
 	});
 	dialog.on('button.over', function (button, groupName, index) {
