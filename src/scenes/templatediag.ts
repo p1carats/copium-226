@@ -13,10 +13,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 		super({ key: 'TemplateDialogue' });
 	}
 
-	preload() {
-		// preload
-	}
-
 	create() {
 
 		let dialogArray = [

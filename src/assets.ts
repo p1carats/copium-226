@@ -10,12 +10,12 @@ export function assetsLoader(game) {
 	// main title
 	game.load.image('logo', 'assets/logo.png');
 	game.load.image('title', 'assets/title.png');
-	game.load.image('titlescreen1', 'assets/background/title/titlescreen1.png');
-	game.load.image('titlescreen2', 'assets/background/title/titlescreen2.png');
-	game.load.image('titlescreen3', 'assets/background/title/titlescreen3.png');
-	game.load.image('titlescreen4', 'assets/background/title/titlescreen4.png');
-	game.load.image('titlescreen5', 'assets/background/title/titlescreen5.png');
-	game.load.image('titlescreen6', 'assets/background/title/titlescreen6.png');
+	game.load.image('titlescreen1', 'assets/scenes/title/titlescreen1.png');
+	game.load.image('titlescreen2', 'assets/scenes/title/titlescreen2.png');
+	game.load.image('titlescreen3', 'assets/scenes/title/titlescreen3.png');
+	game.load.image('titlescreen4', 'assets/scenes/title/titlescreen4.png');
+	game.load.image('titlescreen5', 'assets/scenes/title/titlescreen5.png');
+	game.load.image('titlescreen6', 'assets/scenes/title/titlescreen6.png');
 	// buttons
 	game.load.image('exit', 'assets/buttons/exit.png');
 	game.load.image('exit_hover', 'assets/buttons/exit_hover.png');
@@ -34,7 +34,22 @@ export function assetsLoader(game) {
 	game.load.image('french', 'assets/buttons/french.png');
 	game.load.image('french_hover', 'assets/buttons/french_hover.png');
 	game.load.image('english', 'assets/buttons/english.png');
-	game.load.image('english_hover', 'assets/buttons/english_hover.png')
+	game.load.image('english_hover', 'assets/buttons/english_hover.png');
+	// mini game
+	game.load.image('red_button', 'assets/miniGame/red-button.png');
+	game.load.image('red_button_pressed', 'assets/miniGame/red-button-pressed.png');
+	game.load.image('green_button_down', 'assets/miniGame/green-button-down.png');
+	game.load.image('green_button_down_pressed', 'assets/miniGame/green-button-down-pressed.png');
+	game.load.image('green_button_left', 'assets/miniGame/green-button-left.png');
+	game.load.image('green_button_left_pressed', 'assets/miniGame/green-button-left-pressed.png');
+	game.load.image('green_button_up', 'assets/miniGame/green-button-up.png');
+	game.load.image('green_button_up_pressed', 'assets/miniGame/green-button-up-pressed.png');
+	game.load.image('green_button_right', 'assets/miniGame/green-button-right.png');
+	game.load.image('green_button_right_pressed', 'assets/miniGame/green-button-right-pressed.png');
+	game.load.image('stick0', 'assets/miniGame/stick0.png');
+	game.load.image('stick1', 'assets/miniGame/stick1.png');
+	game.load.image('stick2', 'assets/miniGame/stick2.png');
+	game.load.image('stick3', 'assets/miniGame/stick3.png');
 	// utils
 	game.load.image('dialogBox', 'assets/dialogbox.png');
 	game.load.image('lineBreak', 'assets/buttons/line_break.png');
@@ -95,6 +110,21 @@ export enum Assets {
 	FrenchButtonHover = 'french_hover',
 	EnglishButton = 'english',
 	EnglishButtonHover = 'english_hover',
+	// mini game
+	RedButton = 'red_button',
+	RedButtonPressed = 'red_button_pressed',
+	GreenButtonDown = 'green_button_down',
+	GreenButtonDownPressed = 'green_button_down_pressed',
+	GreenButtonLeft = 'green_button_left',
+	GreenButtonLeftPressed = 'green_button_left_pressed',
+	GreenButtonUp = 'green_button_up',
+	GreenButtonUpPressed = 'green_button_up_pressed',
+	GreenButtonRight = 'green_button_right',
+	GreenButtonRightPressed = 'green_button_right_pressed',
+	Stick0 = 'stick0',
+	Stick1 = 'stick1',
+	Stick2 = 'stick2',
+	Stick3 = 'stick3',
 	// utils
 	DialogBox = 'dialogBox',
 	LineBreak = 'lineBreak',

@@ -12,7 +12,7 @@ import MiniGameScene from './scenes/minigame';
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.WEBGL,
-	scale: { 
+		scale: {
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH,
 		width: 1920, // window.innerWidth
@@ -38,7 +38,7 @@ const config: Phaser.Types.Core.GameConfig = {
 			plugin: UIPlugin,
 			mapping: 'rexUI'
 		}]
-	}
+	},
 };
 
 export default new Phaser.Game(config);

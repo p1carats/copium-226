@@ -64,7 +64,7 @@ function createTextBox(scene, perso, x, y, config) {
 		textBox.off('pageend');
 		scene.time.delayedCall(2000, () => {
 			textBox.destroy();
-			perso.destroy();
+			if (perso !== null) perso.destroy();
 			scene.emitter.emit('nextDialog');
 		});
 	});
@@ -73,13 +73,18 @@ function createTextBox(scene, perso, x, y, config) {
 
 // sens : 0 right / 1 left
 export default function dialogBox(game, texture, text, sens) {
-	let position;
+	let position, perso;
 	if (sens === 0) {
 		position = [300, 650, 100, 800];
 	} else {
 		position = [700, 650, 100, 800];
 	}
-	let perso = game.add.sprite(position[0], position[1], texture);
+
+	if (texture !== null){
+		perso = game.add.sprite(position[0], position[1], texture);
+	}else{
+		perso = null
+	}
 	return createTextBox(game, perso, position[2], position[3], {
 		wrapWidth: 800,
 		fixedWidth: 900,
