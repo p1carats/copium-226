@@ -1,7 +1,7 @@
 import { Assets } from '../assets';
-import dialogBox from '../objects/dialogBox';
+import dialogBox from '../objects/dialogbox';
 import choiceBox from '../objects/choice';
-import script from "../script";
+import script from "../utils";
 
 // import * as data from '../../assets/story_part1.json';
 
@@ -64,12 +64,13 @@ export default class TemplateDialogue extends Phaser.Scene {
 		//choiceBox(this, Textures.GeorgeRight, 'Qui est une pute ?', 0, ['Simon', 'Noé', 'Matéo', 'Romain', 'Cyril']);
 
 		// pause button and trigger
+		let pauseSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseInSound);
 		let pauseButton: Phaser.GameObjects.Sprite = this.add.sprite(50, 50, Assets.PauseButton).setOrigin(0).setInteractive();
 		pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
 		pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
 		pauseButton.on('pointerdown', () => {
-			clickedSound.play();
 			roomMusic.pause();
+			pauseSound.play();
 			this.scene.launch('PauseMenu', { sceneFrom: this.scene.key }).bringToTop();
 			this.scene.sendToBack();
 			this.scene.pause();

@@ -80,9 +80,9 @@ export default function dialogBox(game, texture, text, sens) {
 		position = [700, 650, 100, 800];
 	}
 
-	if (texture !== null){
+	if (texture !== null) {
 		perso = game.add.sprite(position[0], position[1], texture);
-	}else{
+	} else {
 		perso = null
 	}
 	return createTextBox(game, perso, position[2], position[3], {

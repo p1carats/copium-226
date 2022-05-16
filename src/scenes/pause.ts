@@ -11,7 +11,7 @@ export default class PauseMenu extends Phaser.Scene {
 	}
 
 	create(data) {
-		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
+		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseOutSound);
 		let otherscene: Phaser.Scene = this.scene.get(data.sceneFrom);
 
 		// title

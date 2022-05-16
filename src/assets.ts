@@ -1,5 +1,7 @@
 // allows us to specify images, audio, or other assets to load before starting the game
 export function assetsLoader(game) {
+	// story (json)
+	game.load.json('story', 'assets/dialogues/story_part1.json');
 	// font
 	game.load.rexWebFont({
 		custom: {
@@ -61,10 +63,10 @@ export function assetsLoader(game) {
 	game.load.image('village_1', 'assets/scenes/village_1.png');
 	game.load.image('village_2_gh', 'assets/scenes/village_2_gh.png');
 	//game.load.image('village_3_gh', 'assets/scenes/village_3_gh.png');
-	game.load.image('village_2_cc', 'assets/scenes/village_2_cc.png');
-	//game.load.image('village_3_cc', 'assets/scenes/village_3_cc.png');
+	game.load.image('village_2_cc', 'assets/scenes/village_2_cd.png');
+	//game.load.image('village_3_cc', 'assets/scenes/village_3_cd.png');
 	//game.load.image('office_gh', 'assets/scenes/office_gh.png');
-	//game.load.image('office_cc', 'assets/scenes/office_cc.png');
+	//game.load.image('office_cc', 'assets/scenes/office_cd.png');
 	//game.load.image('coffee', 'assets/scenes/coffee.png');
 	game.load.image('controlroom', 'assets/scenes/controlroom.png');
 	// characters
@@ -74,6 +76,8 @@ export function assetsLoader(game) {
 	game.load.audio('start', 'assets/sounds/start.ogg');
 	game.load.audio('click', 'assets/sounds/click.ogg');
 	game.load.audio('alarm', 'assets/sounds/alarm.ogg');
+	game.load.audio('pause_in', 'assets/sounds/pause_in.ogg');
+	game.load.audio('pause_out', 'assets/sounds/pause_out.ogg');
 	game.load.audio('clock_beep', 'assets/sounds/clockbeep.ogg');
 	game.load.audio('arrows_button', 'assets/sounds/arrow_button.ogg');
 	game.load.audio('red_button', 'assets/sounds/redbutton.ogg');
@@ -89,6 +93,9 @@ export function assetsLoader(game) {
 }
 
 export enum Assets {
+	// story
+	Story = 'story',
+	// sprites
 	Logo = 'logo',
 	Title = 'title',
 	Click = 'click',
@@ -118,6 +125,8 @@ export enum Assets {
 	EnglishButton = 'english',
 	EnglishButtonHover = 'english_hover',
 	// mini game
+	SmallScreen = 'small_screen',
+	SmallScreenError = 'small_screen_error',
 	RedButton = 'red_button',
 	RedButtonPressed = 'red_button_pressed',
 	GreenButtonDown = 'green_button_down',
@@ -132,8 +141,6 @@ export enum Assets {
 	Stick1 = 'stick1',
 	Stick2 = 'stick2',
 	Stick3 = 'stick3',
-	SmallScreenError = 'small_screen_error',
-	SmallScreen = 'small_screen',
 	// utils
 	DialogBox = 'dialogBox',
 	LineBreak = 'lineBreak',
@@ -146,6 +153,8 @@ export enum Assets {
 	// sounds
 	StartSound = 'start',
 	ClickSound = 'click',
+	PauseInSound = 'pause_in',
+	PauseOutSound = 'pause_out',
 	AlarmSound = 'click',
 	ClockSound = 'clock_beep',
 	StickSound = 'stick',
