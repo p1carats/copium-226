@@ -1,5 +1,5 @@
 import { Assets } from '../assets';
-import dialogBox from '../objects/dialogBox';
+import dialogBox from '../objects/dialogbox';
 import choiceBox from '../objects/choice';
 import script from "../script";
 

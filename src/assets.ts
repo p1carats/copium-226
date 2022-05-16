@@ -61,10 +61,10 @@ export function assetsLoader(game) {
 	game.load.image('village_1', 'assets/scenes/village_1.png');
 	game.load.image('village_2_gh', 'assets/scenes/village_2_gh.png');
 	//game.load.image('village_3_gh', 'assets/scenes/village_3_gh.png');
-	game.load.image('village_2_cc', 'assets/scenes/village_2_cc.png');
-	//game.load.image('village_3_cc', 'assets/scenes/village_3_cc.png');
+	game.load.image('village_2_cc', 'assets/scenes/village_2_cd.png');
+	//game.load.image('village_3_cc', 'assets/scenes/village_3_cd.png');
 	//game.load.image('office_gh', 'assets/scenes/office_gh.png');
-	//game.load.image('office_cc', 'assets/scenes/office_cc.png');
+	//game.load.image('office_cc', 'assets/scenes/office_cd.png');
 	//game.load.image('coffee', 'assets/scenes/coffee.png');
 	game.load.image('controlroom', 'assets/scenes/controlroom.png');
 	// characters
@@ -117,6 +117,8 @@ export enum Assets {
 	EnglishButton = 'english',
 	EnglishButtonHover = 'english_hover',
 	// mini game
+	SmallScreen = 'small_screen',
+	SmallScreenError = 'small_screen_error',
 	RedButton = 'red_button',
 	RedButtonPressed = 'red_button_pressed',
 	GreenButtonDown = 'green_button_down',
@@ -131,8 +133,6 @@ export enum Assets {
 	Stick1 = 'stick1',
 	Stick2 = 'stick2',
 	Stick3 = 'stick3',
-	SmallScreenError = 'small_screen_error',
-	SmallScreen = 'small_screen',
 	// utils
 	DialogBox = 'dialogBox',
 	LineBreak = 'lineBreak',

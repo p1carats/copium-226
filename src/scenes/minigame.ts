@@ -1,5 +1,5 @@
 import { Assets } from "../assets";
-import startMiniGame from "./startMiniGame";
+import startMiniGame from "../objects/minigame";
 
 export default class MiniGameScene extends Phaser.Scene {
 	private difficulty: any;
