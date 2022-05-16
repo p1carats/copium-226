@@ -1,7 +1,6 @@
 import { Assets } from '../assets';
-import dialogBox from '../objects/dialogbox';
-import choiceBox from '../objects/choice';
 import script from "../utils";
+import dialogBox from "../objects/dialogbox";
 
 // import * as data from '../../assets/story_part1.json';
 

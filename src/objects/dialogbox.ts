@@ -1,4 +1,5 @@
 import { Assets } from "../assets";
+import * as Phaser from "phaser";
 
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	return scene.add.text(0, 0, '', {
