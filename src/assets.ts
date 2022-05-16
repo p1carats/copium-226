@@ -1,5 +1,7 @@
 // allows us to specify images, audio, or other assets to load before starting the game
 export function assetsLoader(game) {
+	// story (json)
+	game.load.json('story', 'assets/dialogues/story_part1.json');
 	// font
 	game.load.rexWebFont({
 		custom: {
@@ -74,6 +76,8 @@ export function assetsLoader(game) {
 	game.load.audio('start', 'assets/sounds/start.ogg');
 	game.load.audio('click', 'assets/sounds/click.ogg');
 	game.load.audio('alarm', 'assets/sounds/alarm.ogg');
+	game.load.audio('pause_in', 'assets/sounds/pause_in.ogg');
+	game.load.audio('pause_out', 'assets/sounds/pause_out.ogg');
 	game.load.audio('clock_beep', 'assets/sounds/clockbeep.ogg');
 	game.load.audio('arrows_button', 'assets/sounds/arrow_button.ogg');
 	game.load.audio('red_button', 'assets/sounds/redbutton.ogg');
@@ -88,6 +92,9 @@ export function assetsLoader(game) {
 }
 
 export enum Assets {
+	// story
+	Story = 'story',
+	// sprites
 	Logo = 'logo',
 	Title = 'title',
 	Click = 'click',
@@ -145,6 +152,8 @@ export enum Assets {
 	// sounds
 	StartSound = 'start',
 	ClickSound = 'click',
+	PauseInSound = 'pause_in',
+	PauseOutSound = 'pause_out',
 	AlarmSound = 'click',
 	ClockSound = 'clock_beep',
 	StickSound = 'stick',

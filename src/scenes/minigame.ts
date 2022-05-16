@@ -50,12 +50,13 @@ export default class MiniGameScene extends Phaser.Scene {
 		startMiniGame(this, this.difficulty, smallScreen);
 
 		// pause button and trigger
+		let pauseSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseInSound);
 		let pauseButton: Phaser.GameObjects.Sprite = this.add.sprite(50, 50, Assets.PauseButton).setOrigin(0).setInteractive();
 		pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
 		pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
 		pauseButton.on('pointerdown', () => {
-			click.play();
 			theme.pause();
+			pauseSound.play();
 			this.scene.launch('PauseMenu', { sceneFrom: this.scene.key }).bringToTop();
 			this.scene.sendToBack();
 			this.scene.pause();

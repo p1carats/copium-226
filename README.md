@@ -10,7 +10,7 @@ George, a young man who recently graduated from a prestigious engineering school
 
 Being in charge of the microscopic electrical network of his hamlet, George thought he'd be able to live the rest of his life in peace, surrounded by snow, sheeps and nature. But the discovery in an ancient mine of a new ore with incredible property, named Copium 226, threatens to turn upside down the life of this small village... 
 
-**This game has been developed in 3 weeks, as part of a final year Computer Science project.**
+**This game has been developed in 3 weeks using [Phaser](https://phaser.io) and [Inkle](https://github.com/y-lohse/inkjs), as part of a final year Computer Science project.**
 
 ## Getting started
 
@@ -22,7 +22,7 @@ Being in charge of the microscopic electrical network of his hamlet, George thou
 
 3. Build project using ``npm start``. You can edit any files in the */src* folder and webpack will automatically recompile and reload your server (available at http://localhost:3000 by default).
 
-> (WIP) Bundle code builds with production settings (minification, uglification, etc) are made using ``npm run build``. Your code will be built into a single bundle located at */dist/bundle.min.js* along with any other assets you project depended. If you put the contents of the dist folder in a publicly-accessible location, you should be able to open it and play your game.
+> Bundle code builds with production settings (minification, uglification, etc) are made using ``npm run build``. Your code will be built into a single bundle located at */dist/bundle.min.js* along with any other assets you project depended. If you put the contents of the dist folder in a publicly-accessible location, you should be able to open it and play your game.
 
 ## Licensing/Credits
 
