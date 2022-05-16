@@ -39,7 +39,7 @@ function fixMe(game, score, difficulty) {
 	});
 }
 
-export default function startMiniGame(game, difficulty) {
+export default function startMiniGame(game, difficulty, texture) {
 	let difficultySettings = DIFFICULTY_ARRAY[difficulty];
 	let score = 0;
 	let endGame = false;
@@ -65,9 +65,9 @@ export default function startMiniGame(game, difficulty) {
 				score++;
 			}
 		} else {
-			game.add.rectangle(150, 290, 350, 200, 0xFF0000, 1).setOrigin(0);
+			texture.setTexture(Assets.SmallScreenError);
 			game.time.delayedCall(200, () => {
-				game.add.rectangle(150, 290, 350, 200, 0xFFFFFF, 1).setOrigin(0);
+				texture.setTexture(Assets.SmallScreen);
 			});
 			score--;
 		}
