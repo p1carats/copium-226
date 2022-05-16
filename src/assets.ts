@@ -50,6 +50,8 @@ export function assetsLoader(game) {
 	game.load.image('stick1', 'assets/miniGame/stick1.png');
 	game.load.image('stick2', 'assets/miniGame/stick2.png');
 	game.load.image('stick3', 'assets/miniGame/stick3.png');
+	game.load.image('small_screen_error', 'assets/miniGame/small-screen-error.png');
+	game.load.image('small_screen', 'assets/miniGame/small-screen.png');
 	// utils
 	game.load.image('dialogBox', 'assets/dialogbox.png');
 	game.load.image('lineBreak', 'assets/buttons/line_break.png');
@@ -72,6 +74,10 @@ export function assetsLoader(game) {
 	game.load.audio('start', 'assets/sounds/start.ogg');
 	game.load.audio('click', 'assets/sounds/click.ogg');
 	game.load.audio('alarm', 'assets/sounds/alarm.ogg');
+	game.load.audio('clock_beep', 'assets/sounds/clockbeep.ogg');
+	game.load.audio('arrows_button', 'assets/sounds/arrow_button.ogg');
+	game.load.audio('red_button', 'assets/sounds/redbutton.ogg');
+	game.load.audio('stick', 'assets/sounds/stick.ogg');
 	// load all songs
 	game.load.audio('theme', 'assets/sounds/music/theme.ogg');
 	game.load.audio('menu', 'assets/sounds/music/menu.ogg');
@@ -125,6 +131,8 @@ export enum Assets {
 	Stick1 = 'stick1',
 	Stick2 = 'stick2',
 	Stick3 = 'stick3',
+	SmallScreenError = 'small_screen_error',
+	SmallScreen = 'small_screen',
 	// utils
 	DialogBox = 'dialogBox',
 	LineBreak = 'lineBreak',
@@ -138,6 +146,10 @@ export enum Assets {
 	StartSound = 'start',
 	ClickSound = 'click',
 	AlarmSound = 'click',
+	ClockSound = 'clock_beep',
+	StickSound = 'stick',
+	ArrowsSound = 'arrows_button',
+	RedButtonSound = 'red_button',
 	// musics
 	MainTheme = 'theme',
 	MenuTheme = 'menu',
