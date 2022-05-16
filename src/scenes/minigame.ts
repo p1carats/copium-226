@@ -43,9 +43,8 @@ export default class MiniGameScene extends Phaser.Scene {
 		this.buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
 
 		// drawings
-		let smallScreen = this.add.sprite(600, 150, Assets.SmallScreen).setOrigin(0);
-		this.add.rectangle(150, 290, 350, 200, 0xffffff, 1).setOrigin(0);
-
+		let smallScreen = this.add.sprite(150, 290, Assets.SmallScreen).setOrigin(0);
+		this.add.rectangle(600, 150, 720, 360, 0xFFFFFF, 1).setOrigin(0);
 		// 0 : tuto | 1 : easy | 2 : medium | 3 : hard
 		startMiniGame(this, this.difficulty, smallScreen);
 

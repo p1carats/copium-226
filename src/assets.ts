@@ -78,6 +78,7 @@ export function assetsLoader(game) {
 	game.load.audio('arrows_button', 'assets/sounds/arrow_button.ogg');
 	game.load.audio('red_button', 'assets/sounds/redbutton.ogg');
 	game.load.audio('stick', 'assets/sounds/stick.ogg');
+	game.load.audio('failure', 'assets/sounds/failure.ogg');
 	// load all songs
 	game.load.audio('theme', 'assets/sounds/music/theme.ogg');
 	game.load.audio('menu', 'assets/sounds/music/menu.ogg');
@@ -150,6 +151,7 @@ export enum Assets {
 	StickSound = 'stick',
 	ArrowsSound = 'arrows_button',
 	RedButtonSound = 'red_button',
+	FailureSound = 'failure',
 	// musics
 	MainTheme = 'theme',
 	MenuTheme = 'menu',
