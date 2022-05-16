@@ -41,7 +41,7 @@ function fixMe(game, score, difficulty){
     });
 }
 
-export default function startMiniGame(game, difficulty){
+export default function startMiniGame(game, difficulty, texture){
     let difficultySettings = DIFFICULTY_ARRAY[difficulty];
     dialogBox(game, null, 'Bienvenue dans la salle de contrôle. L\'objectif ici est de tenir le temps imparti en ayant tous les boutons en position pressés. Si un bouton est relevé, vous devez simplement cliquer dessus. Attention à ne pas être trop lent ...', 0);
     let score = 0;
@@ -63,9 +63,9 @@ export default function startMiniGame(game, difficulty){
             button.setTexture(texture);
             if (button.texture.key[button.texture.key.search(/[1-3]/)] === 0) score++;
         }else{
-            game.add.rectangle(150, 290, 350, 200, 0xFF0000, 1).setOrigin(0);
+            texture.setTexture(Assets.SmallScreenError);
             game.time.delayedCall(200, () => {
-                game.add.rectangle(150, 290, 350, 200, 0xFFFFFF, 1).setOrigin(0);
+                texture.setTexture(Assets.SmallScreen);
             });
             score--;
         }
