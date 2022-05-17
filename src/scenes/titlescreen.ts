@@ -1,4 +1,5 @@
 import { Assets } from "../assets";
+import animation from "../objects/animation";
 
 export default class TitleScreen extends Phaser.Scene {
 
@@ -15,19 +16,14 @@ export default class TitleScreen extends Phaser.Scene {
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
 		// background effect
-		this.anims.create({
-			key: 'titlescreenAnim',
-			frames: [
-				{ key: Assets.TitleScreen1 },
-				{ key: Assets.TitleScreen2 },
-				{ key: Assets.TitleScreen3 },
-				{ key: Assets.TitleScreen4 },
-				{ key: Assets.TitleScreen5 },
-				{ key: Assets.TitleScreen6 },
-			],
-			frameRate: 2,
-			repeat: -1
-		});
+		animation(this, 'titlescreenAnim', [
+			{ key: Assets.TitleScreen1 },
+			{ key: Assets.TitleScreen2 },
+			{ key: Assets.TitleScreen3 },
+			{ key: Assets.TitleScreen4 },
+			{ key: Assets.TitleScreen5 },
+			{ key: Assets.TitleScreen6 },
+		])
 
 		// menu music (looped) and click sound
 		let menuMusic: Phaser.Sound.BaseSound = this.sound.add(Assets.MainTheme);
@@ -70,8 +66,8 @@ export default class TitleScreen extends Phaser.Scene {
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {
-					this.scene.start('TemplateDialogue');
-					//this.scene.start('MiniGameScene', { difficulty: 3 });
+					//this.scene.start('TemplateDialogue');
+					this.scene.start('MiniGameScene', { difficulty: 0 });
 				});
 			});
 		});

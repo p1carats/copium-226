@@ -18,15 +18,34 @@ export function assetsLoader(game) {
 	game.load.image('titlescreen4', 'assets/scenes/title/titlescreen4.png');
 	game.load.image('titlescreen5', 'assets/scenes/title/titlescreen5.png');
 	game.load.image('titlescreen6', 'assets/scenes/title/titlescreen6.png');
-	// control room eol
-	game.load.image('controlroom_eol_1', 'assets/scenes/controlroom_eol/Control-RoomEol1.png');
-	game.load.image('controlroom_eol_2', 'assets/scenes/controlroom_eol/Control-RoomEol2.png');
-	game.load.image('controlroom_eol_3', 'assets/scenes/controlroom_eol/Control-RoomEol3.png');
-	game.load.image('controlroom_eol_4', 'assets/scenes/controlroom_eol/Control-RoomEol4.png');
-	game.load.image('controlroom_eol_5', 'assets/scenes/controlroom_eol/Control-RoomEol5.png');
-	game.load.image('controlroom_eol_6', 'assets/scenes/controlroom_eol/Control-RoomEol6.png');
-	game.load.image('controlroom_eol_7', 'assets/scenes/controlroom_eol/Control-RoomEol7.png');
-	game.load.image('controlroom_eol_8', 'assets/scenes/controlroom_eol/Control-RoomEol8.png');
+	// control room
+	// coal power plant
+	game.load.image('charb1', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb1.png');
+	game.load.image('charb2', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb2.png');
+	game.load.image('charb3', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb3.png');
+	game.load.image('charb4', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb4.png');
+	game.load.image('charb5', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb5.png');
+	game.load.image('charb6', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb6.png');
+	game.load.image('charb7', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb7.png');
+	game.load.image('charb8', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb8.png');
+	// hydroelectric dam
+	game.load.image('barrage1', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage1.png');
+	game.load.image('barrage2', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage2.png');
+	game.load.image('barrage3', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage3.png');
+	game.load.image('barrage4', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage4.png');
+	game.load.image('barrage5', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage5.png');
+	game.load.image('barrage6', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage6.png');
+	game.load.image('barrage7', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage7.png');
+	game.load.image('barrage8', 'assets/scenes/control_room/hydroelectric_dam/Control-RoomBarrage8.png');
+	// wind turbine
+	game.load.image('Eol1', 'assets/scenes/control_room/wind_turbine/Control-RoomEol1.png');
+	game.load.image('Eol2', 'assets/scenes/control_room/wind_turbine/Control-RoomEol2.png');
+	game.load.image('Eol3', 'assets/scenes/control_room/wind_turbine/Control-RoomEol3.png');
+	game.load.image('Eol4', 'assets/scenes/control_room/wind_turbine/Control-RoomEol4.png');
+	game.load.image('Eol5', 'assets/scenes/control_room/wind_turbine/Control-RoomEol5.png');
+	game.load.image('Eol6', 'assets/scenes/control_room/wind_turbine/Control-RoomEol6.png');
+	game.load.image('Eol7', 'assets/scenes/control_room/wind_turbine/Control-RoomEol7.png');
+	game.load.image('Eol8', 'assets/scenes/control_room/wind_turbine/Control-RoomEol8.png');
 	// buttons
 	game.load.image('play', 'assets/buttons/play.png');
 	game.load.image('play_hover', 'assets/buttons/play_hover.png');
@@ -117,15 +136,33 @@ export enum Assets {
 	TitleScreen4 = 'titlescreen4',
 	TitleScreen5 = 'titlescreen5',
 	TitleScreen6 = 'titlescreen6',
-	// control room eol
-	ControlRoomEol1 = 'controlroom_eol_1',
-	ControlRoomEol2 = 'controlroom_eol_2',
-	ControlRoomEol3 = 'controlroom_eol_3',
-	ControlRoomEol4 = 'controlroom_eol_4',
-	ControlRoomEol5 = 'controlroom_eol_5',
-	ControlRoomEol6 = 'controlroom_eol_6',
-	ControlRoomEol7 = 'controlroom_eol_7',
-	ControlRoomEol8 = 'controlroom_eol_8',
+	// control rool coal
+	ControlRoomCoal1 = 'charb1',
+	ControlRoomCoal2 = 'charb2',
+	ControlRoomCoal3 = 'charb3',
+	ControlRoomCoal4 = 'charb4',
+	ControlRoomCoal5 = 'charb5',
+	ControlRoomCoal6 = 'charb4',
+	ControlRoomCoal7 = 'charb7',
+	ControlRoomCoal8 = 'charb8',
+	// control room barrage
+	ControlRoomHydroelectricDam1 = 'barrage1',
+	ControlRoomHydroelectricDam2 = 'barrage2',
+	ControlRoomHydroelectricDam3 = 'barrage3',
+	ControlRoomHydroelectricDam4 = 'barrage4',
+	ControlRoomHydroelectricDam5 = 'barrage5',
+	ControlRoomHydroelectricDam6 = 'barrage6',
+	ControlRoomHydroelectricDam7 = 'barrage7',
+	ControlRoomHydroelectricDam8 = 'barrage8',
+	// control room Eol
+	ControlRoomEol1 = 'Eol1',
+	ControlRoomEol2 = 'Eol2',
+	ControlRoomEol3 = 'Eol3',
+	ControlRoomEol4 = 'Eol4',
+	ControlRoomEol5 = 'Eol5',
+	ControlRoomEol6 = 'Eol6',
+	ControlRoomEol7 = 'Eol7',
+	ControlRoomEol8 = 'Eol8',
 	// buttons
 	PlayButton = 'play',
 	PlayButtonHover = 'play_hover',

@@ -1,5 +1,7 @@
 import { Assets } from "../assets";
 import startMiniGame from "../objects/minigame";
+import pause from "../objects/pause";
+import animation from "../objects/animation";
 
 export default class MiniGameScene extends Phaser.Scene {
 	private difficulty: any;
@@ -43,41 +45,50 @@ export default class MiniGameScene extends Phaser.Scene {
 		this.buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
 
 		// background effect
-		this.anims.create({
-			key: 'eolAnim',
-			frames: [
-				{ key: Assets.ControlRoomEol1 },
-				{ key: Assets.ControlRoomEol2 },
-				{ key: Assets.ControlRoomEol3 },
-				{ key: Assets.ControlRoomEol4 },
-				{ key: Assets.ControlRoomEol5 },
-				{ key: Assets.ControlRoomEol6 },
-				{ key: Assets.ControlRoomEol7 },
-				{ key: Assets.ControlRoomEol8 },
-			],
-			frameRate: 2,
-			repeat: -1
-		});
+		animation(this, 'eolAnim', [
+			{ key: Assets.ControlRoomEol1 },
+			{ key: Assets.ControlRoomEol2 },
+			{ key: Assets.ControlRoomEol3 },
+			{ key: Assets.ControlRoomEol4 },
+			{ key: Assets.ControlRoomEol5 },
+			{ key: Assets.ControlRoomEol6 },
+			{ key: Assets.ControlRoomEol7 },
+			{ key: Assets.ControlRoomEol8 },
+		]);
+
+		animation(this, 'coalAnim', [
+			{ key: Assets.ControlRoomCoal1 },
+			{ key: Assets.ControlRoomCoal2 },
+			{ key: Assets.ControlRoomCoal3 },
+			{ key: Assets.ControlRoomCoal4 },
+			{ key: Assets.ControlRoomCoal5 },
+			{ key: Assets.ControlRoomCoal6 },
+			{ key: Assets.ControlRoomCoal7 },
+			{ key: Assets.ControlRoomCoal8 },
+		]);
+
+		animation(this, 'hydroelectricAnim', [
+			{ key: Assets.ControlRoomHydroelectricDam1 },
+			{ key: Assets.ControlRoomHydroelectricDam2 },
+			{ key: Assets.ControlRoomHydroelectricDam3 },
+			{ key: Assets.ControlRoomHydroelectricDam4 },
+			{ key: Assets.ControlRoomHydroelectricDam5 },
+			{ key: Assets.ControlRoomHydroelectricDam6 },
+			{ key: Assets.ControlRoomHydroelectricDam7 },
+			{ key: Assets.ControlRoomHydroelectricDam8 },
+		])
+
 
 		// drawings
-		this.add.sprite(600, 150, Assets.ControlRoomEol1).setOrigin(0).play('eolAnim');
+		// Variable !
+		this.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('coalAnim');
 		let smallScreen = this.add.sprite(150, 290, Assets.SmallScreen).setOrigin(0);
 
 		// 0 : tuto | 1 : easy | 2 : medium | 3 : hard
 		startMiniGame(this, this.difficulty, smallScreen);
 
 		// pause button and trigger
-		let pauseSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseInSound);
-		let pauseButton: Phaser.GameObjects.Sprite = this.add.sprite(50, 50, Assets.PauseButton).setOrigin(0).setInteractive();
-		pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
-		pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
-		pauseButton.on('pointerdown', () => {
-			theme.pause();
-			pauseSound.play();
-			this.scene.launch('PauseMenu', { sceneFrom: this.scene.key }).bringToTop();
-			this.scene.sendToBack();
-			this.scene.pause();
-		});
+		pause(this, theme);
 	}
 
 }
