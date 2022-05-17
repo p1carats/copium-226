@@ -42,9 +42,27 @@ export default class MiniGameScene extends Phaser.Scene {
 		let stick: Phaser.GameObjects.Sprite = this.add.sprite(1450, 700, Assets.Stick0).setOrigin(0).setInteractive();
 		this.buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
 
+		// background effect
+		this.anims.create({
+			key: 'eolAnim',
+			frames: [
+				{ key: Assets.ControlRoomEol1 },
+				{ key: Assets.ControlRoomEol2 },
+				{ key: Assets.ControlRoomEol3 },
+				{ key: Assets.ControlRoomEol4 },
+				{ key: Assets.ControlRoomEol5 },
+				{ key: Assets.ControlRoomEol6 },
+				{ key: Assets.ControlRoomEol7 },
+				{ key: Assets.ControlRoomEol8 },
+			],
+			frameRate: 2,
+			repeat: -1
+		});
+
 		// drawings
+		this.add.sprite(600, 150, Assets.ControlRoomEol1).setOrigin(0).play('eolAnim');
 		let smallScreen = this.add.sprite(150, 290, Assets.SmallScreen).setOrigin(0);
-		this.add.rectangle(600, 150, 720, 360, 0xFFFFFF, 1).setOrigin(0);
+
 		// 0 : tuto | 1 : easy | 2 : medium | 3 : hard
 		startMiniGame(this, this.difficulty, smallScreen);
 

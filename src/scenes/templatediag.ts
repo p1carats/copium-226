@@ -22,10 +22,10 @@ export default class TemplateDialogue extends Phaser.Scene {
 		];
 
 		let persoArray = [
-			Assets.GeorgeLeft,
-			Assets.GeorgeRight,
-			Assets.GeorgeLeft,
-			Assets.GeorgeRight
+			Assets.George,
+			Assets.Benoit,
+			Assets.George,
+			Assets.Benoit
 		];
 
 		let index = 0;

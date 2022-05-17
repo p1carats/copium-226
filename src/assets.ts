@@ -1,7 +1,5 @@
 // allows us to specify images, audio, or other assets to load before starting the game
 export function assetsLoader(game) {
-	// story (json)
-	game.load.json('story', 'assets/dialogues/story_part1.json');
 	// font
 	game.load.rexWebFont({
 		custom: {
@@ -9,6 +7,8 @@ export function assetsLoader(game) {
 			urls: ['assets/fonts/fonts.css']
 		}
 	});
+	// story (json)
+	// game.load.json('story', 'assets/dialogues/story_part1.json');
 	// main title
 	game.load.image('logo', 'assets/logo.png');
 	game.load.image('title', 'assets/title.png');
@@ -18,9 +18,16 @@ export function assetsLoader(game) {
 	game.load.image('titlescreen4', 'assets/scenes/title/titlescreen4.png');
 	game.load.image('titlescreen5', 'assets/scenes/title/titlescreen5.png');
 	game.load.image('titlescreen6', 'assets/scenes/title/titlescreen6.png');
+	// control room eol
+	game.load.image('controlroom_eol_1', 'assets/scenes/controlroom_eol/Control-RoomEol1.png');
+	game.load.image('controlroom_eol_2', 'assets/scenes/controlroom_eol/Control-RoomEol2.png');
+	game.load.image('controlroom_eol_3', 'assets/scenes/controlroom_eol/Control-RoomEol3.png');
+	game.load.image('controlroom_eol_4', 'assets/scenes/controlroom_eol/Control-RoomEol4.png');
+	game.load.image('controlroom_eol_5', 'assets/scenes/controlroom_eol/Control-RoomEol5.png');
+	game.load.image('controlroom_eol_6', 'assets/scenes/controlroom_eol/Control-RoomEol6.png');
+	game.load.image('controlroom_eol_7', 'assets/scenes/controlroom_eol/Control-RoomEol7.png');
+	game.load.image('controlroom_eol_8', 'assets/scenes/controlroom_eol/Control-RoomEol8.png');
 	// buttons
-	game.load.image('exit', 'assets/buttons/exit.png');
-	game.load.image('exit_hover', 'assets/buttons/exit_hover.png');
 	game.load.image('play', 'assets/buttons/play.png');
 	game.load.image('play_hover', 'assets/buttons/play_hover.png');
 	game.load.image('settings', 'assets/buttons/settings.png');
@@ -38,22 +45,22 @@ export function assetsLoader(game) {
 	game.load.image('english', 'assets/buttons/english.png');
 	game.load.image('english_hover', 'assets/buttons/english_hover.png');
 	// mini game
-	game.load.image('red_button', 'assets/miniGame/red-button.png');
-	game.load.image('red_button_pressed', 'assets/miniGame/red-button-pressed.png');
-	game.load.image('green_button_down', 'assets/miniGame/green-button-down.png');
-	game.load.image('green_button_down_pressed', 'assets/miniGame/green-button-down-pressed.png');
-	game.load.image('green_button_left', 'assets/miniGame/green-button-left.png');
-	game.load.image('green_button_left_pressed', 'assets/miniGame/green-button-left-pressed.png');
-	game.load.image('green_button_up', 'assets/miniGame/green-button-up.png');
-	game.load.image('green_button_up_pressed', 'assets/miniGame/green-button-up-pressed.png');
-	game.load.image('green_button_right', 'assets/miniGame/green-button-right.png');
-	game.load.image('green_button_right_pressed', 'assets/miniGame/green-button-right-pressed.png');
-	game.load.image('stick0', 'assets/miniGame/stick0.png');
-	game.load.image('stick1', 'assets/miniGame/stick1.png');
-	game.load.image('stick2', 'assets/miniGame/stick2.png');
-	game.load.image('stick3', 'assets/miniGame/stick3.png');
-	game.load.image('small_screen_error', 'assets/miniGame/small-screen-error.png');
-	game.load.image('small_screen', 'assets/miniGame/small-screen.png');
+	game.load.image('red_button', 'assets/minigame/red_button.png');
+	game.load.image('red_button_pressed', 'assets/minigame/red_button_pressed.png');
+	game.load.image('green_button_down', 'assets/minigame/green_button_down.png');
+	game.load.image('green_button_down_pressed', 'assets/minigame/green_button_down_pressed.png');
+	game.load.image('green_button_left', 'assets/minigame/green_button_left.png');
+	game.load.image('green_button_left_pressed', 'assets/minigame/green_button_left_pressed.png');
+	game.load.image('green_button_up', 'assets/minigame/green_button_up.png');
+	game.load.image('green_button_up_pressed', 'assets/minigame/green_button_up_pressed.png');
+	game.load.image('green_button_right', 'assets/minigame/green_button_right.png');
+	game.load.image('green_button_right_pressed', 'assets/minigame/green_button_right_pressed.png');
+	game.load.image('stick0', 'assets/minigame/stick_0.png');
+	game.load.image('stick1', 'assets/minigame/stick_1.png');
+	game.load.image('stick2', 'assets/minigame/stick_2.png');
+	game.load.image('stick3', 'assets/minigame/stick_3.png');
+	game.load.image('small_screen_error', 'assets/minigame/small-screen-error.png');
+	game.load.image('small_screen', 'assets/minigame/small-screen.png');
 	// utils
 	game.load.image('dialogBox', 'assets/dialogbox.png');
 	game.load.image('lineBreak', 'assets/buttons/line_break.png');
@@ -70,8 +77,13 @@ export function assetsLoader(game) {
 	//game.load.image('coffee', 'assets/scenes/coffee.png');
 	game.load.image('controlroom', 'assets/scenes/controlroom.png');
 	// characters
-	game.load.image('georgeLeft', 'assets/characters/george_left.png');
-	game.load.image('georgeRight', 'assets/characters/george_right.png');
+	game.load.image('george', 'assets/characters/george.png');
+	game.load.image('benoit', 'assets/characters/benoit.png');
+	game.load.image('gerard', 'assets/characters/gerard.png');
+	game.load.image('craig', 'assets/characters/craig.png');
+	game.load.image('amber', 'assets/characters/amber.png');
+	game.load.image('marc', 'assets/characters/marc.png');
+	game.load.image('fatima', 'assets/characters/fatima.png');
 	// load all sounds
 	game.load.audio('start', 'assets/sounds/start.ogg');
 	game.load.audio('click', 'assets/sounds/click.ogg');
@@ -105,9 +117,16 @@ export enum Assets {
 	TitleScreen4 = 'titlescreen4',
 	TitleScreen5 = 'titlescreen5',
 	TitleScreen6 = 'titlescreen6',
+	// control room eol
+	ControlRoomEol1 = 'controlroom_eol_1',
+	ControlRoomEol2 = 'controlroom_eol_2',
+	ControlRoomEol3 = 'controlroom_eol_3',
+	ControlRoomEol4 = 'controlroom_eol_4',
+	ControlRoomEol5 = 'controlroom_eol_5',
+	ControlRoomEol6 = 'controlroom_eol_6',
+	ControlRoomEol7 = 'controlroom_eol_7',
+	ControlRoomEol8 = 'controlroom_eol_8',
 	// buttons
-	ExitButton = 'exit',
-	ExitButtonHover = 'exit_hover',
 	PlayButton = 'play',
 	PlayButtonHover = 'play_hover',
 	SettingsButton = 'settings',
@@ -145,8 +164,13 @@ export enum Assets {
 	DialogBox = 'dialogBox',
 	LineBreak = 'lineBreak',
 	// characters
-	GeorgeLeft = 'georgeLeft',
-	GeorgeRight = 'georgeRight',
+	George = 'george',
+	Benoit = 'benoit',
+	Gerard = 'gerard',
+	Craig = 'craig',
+	Amber = 'amber',
+	Marc = 'marc',
+	Marion = 'fatima',
 	// scenes
 	BedroomScene = 'bedroom',
 	ControlRoomScene = 'controlroom',
