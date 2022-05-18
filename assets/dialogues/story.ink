@@ -1,3 +1,12 @@
+VAR isTutorialWon = false
+VAR isMiniGame1Won = false
+VAR ifQuota1Respected = false
+VAR georgeRelationCraig = false
+VAR georgeRelationAmber = false
+VAR isMiniGame4Won = false
+
+-> INTRO
+
 === INTRO ===
 Bip. Bip. Bip. Bip. Bip. Bip. Bip. Bi-
 Après avoir cherché pendant une dizaine de secondes, j'attrape enfin mon téléphone et coupe le réveil. J'ouvre un demi-œil pour confirmer ce que je sais déjà.
@@ -23,7 +32,7 @@ Ce travail était assuré par mon prédécesseur M. Pichard mais, du haut de ses
 Infos à mettre sur les éoliennes.
 George: Bon, j'ai assez rêvassé comme ça. Faut que je me mette au boulot si je veux atteindre le quota aujourd'hui.
 Bienvenue dans la salle de contrôle. L\'objectif ici est de tenir le temps imparti en ayant tous les boutons en position pressés. Si un bouton est relevé, vous devez simplement cliquer dessus. Attention à ne pas être trop lent...
--> CHAPTER_2
+-> CHAPTER_1
 
 === CHAPTER_1 ===
 // George arrive au café du village
@@ -49,28 +58,37 @@ Benoît: Il s'est mis en tête je ne sais trop comment qu'il allait faire fortun
 	George : Ouais...
 	Je me sens encore assez coupable de ce qu'il s'est passé tout à l'heure, mais Benoît, la personne probablement la plus impactée par la panne, essaye de me réconforter ?
 	Soit c'est vraiment un mec cool, soit je suis particulièrement pathétique.
+	-> CHAPTER_1_PARAGARPHE
 *	[Je le fixe du regard, clairement ennuyé]
 	Il lève les mains en signe d'apaisement. “Hé hé, me regarde pas comme ça, je plaisantais juste; Ça arrive à tout le monde de faire des erreurs.”
 	Je baisse les yeux après un moment et soupire.
 	J'ai déjà assez de personnes dans le village qui ne m'aiment pas comme ça, pas besoin d'en rajouter un.
 	Essayons de changer de sujet.
+    -> CHAPTER_1_PARAGARPHE
+
+=== CHAPTER_1_PARAGARPHE ===
 George: Devenir mineur ? Je croyais que toutes les mines de la vallée avaient été complètement exploitées et abandonnées il y a au moins 40 ans ?
 Benoît: C'est le cas, mais il est persuadé qu'en cherchant assez il va trouver quelque chose que les anciens mineurs ont raté. Je lui ai dit plusieurs fois qu'il perdait son temps, mais il ne veut rien entendre, c'est fou !
 *	[Qui sait, peut-être qu'il va vraiment trouver quelque chose.]
 	Benoît: Oh non, pas toi aussi ! Les mines sont vides ! Ça fait des décennies qu'elles le sont. Tout ce qu'il va trouver c'est des cailloux, des cailloux et encore des cailloux !
 	George: Je sais, je sais, du calme. Tout ce que je dis, c'est que s'il y a vraiment encore quelque chose à miner dans ces montagnes, c'est bien François qui le trouvera. Je connais personne d'aussi déterminé que lui.
 	Benoît: Ça c'est bien vrai.
+	-> CHAPTER_1_END
 * [On verra bien combien de temps il tiendra.]
 	Benoît: ”Pfff, je parie qu'il tiendra même pas 2 semaines avant d'abandonner et de retourner s'occuper des moutons de son père.”
 	George: “Je parie 1 mois. Tu sous-estimes à quel point c'est une tête de mule.”
+	-> CHAPTER_1_END
 * [Quelle perte de temps.]
 	Benoît : ”On est d'accord.”
 	George: ”Son père doit être furieux, non ?”
 	Benoît: ”T'as pas idée. J'aimerais pas être là le moment où il retournera chez lui, la queue entre les jambes. Les murs vont trembler.”
+    -> CHAPTER_1_END
+    
+=== CHAPTER_1_END
 Après ça on a continué à parler de tout et de rien pendant une bonne heure avant que je rentre chez moi. Sur la route, je ne pouvais pas m'empêcher de repenser à François. Et s'il y arrivait ? S'il trouvait un nouveau filon d'or, ou quelque chose dans le genre dans une des mines ? Ça créerait sans doute beaucoup d'agitation dans le village.
 ....
 Ouais, pas sûr qu'on en ait vraiment besoin en fait.
--> timeskip1
+-> TIMESKIP_1
 
 === TIMESKIP_1 ===
 // 2 mois plus tard plus tard 
@@ -78,6 +96,7 @@ Quelques jours plus tard, François trouva un filon gigantesque dans les mines. 
 Apparemment ce nouveau minerai, baptisé Copium 226, possédait des propriétés jamais vu auparavant qui pourrait permettre de faire progresser la recherche scientifique de plusieurs décennies dans plusieurs domaines en un claquement de doigts, si correctement exploité.
 Plusieurs entreprises se sont maintenant installées dans la région dans l'espoir d'exploiter le copium 226, et les travailleurs ont suivi. Ce qui était avant un petit hameau de quelques dizaines d'habitants s'est transformé en l'espace de quelques mois en un bourg de plusieurs centaines. Tout cela a bien évidemment plongé notre petite communauté dans le chaos, et le fait que les 2 pays qui nous entourent, le Fanighastan et le Lorient, revendiquent la région n'aide certainement pas à calmer les choses. Personnellement, j'étais toujours persuadé que la question ne se posait pas et que nous étions des Lorientais, mais il semblerait que le Fanighastan ait vraiment des arguments et des preuves pour appuyer leur demandes. 
 Pas que j'ai eu le temps de vraiment suivre cette situation de près : je suis bien trop occupé avec le travail en ce moment.
+-> MINIGAME_1
 
 === MINIGAME_1 ===
 Le réseau électrique de Vitry-la-Vallée a été conçu pour alimenter au maximum une centaine d'habitations, et c'est en supposant que chacun ait une consommation responsable -ce qui est un acquis pour les anciens habitants, mais beaucoup moins pour les nouveaux arrivants.
@@ -95,6 +114,7 @@ Par conséquent, je suis obligé de garder les éoliennes en fonctionnement pres
 	Dans tous les cas, de plus en plus de personnes arrivent chaque jour dans la vallée. En ce moment le réseau tombe en panne tous les 2, 3 jours, mais d'ici peu vous aurez plus de chance de gagner au loto que de voir le réseau électrique de Vitry-la-Vallée fonctionner plus de 12 heures sans problèmes.
 	J'aurais bien besoin d'un sauveur avant d'en arriver là.
 }
+-> CHAPTER_2
 
 === CHAPTER_2 ===
 Je sors de la station, heureux d'avoir enfin fini cette journée d'enfer. Il doit être aux alentours de minuit, ou une heure du mat.
@@ -167,7 +187,7 @@ M. Vermeil: Je ne vais pas passer par quatre chemins. Nous souhaitons nous assoc
 George: Attendez, attendez. Avec moi ?
 M. Vermeil: Bien sûr. Vous êtes le garant du réseau électrique de la vallée. Vous pouvez difficilement assurer son bon fonctionnement avec 3 malheureuses éoliennes, et de même nous pouvons difficilement étendre nos opérations quand nous risquons la coupure de courant à chaque instant. 
 {
-	isTutorialWon && !isMiniGame1Won:
+	- isTutorialWon && !isMiniGame1Won:
 		<> C'est déjà très impressionnant que vous avez réussi à faire tenir le réseau sans coupure jusqu'ici, mais combien de temps pouvez vous continuer comme ça ? De nouveaux habitants arrivent chaque jour mais, sauf erreur de ma part, il n'y a toujours que 3 éoliennes dans la vallée et 24 heures dans une journée.
 	- else:
 		<> Vous avez déjà eu des problèmes avec le réseau, et nous savons tous les deux que ça ne va faire qu'empirer si nous ne faisons rien. Ce n'est pas de votre faute : on vous a donné une main perdante. Mais nous sommes là pour changer cela, et faire en sorte que tout le monde gagne.
@@ -199,72 +219,29 @@ George: Je vois. Et je suppose que l'entreprise que je choisis gagnera un avanta
 M. Vermeil: Vous comprenez vite M. Beauvois. J'espère que vous ferez le bon choix.
 Je prends une grande inspiration. Je n'ai pas le choix de toute façon. Même si ça ne me plait pas particulièrement, je suis obligé d'améliorer le réseau avant que tout s'écroule, et ces deux entreprises sont les seules dans la vallée avec les ressources pour faire le travail. 
 Mon choix va sans doute décider du sort de la vallée pour les décennies qui viennent. J'ai intérêt d'être sûr de mon choix.
+-> CHOICES
+
+=== CHOICES ===
 * [J'aimerais poser quelques qestions à M. Vermeil]
-	M. Vermeil: Je vous écoute.
-	* [Comment comptez-vous utiliser le Copium 226 que vous exploitez ?]
-		M. Vermeil : La mission de Green Horizon a toujours été et sera toujours de trouver de nouvelles méthodes de production d'énergie non polluantes et efficaces afin de sortir une bonne fois pour toute des énergies fossiles et sauver notre planète.
-		George : Mais le Copium 226 est un minerai, n'est-ce pas ? Donc il n'est pas renouvelable ?
-		M. Vermeil: Évidemment. Mais il possède des propriétés très intéressantes. Si nos premières hypothèses sont correctes, nous pourrions remplacer le pétrole et l'uranium dans toutes nos méthodes de production par le Copium 226, et obtenir un rendement 6 à 8 fois supérieur tout en réduisant nos émissions de carbone de 98%.
-		M. Vermeil: Nous sommes bien conscients que ce n'est pas une solution permanente, mais l'exploitation du Copium 226, si elle est bien dirigée, pourrait assurer nos besoins en énergies pendant des siècles, ce qui nous laisserait largement le temps de perfectionner des méthodes alternatives comme l'énergie solaire ou hydraulique.
-	* [Comment comptez-vous améliorer le réseau électrique du village ?]
-		Mr Vermeil : ”Nous devons encore mener quelques enquêtes sur le terrain, mais notre plan A serait la construction d'un barrage hydraulique sur la rivière proche. L'énergie produite devrait être suffisante pour alimenter la ville durant sa croissance, pendant que nous construirons en parallèle une centrale nucléaire.”
-		George : ”Une centrale nucléaire!? N'est pas un peu... excessif?”
-		Mr Vermeil : ”Il semblerait que vous sous-estimez encore la valeur du copium 226, Mr. Beauvois. C'est ma conviction la plus forte que Vitry-la-Vallée va devenir l'une des métropole les plus importantes du monde dans les décennies qui arrivent. Une centrale nucléaire est le strict minimum.” 
-	* [Que pensez-vous des tensions entre le Fanighastan et le Lorient ?]
-		George: Après tout, votre entreprise est basée au Fanighastan. Que ferez-vous si on découvre que les revendications du Fanighastan ne sont pas légitimes ?
-		M. Vermeil: M. Beauvois, je peux vous assurer que même si cela arrivait, nous ne ressortirions pas perdants de cette affaire.
-		George: ... Vous n'avez pas vraiment répondu à ma question.
-		M. Vermeil: Nous sommes des hommes d'affaires, M. Beauvois. Nous ne faisons pas dans la politique.
-	* [Pourquoi portez-vous des lunettes de soleil ? On est au beau milieu de la nuit.]
-		M. Vermeil : J'ai un problème au niveau des yeux.
-		J'attends quelques instants, avant de me rendre compte qu'il ne souhaite pas en dire plus.
-		M. Vermeil hoche la tête et continue de me fixer d'un regard que je devine intense sous ses lunettes.
-	* [J'en ai fini de mes questions.]
-		-> DONE
+    -> CHOICE_GH
 * [J'aimerais poser quelques questions à Amber.]
-	Amber: Je répondrai à tout ce que vous voulez savoir !
-	* [Comment comptez-vous utiliser le Copium 226 que vous exploitez ?]
-	Amber: Vous le savez sans doute déjà, mais le but de Cosmic Drive est la conquête spatiale. Nous comptons incorporer le Copium 226 dans la quasi-totalité de nos équipements, ainsi que dans le carburant de nos fusées. Nos premiers tests sont extrêmement positifs. Si ce minerai fonctionne ne serait-ce qu'à 50% de nos prévisions, nous pourrions effectuer un vol vers Rams en un peu moins d'une semaine. Coloniser la planète serait un jeu d'enfant à partir de ce moment-là.
-	Phrase Rams explication.
-	Je ne peux pas m'empêcher de frissonner un peu à l'idée. Avec la technologie actuelle, un vol vers Rams prendrait un peu moins de 2 ans. Dans des conditions idéales.    
-	* [Comment comptez-vous améliorer le réseau électrique du village ?]
-		Amber: On va pas se casser la tête, on va installer une centrale à charbon, vite fait bien fait.
-		Je vois apparaître pour la première fois une émotion sur le visage de M. Vermeil : du dégoût.
-		Je suis moi aussi obligé de lever un sourcil à l'idée d'installer une centrale à charbon dans cette belle vallée.
-		Amber: Hé, ne me regardez pas comme ça. Notre planète est déjà foutue. C'est trop tard pour revenir en arrière maintenant. Notre seule solution, c'est de faire avancer aussi vite que possible nos capacités en matière d'exploration spatiale, afin d'aller coloniser une autre planète.
-		M. Vermeil: Détruire une autre planète, vous voulez dire.
-		Amber: Non, la coloniser, dans le respect de la faune et de la flore locales. Si une petite centrale à charbon sur Terre est le prix à payer, je le ferais sans sourciller.
-		George: Je... vois.
-		Au moins on ne peut pas lui reprocher de ne pas avoir de la suite dans ses idées.
-		Amber: Bien sûr, ce sera vite insuffisant pour alimenter toute la ville. C'est pour ça qu'une fois la centrale à charbon finie, nous entamerons la construction d'une centrale nucléaire.
-		George: ...
-		Je n'ai même plus la force d'argumenter contre ça.
-	* [Que pensez-vous des tensions entre le Fanighastan et le Lorient ?]
-		George: Après tout, votre entreprise est basée au Lorient. Que ferez-vous si on découvre que les revendications du Fanighastan sont plus légitimes qu'on ne le pensait ?
-		Amber: Honnêtement, ce n'est pas vraiment notre problème. Presque tous les experts s'accordent à dire que le Lorient est plus légitime que le Fanighastan. Et même s'ils venaient à prendre la région, nous ferions tout ce qui est en notre pouvoir pour rester ici. Cette découverte est trop belle pour laisser l'occasion passer.
-	* [Donc votre nom est Wusk...]
-		Amber me regarde d'un air confus.
-		Amber: Oui, c'est bien ça.
-		George: Avez-vous un lien de parenté avec...
-		Amber: Ah. Oui, mon père est Elan Wusk.
-		George: ... Votre père.
-		Amber: ... J'ai changé de prénom à mes 18 ans.
-		George: Oui, c'est compréhensible.
-	* [J'en ai fini de mes questions.]
-		Amber: D'accord ! Si d'autres vous viennent en tête, n'hésitez pas.
+    -> CHOICE_CD
 * [J'ai pris ma décision.]
-Les deux représentants se rapprochent du bord de leur siège. La tension autour de la table est palpable. Trop tard pour se désister.
-George: Je choisis de travailler avec...
+    Les deux représentants se rapprochent du bord de leur siège. La tension autour de la table est palpable. Trop tard pour se désister.
+    George: Je choisis de travailler avec...
+    -> SELECT_TEAM
+    
+=== SELECT_TEAM ===
 * [Green Horizon]
-	George: Green Horizon.
-	Et jusque comme ça, toute la pression qui nous entourait disparut. M. Vermeil me serre la main en souriant, et j'ai soudainement l'impression d'être devant un loup qui vient d'attraper sa proie. A côté, j'entends Amber soupirer.
+    George: Green Horizon.
+    Et jusque comme ça, toute la pression qui nous entourait disparut. M. Vermeil me serre la main en souriant, et j'ai soudainement l'impression d'être devant un loup qui vient d'attraper sa proie. A côté, j'entends Amber soupirer.
 	Amber : Je vois. C'est bien regrettable, mais ce qui est fait est fait.
 	M. Vermeil: Je me retire pour la nuit. Je vous conseille de faire de même M. Beauvois. Nous aurons beaucoup de choses à discuter demain. En privé.
-	M. Vermeil s'en va, me laissant seul avec une Amber à l'air dépitée. Je me lève rapidement de la table, paye ma consommation et quitte le café.
+    M. Vermeil s'en va, me laissant seul avec une Amber à l'air dépitée. Je me lève rapidement de la table, paye ma consommation et quitte le café.
 	Green Horizon... Ça m'avait l'air d'être le meilleur choix ce soir. J'espère ne pas le regretter plus tard.
 	-> TIMESKIP_2_GH
 * [Cosmic Drive]
-	George: Green Horizon.
+    George: Green Horizon.
 	Amber: YESSSSS ! Allez tu peux rentrer chez toi le vampire, on n'a plus besoin de toi ici.
 	L'explosion d'Amber a au moins le mérite de détendre immédiatement l'atmosphère autour de la table. Même si j'ai du mal à me dire que cette personne est plus vieille que moi.
 	M. Vermeil: Voilà qui est extrêmement décevant. Je ne peux que vous demander d'y réfléchir à nouveau cette nuit. Si vous vous réveillez demain et trouvez que vous avez changé d'avis, appelez moi.
@@ -275,6 +252,70 @@ George: Je choisis de travailler avec...
 	Non, j'ai déjà pris ma décision. Ça ne sert à rien d'avoir des doutes maintenant. Je déchire la carte avant d'être tenté.
 	Cosmic Drive... Ça m'avait l'air d'être le meilleur choix ce soir. J'espère ne pas le regretter plus tard.
 	-> TIMESKIP_2_CD
+
+
+=== CHOICE_GH ===
+M. Vermeil: Je vous écoute.
+* [Comment comptez-vous utiliser le Copium 226 que vous exploitez ?]
+	M. Vermeil : La mission de Green Horizon a toujours été et sera toujours de trouver de nouvelles méthodes de production d'énergie non polluantes et efficaces afin de sortir une bonne fois pour toute des énergies fossiles et sauver notre planète.
+		George : Mais le Copium 226 est un minerai, n'est-ce pas ? Donc il n'est pas renouvelable ?
+	M. Vermeil: Évidemment. Mais il possède des propriétés très intéressantes. Si nos premières hypothèses sont correctes, nous pourrions remplacer le pétrole et l'uranium dans toutes nos méthodes de production par le Copium 226, et obtenir un rendement 6 à 8 fois supérieur tout en réduisant nos émissions de carbone de 98%.
+	M. Vermeil: Nous sommes bien conscients que ce n'est pas une solution permanente, mais l'exploitation du Copium 226, si elle est bien dirigée, pourrait assurer nos besoins en énergies pendant des siècles, ce qui nous laisserait largement le temps de perfectionner des méthodes alternatives comme l'énergie solaire ou hydraulique.
+	-> CHOICE_GH
+* [Comment comptez-vous améliorer le réseau électrique du village ?]
+	Mr Vermeil : ”Nous devons encore mener quelques enquêtes sur le terrain, mais notre plan A serait la construction d'un barrage hydraulique sur la rivière proche. L'énergie produite devrait être suffisante pour alimenter la ville durant sa croissance, pendant que nous construirons en parallèle une centrale nucléaire.”
+	George : ”Une centrale nucléaire!? N'est pas un peu... excessif?”
+	Mr Vermeil : ”Il semblerait que vous sous-estimez encore la valeur du copium 226, Mr. Beauvois. C'est ma conviction la plus forte que Vitry-la-Vallée va devenir l'une des métropole les plus importantes du monde dans les décennies qui arrivent. Une centrale nucléaire est le strict minimum.” 
+	-> CHOICE_GH
+* [Que pensez-vous des tensions entre le Fanighastan et le Lorient ?]
+	George: Après tout, votre entreprise est basée au Fanighastan. Que ferez-vous si on découvre que les revendications du Fanighastan ne sont pas légitimes ?
+	M. Vermeil: M. Beauvois, je peux vous assurer que même si cela arrivait, nous ne ressortirions pas perdants de cette affaire.
+	George: ... Vous n'avez pas vraiment répondu à ma question.
+	M. Vermeil: Nous sommes des hommes d'affaires, M. Beauvois. Nous ne faisons pas dans la politique.
+	-> CHOICE_GH
+* [Pourquoi portez-vous des lunettes de soleil ? On est au beau milieu de la nuit.]
+	M. Vermeil : J'ai un problème au niveau des yeux.
+	J'attends quelques instants, avant de me rendre compte qu'il ne souhaite pas en dire plus.
+	M. Vermeil hoche la tête et continue de me fixer d'un regard que je devine intense sous ses lunettes.
+	-> CHOICE_GH
+* [J'en ai fini de mes questions.]
+	-> CHOICES
+		
+=== CHOICE_CD ===
+Amber: Je répondrai à tout ce que vous voulez savoir !
+* [Comment comptez-vous utiliser le Copium 226 que vous exploitez ?]
+Amber: Vous le savez sans doute déjà, mais le but de Cosmic Drive est la conquête spatiale. Nous comptons incorporer le Copium 226 dans la quasi-totalité de nos équipements, ainsi que dans le carburant de nos fusées. Nos premiers tests sont extrêmement positifs. Si ce minerai fonctionne ne serait-ce qu'à 50% de nos prévisions, nous pourrions effectuer un vol vers Rams en un peu moins d'une semaine. Coloniser la planète serait un jeu d'enfant à partir de ce moment-là.
+Je ne peux pas m'empêcher de frissonner un peu à l'idée. Avec la technologie actuelle, un vol vers Rams prendrait un peu moins de 2 ans. Dans des conditions idéales.   
+-> CHOICE_CD
+* [Comment comptez-vous améliorer le réseau électrique du village ?]
+	Amber: On va pas se casser la tête, on va installer une centrale à charbon, vite fait bien fait.
+	Je vois apparaître pour la première fois une émotion sur le visage de M. Vermeil : du dégoût.
+	Je suis moi aussi obligé de lever un sourcil à l'idée d'installer une centrale à charbon dans cette belle vallée.
+	Amber: Hé, ne me regardez pas comme ça. Notre planète est déjà foutue. C'est trop tard pour revenir en arrière maintenant. Notre seule solution, c'est de faire avancer aussi vite que possible nos capacités en matière d'exploration spatiale, afin d'aller coloniser une autre planète.
+	M. Vermeil: Détruire une autre planète, vous voulez dire.
+	Amber: Non, la coloniser, dans le respect de la faune et de la flore locales. Si une petite centrale à charbon sur Terre est le prix à payer, je le ferais sans sourciller.
+	George: Je... vois.
+	Au moins on ne peut pas lui reprocher de ne pas avoir de la suite dans ses idées.
+	Amber: Bien sûr, ce sera vite insuffisant pour alimenter toute la ville. C'est pour ça qu'une fois la centrale à charbon finie, nous entamerons la construction d'une centrale nucléaire.
+	George: ...
+    Je n'ai même plus la force d'argumenter contre ça.
+	-> CHOICE_CD
+* [Que pensez-vous des tensions entre le Fanighastan et le Lorient ?]
+	George: Après tout, votre entreprise est basée au Lorient. Que ferez-vous si on découvre que les revendications du Fanighastan sont plus légitimes qu'on ne le pensait ?
+	Amber: Honnêtement, ce n'est pas vraiment notre problème. Presque tous les experts s'accordent à dire que le Lorient est plus légitime que le Fanighastan. Et même s'ils venaient à prendre la région, nous ferions tout ce qui est en notre pouvoir pour rester ici. Cette découverte est trop belle pour laisser l'occasion passer.
+	-> CHOICE_CD
+* [Donc votre nom est Wusk...]
+    Amber me regarde d'un air confus.
+	Amber: Oui, c'est bien ça.
+	George: Avez-vous un lien de parenté avec...
+	Amber: Ah. Oui, mon père est Elan Wusk.
+	George: ... Votre père.
+	Amber: ... J'ai changé de prénom à mes 18 ans.
+	George: Oui, c'est compréhensible.
+	-> CHOICE_CD
+* [J'en ai fini de mes questions.]
+	Amber: D'accord ! Si d'autres vous viennent en tête, n'hésitez pas.
+	-> CHOICES
 
  
 === TIMESKIP_2_GH ===
@@ -302,7 +343,7 @@ M. Vermeil: Entrez.
 J'entre dans le bureau. Assis dans son fauteuil, M. Vermeil lève la tête du document qu'il était en train de lire. Deux ans après, je suis toujours aussi intimidé par son regard intense caché derrière ses lunettes noires.
 {
 	- !isMiniGame1Won:
-		<> M. Vermeil: Je n'ai pas envie de faire ça Mr. Beauvois, mais je n'ai pas le choix.
+		M. Vermeil: Je n'ai pas envie de faire ça Mr. Beauvois, mais je n'ai pas le choix.
 		Aïe. Ça commence mal.
 		M. Vermeil: Pour éviter que nous subissions plus longtemps qu'il ne faut ce moment difficile, je vais être direct : vous êtes viré.
 		Il me faut quelques instants pour traiter ce qu'il vient de me dire.
@@ -314,26 +355,20 @@ J'entre dans le bureau. Assis dans son fauteuil, M. Vermeil lève la tête du do
 		* [Vous oubliez que le réseau m'appartient. Si vous me virez, je...]
 			George: V-Vous oubliez que le réseau m'appartient. Si vous me virez, je...
 			Il ne me regarde même plus. Il a déjà replongé la tête dans son document, comme si je n'existais plus pour lui.
-			M. Vermeil: Le réseau électrique de Vitry-la-Vallée est devenu la propriété de Green Horizon quand vous avez signé votre contrat de travail. Vous l'avez lu n'est-ce pas ?”
+            M. Vermeil: Le réseau électrique de Vitry-la-Vallée est devenu la propriété de Green Horizon quand vous avez signé votre contrat de travail. Vous l'avez lu n'est-ce pas ?”
+            -> BAD_END_2
 		* [...]
-		M. Vermeil: Si c'est tout, la porte se trouve derrière vous. Green Horizon vous remercie pour vos services.
-		...
-		Je ferme la porte derrière moi en sortant du bureau. Je serre les poings de frustration. Frustration d'avoir perdu mon travail. Frustration de ne pas avoir pu mieux argumenter en face de mon patron. Frustration d'avoir gâché une des meilleures opportunités de ma vie.
-		J'ai envie de taper dans le mur à côté. Peut-être même de péter une fenêtre. A la place je lâche un long soupir et quitte les locaux de Green Horizon.
-		...
-		Peut être que je devrais quitter la vallée. 
-		J'y étais venu pour profiter de la nature en toute tranquillité, mais ça fait longtemps que ce n'est plus possible. Seul le boulot me retenait ici.
-		...
-		Oui, il est temps de déménager. 
-		-> END // bad end 2, les temps changent
+		    -> BAD_END_2
 }
+
+
 M. Vermeil: Ah, M. Beauvois. Asseyez-vous. Nous n'avons pas énormément de choses à nous dire cette semaine, donc je pense que ça devrait aller assez vite.
 Je m'assois sur un des fauteuils posés devant le bureau de Mr Vermeil. Comme il l'a dit, nous sommes plutôt dans une période plate pour l'entreprise. Le barrage hydroélectrique fonctionne parfaitement bien et devrait suffire à lui seul à approvisionner tous les habitants de la ville en électricité pendant des années.
 La centrale nucléaire est encore au stade embryonnaire pour l'instant, mais l'emplacement a déjà été choisi et les plans déjà dessinés. Il manque juste les autorisations administratives. Il y a juste quelques problèmes au niveau de l'exploitation du Copium 226 : apparemment, les tunnels des anciennes mines sont devenus instables et risquent de s'effondrer, donc le minage est interrompu le temps de les renforcer. Heureusement, ce n'est pas mon problème. Je suis déjà bien assez occupé avec mon propre boulot.
 M. Vermeil : Une dernière chose : des investisseurs vont venir visiter les locaux prochainement. Il est probable qu'ils veuillent voir d'eux même le barrage, et peut être aussi votre poste de travail. Je ferai en sorte qu'ils vous dérangent le moins possible, mais ne soyez pas surpris si vous voyez des gens passer pendant vos heures.
 George: Très bien, c'est noté.
 {
-	if (siQuotaRespected):
+	- ifQuota1Respected:
 		Je commence à me lever du fauteuil, mais M. Vermeil lève sa main pour m'interrompre. 
 		George: Il y avait autre chose ?
 		M. Vermeil: J'ai une proposition à vous faire. Informelle.
@@ -371,6 +406,8 @@ George: Très bien, c'est noté.
 			Finalement, le repas s'est bien passé. On s'est fait un point d'honneur au début du repas de ne pas parler du travail, et à la place on a discuté de notre enfance, de nos loisirs, de nos rêves...
 			Croyez le ou non, mais Craig aime peindre apparemment. Il a promis qu'il me montrerait une de ses toiles un jour.
 			Aussi fou que cela puisse paraître, j'ai vraiment passé un bon moment. J'ai presque envie de croire que cela pourrait être le début d'une belle relation...
+			~ georgeRelationCraig = true
+			-> CHAPTER_4_GH
 		* [Je suis désolé, je ne peux pas ce soir...]
 			C'est sans doute la décision la plus sage. Un petit mensonge maintenant vaut mieux qu'un faux pas majeur pendant le repas. Le risque est trop grand.
 			J'ai l'impression d'entendre un petit soupir s'échapper de M. Vermeil. J'ai même presque envie de dire qu'il semble... déçu ? Comme d'habitude avec lui, c'est dur à dire.
@@ -380,7 +417,8 @@ George: Très bien, c'est noté.
 			George: Très bien. Passez une bonne soirée Mr Vermeil.
 			Je m'échappe du bureau et quitte les locaux aussi vite que possible. 
 			Je reçois quelques autres invitations dans les semaines qui suivent, que j'esquive avec quelques autres mensonges bien placés. Puis plus rien. J'ai sans doute légèrement froissé le patron en faisant ça, mais c'est toujours mieux que de perdre complètement mon travail.
-	- else ():
+			-> CHAPTER_4_GH
+	- else:
 		Je me lève du fauteuil, lui serre la main et me dirige vers la porte. Il n'avait pas menti quand il a dit que ça allait aller vite : la réunion a à peine duré une dizaine de minutes.
 		Mr. Vermeil : ”Ah et, George ?”
 		Une main sur la porte, je me retourne subitement vers lui. J'ai pas revé, Il vient de m'appeler par mon prénom ? Il vient totalement de m'appeler par mon prénom ! C'est la première fois qu'il le fait depuis que je le connais !
@@ -391,7 +429,20 @@ George: Très bien, c'est noté.
 		George : ”Aïe.”
 		Non, je ne suis pas en train d'halluciner. Mr. Vermeil vient vraiment de me complimenter et de m'appeler par mon prénom dans la même minute. 
 		Ça doit être une nuit de pleine lune. 
+		-> CHAPTER_4_GH
 }
+
+=== BAD_END_2 ===
+		M. Vermeil: Si c'est tout, la porte se trouve derrière vous. Green Horizon vous remercie pour vos services.
+		...
+		Je ferme la porte derrière moi en sortant du bureau. Je serre les poings de frustration. Frustration d'avoir perdu mon travail. Frustration de ne pas avoir pu mieux argumenter en face de mon patron. Frustration d'avoir gâché une des meilleures opportunités de ma vie.
+		J'ai envie de taper dans le mur à côté. Peut-être même de péter une fenêtre. A la place je lâche un long soupir et quitte les locaux de Green Horizon.
+		...
+		Peut être que je devrais quitter la vallée. 
+		J'y étais venu pour profiter de la nature en toute tranquillité, mais ça fait longtemps que ce n'est plus possible. Seul le boulot me retenait ici.
+		...
+		Oui, il est temps de déménager. 
+		-> END // bad end 2, les temps changent
 
 === CHAPTER_4_GH ===
 Cela fait maintenant 8 ans que je travaille chez Green Horizon. En regardant la mégapole de plus d'un million d'habitants s'étendre à travers toute la vallée, personne ne pourrait penser qu'il n'y avait presque rien il n'y a même pas 10 ans. Le petit village de Vitry-la-Vallée est devenu une agglomération capable de rivaliser avec les plus grandes capitales du monde, et je ne peux pas m'empêcher de me sentir un peu fier en me disant que j'ai joué un rôle là dedans. Cette réussite est liée en grande partie à la nouvelle centrale nucléaire, dont la construction s'est achevée l'année dernière. Avec une capacité maximale de production de 5 TWh par an, l'autonomie énergétique de Vitry-la-Vallée est assurée pour les décennies à venir.
@@ -399,13 +450,13 @@ La ville n'est pas la seule chose qui s'est étendue ces dernières années. Gre
 D'ailleurs, ça fait quelques années maintenant que je dirige une équipe ! Fini les journées de 10 heures à courir partout pour régler des problèmes mineurs, maintenant je peux juste tout déléguer et rentrer chez moi regarder questions pour un champion. 
 Vive le patronat.
 {
-	if (georgeRelationCraig):
+	- georgeRelationCraig:
 		En parlant de patron, je pense pouvoir officiellement dire que Craig et moi sommes devenus amis très proches ces dernières années. 
 		Enfin je crois ? 8 ans après, il est toujours aussi inexpressif. Mais je pense qu'on a franchi un cap dans notre relation quand on a commencé à jouer au golf ensemble. Ou alors quand il m'a emmené en vacances avec lui pour faire du jet-ski. Ou alors quand il m'a offert un cheval (5 ans après et il est toujours dans mon jardin. Aucune idée de ce que je suis censé faire avec).
 }
 Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a quelques semaines, le Lorient a présenté à la communauté internationale des preuves irréfutables qu'elle possède bien la vallée de Vitry, et que les revendications du Fanighastan sont totalement infondées. Depuis, une ambiance assez lourde pèse dans les locaux de l'entreprise. Personne n'ose le dire, mais tout le monde pense la même chose : il est probable que Green Horizon soit forcé de plier bagage et de quitter la vallée dans les semaines ou les mois qui viennent...
 {
-	if (!georgeRelationCraig):
+	- !georgeRelationCraig:
 		Les locaux sont calmes aujourd'hui. Les gens travaillent en silence, chacun dans son coin, comme s'ils essayaient de ne pas se faire remarquer. Je peux les comprendre : M. Vermeil est d'humeur massacrante en ce moment. La moindre erreur se fait immédiatement réprimandée, souvent de manière excessive.
 		Il est clair qu'il se passe quelque chose avec lui, mais je ne peux pas y faire grand-chose. C'est pas comme si on était particulièrement proches, je ne peux pas juste rentrer dans son bureau et lui demander "Hé Craig, tu sembles un peu colérique en ce moment, cela met une mauvaise ambiance dans les bureaux et j'ai besoin de calme et de ne pas travailler sous pression afin de pouvoir m'épanouir. Pourrais-tu s'il te plait me dire ce que tu as sur le cœur afin que nous puissions trouver une solution?"
 		Non non, il me ferait un german suplex avant la fin de mon troisième mot.
@@ -439,6 +490,7 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 			George: Hein !?
 			Oh, il semblerait que quelqu'un en face ait remarqué ce que j'étais en train de faire !
 			L'attaque a gagné en intensité : à ce rythme là, la région ne va pas être rasée dans quelques heures mais dans quelques minutes ! Je dois faire quelque chose !
+			-> MINIGAME_4_GH
 		* [Aider M. Vermeil à organiser l'évacuation du personnel.]
 			J'ai confiance en M. Vermeil. C'est en grande partie grâce à lui que l'entreprise a pû devenir ce qu'elle est. S'il dit qu'on évacue, alors on évacue. 
 			Je me glisse à ses côtés et ensemble nous évacuons l'entièreté du personnel aussi loin de la ville que possible. 
@@ -507,14 +559,15 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 			Je quitte son bureau et me dirige vers mon poste de travail. Quelques instants après, l'alarme retentit.
 			Une heure plus tard, comme prévu, l'attaque commence. Je vois en direct le pare-feu de la centrale être désactivé, et plusieurs outils de contrôle commencent à se dérégler par eux même. Il semblerait que le hacker ait pris contrôle de la centrale à distance. 
 			Le moment de vérité approche. Je dois défendre la vallée !
+			-> MINIGAME_4_GH
 }
 
 === MINIGAME_4_GH ===
 {
-	if (minijeuWon):
+	- isMiniGame4Won:
 		Après un long duel entre George et le hacker de Green Horizon, la centrale fut sauvée.
 		{ 
-			if (pas ami avec craig):
+		    - georgeRelationCraig:
 				Malheureusement, le hacker avait effacé toutes ses traces et sans preuves tangibles personne n'a réussi à déterminer qui était responsable derrière cette attaque.
 			- else:
 				George raconta tout ce qu'il s'était passé à l'armée du Lorient, responsable de l'enquête, y compris l'implication de Green Horizon. Malheureusement, le hacker avait effacé toutes ses traces, et sans preuves tangibles personne ne put incriminer l'entreprise ni le gouvernement du Fanighastan.
@@ -544,6 +597,7 @@ J'aurais pu dire ça il y a 2 ans. Aujourd'hui, faire ça est un bon moyen de se
 Oui, je sais que je suis en partie responsable de cette situation, mais voyons les choses du bon côté : premièrement, tant qu'on arrive à se fournir en trucs à faire cramer, la centrale produit assez d'énergie pour soutenir une population de plus de 100 000 habitants. Et ça tombe bien, vu qu'il reste apparemment encore pas mal de charbon dans les montagnes de la région. C'est à se demander pourquoi les opérations de minage avaient été arrêtées à la base. 
 Deuxièmement, c'est pas mon boulot de gérer la centrale ! Je suis uniquement responsable de la maintenance et des réparations en cas de besoin, ce qui arrive très rarement. Depuis l'ouverture de la centrale, j'ai dû remplacer 2 boulons, tout au plus.
 Bref, j'ai peut-être perdu quelques années d'espérance de vie, mais en échange je me la coule douce. C'est plutôt rentable je trouve.
+-> CHAPTER_3_CD
 
 === CHAPTER_3_CD ===
 Alors que j'étais en train de finir ma journée, je suis soudainement convoqué par Amber. Intrigué, je me dirige vers son bureau.
@@ -553,7 +607,7 @@ George: Bonnes ou mauvaises ?
 Amber: Je te laisserais décider.
 Légèrement inquiet, je m'assois sur l'un des fauteuils en cuir devant le bureau d'Amber. Je n'ai pas eu l'impression de faire du mauvais boulot récemment, donc ça devrait bien se passer, pas vrai ?
 {
-	if (!miniJeu1Won):
+	- !isMiniGame1Won :
 		Amber: Alors George. Au vu de tes performances récentes chez Cosmic Drive, j'ai le plaisir de t'annoncer... que tu vas pouvoir participer à une formation longue durée dans la maintenance de réseaux électriques, entièrement financée par Cosmic Drive !
 		George: Pardon !?
 		Amber: Je n'ai pas le choix George. Tu n'es pas assez performant dans ton travail, et ça commence à nuire à l'entreprise. Je suis obligé de faire quelque chose. Tu as de la chance que je t'aime bien, sinon ça aurait été la porte direct.
@@ -585,46 +639,49 @@ Amber: C'est un peu un pari sur l'avenir si l'on veut, pas vrai ? Allez, étant 
 	George: Je ne promets rien !
 	Je me dépêche de quitter les locaux de Cosmic Drive et me dirige vers le café de Gérard. J'y croise là bas Benoît, que je n'avais pas vu depuis un bon bout de temps : on discute, on boit, on rigole, on se raconte nos vies...
 	Y'a pas à dire, la vie est belle.
--> DONE
-* [Vous pourriez venir le boire vous même.]
-C'est la première fois que je vois Amber rester silencieuse si longtemps : six secondes, un record !
-Amber: ...Pardon ?
-George: Je disais juste que vous pourriez venir fêter ma promotion avec moi. J'aimerais apprendre à mieux vous connaître, et se poser dans un café bondé pour boire un cocktail trop cher pour ce que c'est me semble une bonne occasion pour le faire.
-Peut être que je n'aurais rien dû dire. C'est facile de l'oublier, mais Amber reste ma patronne. J'espère que cette histoire ne va pas mal tourner, ce serait bête de perdre mon job juste après avoir reçu une promotion.
-Heureusement on dirait que je n'ai pas de soucis à me faire.
-Amber:”J'aimerais bien, mais j'ai encore plein de travail à faire aujourd'hui. Je dois absolument finir d'écrire le rapport sur notre production du dernier mois.”
-George:”Ah.”
-Amber:”Ouaip.”
-George:”...Bon bah... C'est pas grave, une autre fois alors! Je vous laisse heu... finir ça.”
-Amber:”Ouais. A demain George.”
-George:”Ahem. A demain.”
-Je quitte rapidement le bureau et les locaux de Cosmic Drive. Mon Dieu c'était gênant!
-Bon c'est pas grave, ça aurait pu être pire. Au moins elle a pas l'air de l'avoir mal pris. On va faire comme si rien ne s'était passé.
-Seul, je me dirige vers le café de Gérard pour boire un coup et oublier.
-/
-George: Ah je vois, c'est dom- attendez... le rapport de production du dernier mois? Mais... je vous l'ai envoyé par mail il y a 3 jours??”
-Amber: Aaah?
-George: Oui, j'avais du temps libre la semaine dernière donc je l'ai fait et je vous l'ai envoyé par mail. Je suis même passé vous voir après pour vous dire que je l'avais fait!”
-Amber: ...
-George ...
-...
-Amber: Du coup! On disait qu'on allait boire un verre ensemble! Allez c'est parti! Donne moi juste 5 minutes pour ranger 2-3 trucs et récupérer mon manteau et on y va! Ouais ouais ouais!”
-George: D'accord, je... Je vais attendre dehors.
-Je sors rapidement du bureau. Je savais qu'Amber était.... tête en l'air... mais à ce point...
-Wow.
-Une dizaine de minutes plus tard, alors que je commençais à me demander si je devais retourner la chercher, Amber arrive enfin et on se dirige vers le café de Gérard.
-Honnêtement, on passe une plutôt bonne soirée ensemble. Je n'en apprends pas vraiment plus sur elle, mais ce n'est pas grave : passer du temps avec Amber est très drôle (même si elle ne le fait pas exprès la plupart du temps).
-Et puis bon, ça me donnera une excuse pour la réinviter...
 -> CHAPTER_4_CD
+* [Vous pourriez venir le boire vous même.]
+    C'est la première fois que je vois Amber rester silencieuse si longtemps : six secondes, un record !
+    Amber: ...Pardon ?
+    George: Je disais juste que vous pourriez venir fêter ma promotion avec moi. J'aimerais apprendre à mieux vous connaître, et se poser dans un café bondé pour boire un cocktail trop cher pour ce que c'est me semble une bonne occasion pour le faire.
+    Peut être que je n'aurais rien dû dire. C'est facile de l'oublier, mais Amber reste ma patronne. J'espère que cette histoire ne va pas mal tourner, ce serait bête de perdre mon job juste après avoir reçu une promotion.
+    Heureusement on dirait que je n'ai pas de soucis à me faire.
+    Amber:”J'aimerais bien, mais j'ai encore plein de travail à faire aujourd'hui. Je dois absolument finir d'écrire le rapport sur notre production du dernier mois.”
+    George:”Ah.”
+    Amber:”Ouaip.”
+    George:”...Bon bah... C'est pas grave, une autre fois alors! Je vous laisse heu... finir ça.”
+    Amber:”Ouais. A demain George.”
+    George:”Ahem. A demain.”
+    Je quitte rapidement le bureau et les locaux de Cosmic Drive. Mon Dieu c'était gênant!
+    Bon c'est pas grave, ça aurait pu être pire. Au moins elle a pas l'air de l'avoir mal pris. On va faire comme si rien ne s'était passé.
+    Seul, je me dirige vers le café de Gérard pour boire un coup et oublier.
+    /
+    George: Ah je vois, c'est dom- attendez... le rapport de production du dernier mois? Mais... je vous l'ai envoyé par mail il y a 3 jours??”
+    Amber: Aaah?
+    George: Oui, j'avais du temps libre la semaine dernière donc je l'ai fait et je vous l'ai envoyé par mail. Je suis même passé vous voir après pour vous dire que je l'avais fait!”
+    Amber: ...
+    George ...
+    ...
+    Amber: Du coup! On disait qu'on allait boire un verre ensemble! Allez c'est parti! Donne moi juste 5 minutes pour ranger 2-3 trucs et récupérer mon manteau et on y va! Ouais ouais ouais!”
+    George: D'accord, je... Je vais attendre dehors.
+    Je sors rapidement du bureau. Je savais qu'Amber était.... tête en l'air... mais à ce point...
+    Wow.
+    Une dizaine de minutes plus tard, alors que je commençais à me demander si je devais retourner la chercher, Amber arrive enfin et on se dirige vers le café de Gérard.
+    Honnêtement, on passe une plutôt bonne soirée ensemble. Je n'en apprends pas vraiment plus sur elle, mais ce n'est pas grave : passer du temps avec Amber est très drôle (même si elle ne le fait pas exprès la plupart du temps).
+    Et puis bon, ça me donnera une excuse pour la réinviter...
+    ~ georgeRelationAmber = true
+    -> CHAPTER_4_CD
 
 === CHAPTER_4_CD ===
 // timeskip
 Cela fait maintenant 8 ans que je travaille chez Cosmic Drive. En regardant la mégapole de plus d'un million d'habitants s'étendre à travers toute la vallée, personne ne pourrait penser qu'il n'y avait presque rien il n'y a même pas 10 ans. Le petit village de Vitry-la-Vallée est devenu une agglomération capable de rivaliser avec les plus grandes capitales du monde, et je ne peux pas m'empêcher de me sentir un peu fier en me disant que j'ai joué un rôle là dedans. Cette réussite est liée en grande partie à la nouvelle centrale nucléaire, dont la construction s'est achevée l'année dernière. Avec une capacité maximale de production de 5 TWh par an, l'autonomie énergétique de Vitry-la-Vallée est assurée pour les décennies à venir.
 La ville n'est pas la seule chose qui s'est étendue ces dernières années. Cosmic Drive exploite la quasi-totalité du Copium 226, et a même investi dans beaucoup d'autres entreprises dans la vallée. De nos jours, il est rare de trouver un business dans la région qui n'est pas lié de près ou de loin à Cosmic Drive.
-D'ailleurs, après s'être tournés autour pendant un moment, Amber et moi nous sommes mis ensembles il y a quelques années. On m'a toujours dit que ce n'était pas une bonne idée de mélanger vie amoureuse et vie professionnelle, mais Amber est tout sauf professionnelle dans sa vie donc les choses se passent plutôt bien entre nous.
+{ 
+    - georgeRelationAmber:
+        D'ailleurs, après s'être tournés autour pendant un moment, Amber et moi nous sommes mis ensembles il y a quelques années. On m'a toujours dit que ce n'était pas une bonne idée de mélanger vie amoureuse et vie professionnelle, mais Amber est tout sauf professionnelle dans sa vie donc les choses se passent plutôt bien entre nous.
+}
 En plus, il y a quelques mois, le Lorient a présenté à la communauté internationale des preuves irréfutables qu'elle possède bien la vallée de Vitry, et que les revendications du Fanighastan sont totalement infondées. Depuis les entreprises Fanighastanaises se sont lentement retirées de la région, dont Green Horizon qui restait notre principal concurrent même après toutes ces années.
 Si on continue sur cette lancée, Cosmic Drive devrait d'ici une ou deux années avoir un monopole total, non seulement sur le Copium 226 mais également sur toutes les entreprises de la vallée. Et difficile de voir ce qui pourrait nous arrêter maintenant !
-// 
 C'est une autre journée tranquille aujourd'hui : assis à mon bureau, je regarde les allers eretours des membres de mon équipe qui font leur travail, et de temps en temps je jette un oeil à mon panneau de contrôle : tous les voyants de la centrale nucléaire sont au vert, la centrale fonctionne comme un charme, de manière optimale.
 Oui, tous les voyants sont au vert. Sauf un.
 Je me redresse et regarde mon écran de plus près : le pare-feu de la centrale est actuellement désactivé. Nous sommes actuellement sans défense contre une attaque informatique extérieure.
@@ -635,79 +692,83 @@ George: Et tu comptais me le dire quand ? Notre pare-feu ne fait pas juste des m
 Marion: George ?
 Sur mon écran, je vois un autre voyant virer au rouge. Puis un autre. Puis un autre. 
 Un par un, tous nos outils de contrôle sont déréglés. Ce n'est pas compliqué de voir ce qu'il se passerait si on les laissait comme ça: il suffirait d'attendre une vingtaine de minutes, trente tout au plus, pour que la température dans le réacteur atteigne un niveau critique. Le cœur rentrerait en fusion à ce moment-là, et rien ne pourrait alors empêcher la centrale d'exploser et de raser l'entièreté de la vallée.
-George:”Les gars, mon écran est en train de devenir complètement rouge! Est-ce-que vous pouvez faire votre travail avant qu'on explose tous?”
-Marc:”On essaie, mais à chaque fois que je corrige un problème il y en a 2 autres qui arrivent! C'est comme si...”
+George: Les gars, mon écran est en train de devenir complètement rouge! Est-ce-que vous pouvez faire votre travail avant qu'on explose tous?
+Marc: On essaie, mais à chaque fois que je corrige un problème il y en a 2 autres qui arrivent! C'est comme si...
 On se faisait attaquer. 
 Putain.
 C'est pas une coïncidence qu'on ait des problèmes avec le pare-feu. Quelqu'un nous a hacké et essaie de faire exploser la centrale à distance.
-George:”Faite sonner la sonnerie d'urgence! Je veux que tout le monde s'occupe de redémarrer le pare-feu pour dégager le plus vite possible le hacker de nos systèmes! Je vais à la console principale pour essayer de gagner du temps!”
+George: Faite sonner la sonnerie d'urgence! Je veux que tout le monde s'occupe de redémarrer le pare-feu pour dégager le plus vite possible le hacker de nos systèmes! Je vais à la console principale pour essayer de gagner du temps!
 La console principale du réseau, mon ancienne console, est spéciale. Elle a été modifiée pendant la construction de la centrale afin de pouvoir directement diriger la centrale sans passer par le réseau central. L'hacker peut faire ce qu'il veut sur l'autre réseau, mais j'ai en utilisant cette console je peux égaliser les chances. J'avais dû insisté lourdement auprès d'Amber à l'époque, mais on dirait bien que j'ai eu raison.
 Alors que je sprint vers mon ancien poste de travail, mon téléphone sonne.
 C'est Amber. 
-George:”Je suis un peu occupé là.”
-Amber:”Je sais, on m'a dit ce qu'il se passe. Je suis en train d'évacuer le plus de personnes possible vers le bunker souterrain. Je t'avais dit que ça allait être utile.”
-George:”Ca fait un partout. Je suis en route vers la console principale. Je pense pouvoir ralentir assez l'attaque pour qu'on ait le temps de redémarrer le pare-feu et reprendre contrôle de la centrale.”
-Amber:”Quoi? Pas question! C'est beaucoup trop dangereux! Ramène ton équipe tout de suite au bunker, si vous vous dépêchez vous pouvez encore y arriver!”
-George:”Ait confiance en nous, on peut encore sauver la vallée!”
-Amber:”George, en tant que patronne, je t'ordonne de quitter les lieux avec ton équipe et de venir au bunker immédiatement!”
-George:”Désolé, mais je ne peux pas faire ça. Tu auras tout le temps que tu voudras pour me virer après que j'ai repris le contrôle de la centrale.”
-Amber:”George, s'il te plait.”
-J'étais sur le point de raccrocher mais, entendant la détresse dans sa voix, je m'arrête au dernier instant.
-George:”Amber. Je connais les risques. Je sais qu'il y a une bonne chance que je ne m'en sorte pas si j'y vais. Mais je ne peux pas rester les bras croisés alors qu'il nous reste une chance.”
-Amber:”Et pourquoi pas? Vitry-la-Vallée vaut vraiment que tu risques autant pour elle? On peut survivre à ça, on peut partir ailleurs, reconstruire notre vie à Lorient. Ma famille nous aidera à repartir du bon pied. Mais on ne peut pas faire ça si tu meurs ici!
-George, je...”
-George:”Tu n'as pas intérêt à me dire que tu es enceinte et que tu attendais le bon moment pour me le dire.”
-Malgré la situation, je l'entend ricaner de l'autre côté du téléphone. 
-Amber:”Non, t'imagine? Ce serait beaucoup trop cliché. Mais je t'aime George. Je t'aime et je n'ai pas envie de te perdre.”
-Un long silence suit sa déclaration.
-Amber:”...George?”
-George:”Moi aussi je t'aime...”
-Choix. “Très bien, j'arrive au bunker.”
-Amber:”Vraiment?”
-George:”Oui. C'est ce que tu voulais non? Ne paraît pas aussi surprise s'il te plait.”
-Amber:”Désolé. Dépêche toi d'évacuer avant que tout explose et que tu meurs quand même!”
-George:”Oui madame, je suis en route!”
-...
-Au final, mon équipe et moi avons évacué la centrale et nous nous sommes réfugiés dans le bunker de Cosmic Drive le plus proche. Peu de temps après notre arrivée, le sol s'est mis à trembler violemment. La centrale venait d'exploser.
-Environ 30% de la population de la vallée a eu le temps d'évacuer ou de se réfugier dans un des nombreux bunker souterrains que Cosmic Drive avait construit pour répondre à une telle situation. Un effort international massif entre Lorient et ses pays alliés a permis notre évacuation totale en quelques semaines. 
-Malheureusement, le reste de la population, plusieurs centaines de milliers de personnes, est morte de l'explosion ou des complications liés à l'exposition aux radiations sur les années qui ont suivi.
-Les retombées radioactives suite à l'explosion ont complètement recouvert la vallée. Personne ne peut s'en approcher, et l'exploitation du copium 226 semble n'être maintenant qu'un lointain souvenir.
-Après l'incident, Amber et moi avons déménagé à Lorient. Nous avons eu un enfant, et je reste à la maison pour m'en occuper pendant qu'Amber travaille dans une des entreprises de son père. 
-Notre relation est un peu au point mort en ce moment. Principalement par ma faute: la culpabilité de ne pas avoir réussi -de ne pas avoir essayé- de sauver la vallée me ronge de l'intérieur et pèse lourdement sur ma conscience. Si on avait pas eu notre gosse on se serait sans doute séparé depuis un moment.
-Mon psy me dit souvent qu'on fait tous des erreurs dans la vie, et que l'important est d'apprendre à vivre avec. Je ne sais pas si j'arriverai un jour à tourner la page sur tout ça. 
-Mais une chose est sur.
-Je ne m'approcherai plus jamais d'une centrale nucléaire. Ni d'une mine. 
+George:Je suis un peu occupé là.
+Amber: Je sais, on m'a dit ce qu'il se passe. Je suis en train d'évacuer le plus de personnes possible vers le bunker souterrain. Je t'avais dit que ça allait être utile.
+George: Ca fait un partout. Je suis en route vers la console principale. Je pense pouvoir ralentir assez l'attaque pour qu'on ait le temps de redémarrer le pare-feu et reprendre contrôle de la centrale.
+Amber: Quoi? Pas question! C'est beaucoup trop dangereux! Ramène ton équipe tout de suite au bunker, si vous vous dépêchez vous pouvez encore y arriver!
+George: Ait confiance en nous, on peut encore sauver la vallée!
+Amber: George, en tant que patronne, je t'ordonne de quitter les lieux avec ton équipe et de venir au bunker immédiatement!
+George: Désolé, mais je ne peux pas faire ça. Tu auras tout le temps que tu voudras pour me virer après que j'ai repris le contrôle de la centrale.
+{
+    - georgeRelationAmber:
+    Amber: George, s'il te plait.
+    J'étais sur le point de raccrocher mais, entendant la détresse dans sa voix, je m'arrête au dernier instant.
+    George: Amber. Je connais les risques. Je sais qu'il y a une bonne chance que je ne m'en sorte pas si j'y vais. Mais je ne peux pas rester les bras croisés alors qu'il nous reste une chance.
+    Amber: Et pourquoi pas? Vitry-la-Vallée vaut vraiment que tu risques autant pour elle? On peut survivre à ça, on peut partir ailleurs, reconstruire notre vie à Lorient. Ma famille nous aidera à repartir du bon pied. Mais on ne peut pas faire ça si tu meurs ici! George, je ...
+    George: Tu n'as pas intérêt à me dire que tu es enceinte et que tu attendais le bon moment pour me le dire.
+    Malgré la situation, je l'entend ricaner de l'autre côté du téléphone. 
+    Amber: Non, t'imagine? Ce serait beaucoup trop cliché. Mais je t'aime George. Je t'aime et je n'ai pas envie de te perdre.
+    Un long silence suit sa déclaration.
+    Amber: ... George? 
+    George: Moi aussi je t'aime...
+    * [Très bien, j'arrive au bunker.]
+        Amber: Vraiment?
+        George: Oui. C'est ce que tu voulais non? Ne paraît pas aussi surprise s'il te plait.
+        Amber: Désolé. Dépêche toi d'évacuer avant que tout explose et que tu meurs quand même!
+        George: Oui madame, je suis en route!
+        ...
+        Au final, mon équipe et moi avons évacué la centrale et nous nous sommes réfugiés dans le bunker de Cosmic Drive le plus proche. Peu de temps après notre arrivée, le sol s'est mis à trembler violemment. La centrale venait d'exploser.
+        Environ 30% de la population de la vallée a eu le temps d'évacuer ou de se réfugier dans un des nombreux bunker souterrains que Cosmic Drive avait construit pour répondre à une telle situation. Un effort international massif entre Lorient et ses pays alliés a permis notre évacuation totale en quelques semaines. 
+        Malheureusement, le reste de la population, plusieurs centaines de milliers de personnes, est morte de l'explosion ou des complications liés à l'exposition aux radiations sur les années qui ont suivi.
+        Les retombées radioactives suite à l'explosion ont complètement recouvert la vallée. Personne ne peut s'en approcher, et l'exploitation du copium 226 semble n'être maintenant qu'un lointain souvenir.
+        Après l'incident, Amber et moi avons déménagé à Lorient. Nous avons eu un enfant, et je reste à la maison pour m'en occuper pendant qu'Amber travaille dans une des entreprises de son père. 
+        Notre relation est un peu au point mort en ce moment. Principalement par ma faute: la culpabilité de ne pas avoir réussi -de ne pas avoir essayé- de sauver la vallée me ronge de l'intérieur et pèse lourdement sur ma conscience. Si on avait pas eu notre gosse on se serait sans doute séparé depuis un moment.
+        Mon psy me dit souvent qu'on fait tous des erreurs dans la vie, et que l'important est d'apprendre à vivre avec. Je ne sais pas si j'arriverai un jour à tourner la page sur tout ça. 
+        Mais une chose est sur.
+        Je ne m'approcherai plus jamais d'une centrale nucléaire. Ni d'une mine. 
+        -> END // J'aurais pu faire plus
+    
+    * [C'est pourquoi je ne peux pas abandonner.]
+    	George: Je ne me le pardonnerai jamais si je ne fais pas tout mon possible pour préserver notre vie ici.
+    	Amber: ....Tu ne changeras vraiment pas d'avis hein?
+    	George: Non, désolé. J'ai tendance à être un peu une tête de mule des fois.
+    	Amber: Je te pardonnerai seulement si tu reviens en vie.
+    	George: Si c'est juste ça alors, ça devrait aller.
+    	...
+    	Je suis arrivé à la console.
+    	Amber: ... Bonne chance.
+    	Je raccroche le téléphone et me dirige vers la console principale. 
+	    Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée repose sur moi.
+    	-> MINIGAME_4_CD
+}
 
-Bad End 3. J'aurais pu faire plus
+Je raccroche le téléphone et me dirige vers la console principale. 
+Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée repose sur moi.
+-> MINIGAME_4_CD
 
-* [C'est pourquoi je ne peux pas abandonner.]
-	George:”Je ne me le pardonnerai jamais si je ne fais pas tout mon possible pour préserver notre vie ici.
-	Amber:”....Tu ne changeras vraiment pas d'avis hein?
-	George:”Non, désolé. J'ai tendance à être un peu une tête de mule des fois.
-	Amber: Je te pardonnerai seulement si tu reviens en vie.
-	George: Si c'est juste ça alors, ça devrait aller.
-	...
-	Je suis arrivé à la console.”
-	Amber:”......Bonne chance.” 
-	/
-	Je raccroche le téléphone et me dirige vers la console principale. 
-	Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée repose sur moi.
+=== MINIGAME_4_CD ===
+-> CHAPTER_5_CD
 
+=== CHAPTER_5_CD ===
 
-
-Post-mini jeu 4:
-
-Si le joueur perd le mini jeu 
-
-Malgré tous ses efforts, George ne parvint pas à empêcher la centrale d'exploser. L'explosion dévasta la région, tuant une grande partie de la population et son équipe qui n'avaient pas encore eu le temps d'évacuer.
-Personne ne sut expliquer ce qu'il s'était passé ce jour fatidique, mais la catastrophe nucléaire de Vitry-la-Vallée fut la pire de l'histoire de l'humanité, relançant de plus belle les débats autour de la sécurité de l'énergie nucléaire et coupant nette l'exploitation du copium 226.
-
-Bad End 4. Faire empirer les choses en voulant aider
-
-Si le joueur gagne le mini jeu
-Après un long duel entre George et le hacker, la centrale fut sauvée. George raconta l'attaque du hacker à l'armée du Lorient, responsable de l'enquête. Malheureusement le hacker avait bien couvert ses traces et il fut impossible de remonter sa trace. La faille qu'il avait utilisée pour attaquer le réseau de la centrale fut corrigée, et la sécurité renforcée de manière générale.
-Cosmic Drive continua d'exploiter le copium 226 et compléta son programme spatial. Une première fusée de test fut envoyée vers Rams, avec à son bord la vieille voiture de George: c'était l'une des choses que George avait demandé en récompense pour avoir sauvé la vallée de Vitry (l'autre étant une bonne grosse médaille).
-Amber et George finirent par se marier et eurent  3 enfants, et ils vécurent le reste de leur vie en paix, plein de réussite et sans aucun risque de catastrophe nucléaire à l'horizon.
-Amber et George gardèrent une relation strictement professionnelle tout au long de leur vie. Cela ne veut pas dire que George était malheureux pour autant: il s'était lié d'amitié avec les membres de son équipe, et ensemble ils firent de Cosmic Drive la plus grande entreprise de la planète (et de Rams aussi).
-
-Good End 2. Cosmic Drive
+{ 
+    - isMiniGame4Won: 
+        Après un long duel entre George et le hacker, la centrale fut sauvée. George raconta l'attaque du hacker à l'armée du Lorient, responsable de l'enquête. Malheureusement le hacker avait bien couvert ses traces et il fut impossible de remonter sa trace. La faille qu'il avait utilisée pour attaquer le réseau de la centrale fut corrigée, et la sécurité renforcée de manière générale.
+    Cosmic Drive continua d'exploiter le copium 226 et compléta son programme spatial. Une première fusée de test fut envoyée vers Rams, avec à son bord la vieille voiture de George: c'était l'une des choses que George avait demandé en récompense pour avoir sauvé la vallée de Vitry (l'autre étant une bonne grosse médaille).
+    Amber et George finirent par se marier et eurent  3 enfants, et ils vécurent le reste de leur vie en paix, plein de réussite et sans aucun risque de catastrophe nucléaire à l'horizon.
+    Amber et George gardèrent une relation strictement professionnelle tout au long de leur vie. Cela ne veut pas dire que George était malheureux pour autant: il s'était lié d'amitié avec les membres de son équipe, et ensemble ils firent de Cosmic Drive la plus grande entreprise de la planète (et de Rams aussi).
+        -> DONE // Good End 2. Cosmic Drive
+    - else :
+        Malgré tous ses efforts, George ne parvint pas à empêcher la centrale d'exploser. L'explosion dévasta la région, tuant une grande partie de la population et son équipe qui n'avaient pas encore eu le temps d'évacuer.
+        Personne ne sut expliquer ce qu'il s'était passé ce jour fatidique, mais la catastrophe nucléaire de Vitry-la-Vallée fut la pire de l'histoire de l'humanité, relançant de plus belle les débats autour de la sécurité de l'énergie nucléaire et coupant nette l'exploitation du copium 226.
+        -> END // Faire empirer les choses en voulant aider
+}
