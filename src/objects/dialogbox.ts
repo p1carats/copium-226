@@ -1,5 +1,4 @@
 import { Assets } from "../assets";
-import * as Phaser from "phaser";
 
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	return scene.add.text(0, 0, '', {
@@ -75,11 +74,7 @@ function createTextBox(scene, perso, x, y, config) {
 // sens : 0 right / 1 left
 export default function dialogBox(game, texture, text, sens) {
 	let position, perso;
-	if (sens === 0) {
-		position = [300, 650, 100, 800];
-	} else {
-		position = [700, 650, 100, 800];
-	}
+	position = [300, 650, 100, 800];
 
 	if (texture !== null) {
 		perso = game.add.sprite(position[0], position[1], texture);

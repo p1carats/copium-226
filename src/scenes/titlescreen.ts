@@ -1,4 +1,4 @@
-import { Assets } from "../assets";
+import { Assets } from '../assets';
 import animation from "../objects/animation";
 
 export default class TitleScreen extends Phaser.Scene {
@@ -12,7 +12,6 @@ export default class TitleScreen extends Phaser.Scene {
 	}
 
 	create() {
-
 		// fade in scene
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
@@ -24,12 +23,12 @@ export default class TitleScreen extends Phaser.Scene {
 			{ key: Assets.TitleScreen4 },
 			{ key: Assets.TitleScreen5 },
 			{ key: Assets.TitleScreen6 },
-		])
+		]);
 
 		// menu music (looped) and click sound
-		let menuMusic: Phaser.Sound.BaseSound = this.sound.add(Assets.MainTheme);
+		let theme: Phaser.Sound.BaseSound = this.sound.add(Assets.MainTheme);
 		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
-		menuMusic.play('', { loop: true });
+		theme.play('', { loop: true });
 
 		// layout (background and title)
 		let background: Phaser.GameObjects.Sprite = this.add.sprite(0, 0, Assets.TitleScreen1).setOrigin(0).play('titlescreenAnim');
@@ -57,9 +56,10 @@ export default class TitleScreen extends Phaser.Scene {
 		playButton.on('pointerover', () => { playButton.setTexture(Assets.PlayButtonHover) });
 		playButton.on('pointerout', () => { playButton.setTexture(Assets.PlayButton) });
 		playButton.on('pointerdown', () => {
+			playButton.disableInteractive();
 			click.play(),
 			this.tweens.add({
-				targets: menuMusic,
+				targets: theme,
 				volume: 0,
 				ease: 'Linear',
 				duration: 1500
@@ -76,9 +76,10 @@ export default class TitleScreen extends Phaser.Scene {
 		settingsButton.on('pointerover', () => { settingsButton.setTexture(Assets.SettingsButtonHover) });
 		settingsButton.on('pointerout', () => { settingsButton.setTexture(Assets.SettingsButton) });
 		settingsButton.on('pointerdown', () => {
+			settingsButton.disableInteractive();
 			click.play(),
 			this.tweens.add({
-				targets: menuMusic,
+				targets: theme,
 				volume: 0,
 				ease: 'Linear',
 				duration: 1500

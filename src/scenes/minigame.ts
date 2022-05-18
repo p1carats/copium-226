@@ -1,9 +1,9 @@
 import { Assets } from "../assets";
 import startMiniGame from "../objects/minigame";
-import pause from "../objects/pause";
 import animation from "../objects/animation";
 
 export default class MiniGameScene extends Phaser.Scene {
+	public theme: Phaser.Sound.BaseSound;
 	private difficulty: any;
 	private emitter: Phaser.Events.EventEmitter;
 	private buttonsArray: Phaser.GameObjects.Sprite[];
@@ -27,8 +27,8 @@ export default class MiniGameScene extends Phaser.Scene {
 
 		// click sound and settings theme
 		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
-		let theme: Phaser.Sound.BaseSound = this.sound.add(Assets.PowerPlantTheme);
-		theme.play('', {
+		this.theme = this.sound.add(Assets.PowerPlantTheme);
+		this.theme.play('', {
 			loop: true
 		});
 
@@ -80,7 +80,6 @@ export default class MiniGameScene extends Phaser.Scene {
 
 
 		// drawings
-		// Variable !
 		this.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('coalAnim');
 		let smallScreen = this.add.sprite(150, 290, Assets.SmallScreen).setOrigin(0);
 
@@ -88,7 +87,16 @@ export default class MiniGameScene extends Phaser.Scene {
 		startMiniGame(this, this.difficulty, smallScreen);
 
 		// pause button and trigger
-		pause(this, theme);
+		let pauseSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseInSound);
+    let pauseButton: Phaser.GameObjects.Sprite = this.add.sprite(50, 50, Assets.PauseButton).setOrigin(0).setInteractive();
+    pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
+    pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
+    pauseButton.on('pointerdown', () => {
+        this.theme.pause();
+        pauseSound.play();
+        this.scene.launch('PauseMenu', { sceneFrom: this.scene.key }).bringToTop();
+        this.scene.sendToBack();
+        this.scene.pause();
+    });
 	}
-
 }
