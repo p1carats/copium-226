@@ -12,6 +12,7 @@ export default class TitleScreen extends Phaser.Scene {
 	}
 
 	create() {
+
 		// fade in scene
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
@@ -66,8 +67,7 @@ export default class TitleScreen extends Phaser.Scene {
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {
-					//this.scene.start('TemplateDialogue');
-					this.scene.start('MiniGameScene', { difficulty: 0 });
+					this.scene.start('TemplateDialogue');
 				});
 			});
 		});

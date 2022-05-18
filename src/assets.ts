@@ -8,7 +8,7 @@ export function assetsLoader(game) {
 		}
 	});
 	// story (json)
-	// game.load.json('story', 'assets/dialogues/story_part1.json');
+	game.load.json('story', 'assets/dialogues/story.json');
 	// main title
 	game.load.image('logo', 'assets/logo.png');
 	game.load.image('title', 'assets/title.png');
