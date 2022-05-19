@@ -1,19 +1,17 @@
-import {Assets} from '../assets';
-import {loadStory} from "../utils";
+import { Assets } from '../assets';
+import { loadStory } from "../utils";
 import dialogBox from '../objects/dialogbox';
 import pause from "../objects/pause";
 
 import getcharactertexture from "../objects/getcharactertexture";
 import getbackgroundtexture from "../objects/getbackgroundtexture";
-import getthemesong from "../objects/getthemesong";
 
 export default class TemplateDialogue extends Phaser.Scene {
-	/*
-	private choix: any[];
-	 */
+	private story;
 	private emitter: Phaser.Events.EventEmitter;
-	private theme: Phaser.Sound.BaseSound;
 	private background: Phaser.GameObjects.Sprite;
+	private theme: Phaser.Sound.BaseSound;
+	// private choix: any[];
 
 	constructor() {
 		super({ key: 'TemplateDialogue' });
@@ -22,13 +20,10 @@ export default class TemplateDialogue extends Phaser.Scene {
 	create() {
 		this.emitter = new Phaser.Events.EventEmitter();
 
-		// fade-in
-		this.cameras.main.fadeIn(2000, 0, 0, 0);
-
-		// default background and theme
-		this.background = this.add.sprite(0, 0, Assets.RoomScene).setOrigin(0);
-		this.theme = this.sound.add(Assets.RoomTheme);
-		this.theme.play('', { loop: true });
+		// default (void) background
+		this.background = this.add.sprite(0, 0, Assets.VoidScene).setOrigin(0);
+		//this.theme = this.sound.add(Assets.RoomTheme);
+		//this.theme.play('', { loop: true });
 
 		// light effects (to-do)
 		// this.background.setPipeline('Light2D');
@@ -39,52 +34,60 @@ export default class TemplateDialogue extends Phaser.Scene {
 		let clickedSound: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
 
 		// dialog
-		let story = loadStory(this);
+		this.story = loadStory(this);
 		let choiceList;
-		let background = 'room';
-		// Starting dialogs
-		dialogBox(this, null, story.Continue(), 0);
-		this.emitter.on('nextDialog', () => {
-			let location = story.variablesState['location'];
-			if (location != background) {
-				this.tweens.add({
-					targets: this.theme,
-					volume: 0,
-					ease: 'Linear',
-					duration: 1500
-				});
-				this.cameras.main.fadeOut(1000, 0, 0, 0);
-				this.cameras.main.once('camerafadeoutcomplete', () => {
-					this.time.delayedCall(1000, () => {
-						this.cameras.main.fadeIn(1000, 0, 0, 0);
-						getbackgroundtexture(this, location);
-						getthemesong(this, location);
-						background = location;
+
+		// change background from ink file
+    this.story.BindExternalFunction('change_location', (location:string) => {
+			console.log(location);
+			// stop existing music
+      this.tweens.add({
+				targets: this.theme,
+				volume: 0,
+				ease: 'Linear',
+				duration: 1000
+			});
+			// fade-out camera (black screen)
+			this.cameras.main.fadeOut(750, 0, 0, 0);
+			this.cameras.main.once('camerafadeoutcomplete', () => {
+				this.time.delayedCall(1000, () => {
+					getbackgroundtexture(this, location);
+					// start music if neccessary
+					if (location = 'room') {
+						this.theme = this.sound.add(Assets.RoomTheme);
 						this.theme.play('', { loop: true });
-						if (story.canContinue) {
-							let text = story.Continue();
-							dialogBox(this, getcharactertexture(text), text, 0);
-						} else {
-							choiceList = story.currentChoices;
-							this.emitter.emit('choices', choiceList);
-						}
-					});
+					} else if (location = 'coffee') {
+						this.theme = this.sound.add(Assets.CoffeeTheme);
+						this.theme.play('', { loop: true });
+					} else if (location = 'village_0' || 'village_1' || 'village_2_gh' || 'village_2_cd' || 'village_3_gh' || 'village_3_cd') {
+						this.theme = this.sound.add(Assets.RoomTheme);
+						console.log(this.theme);
+						this.theme.play('', { loop: true });
+					} else if (location = 'control_room') {
+						this.theme = this.sound.add(Assets.PowerPlantTheme);
+						this.theme.play('', { loop: true });
+					}
+					this.cameras.main.fadeIn(750, 0, 0, 0);
 				});
+			});
+		});
+
+		// starting dialog
+		dialogBox(this, null, this.story.Continue());
+		this.emitter.on('nextDialog', () => {
+			if (this.story.canContinue) {
+				let text = this.story.Continue();
+				dialogBox(this, getcharactertexture(text), text);
 			} else {
-				background = location;
-				if (story.canContinue) {
-					let text = story.Continue();
-					dialogBox(this, getcharactertexture(text), text, 0);
-				} else {
-					choiceList = story.currentChoices;
-					this.emitter.emit('choices', choiceList);
-				}
+				choiceList = this.story.currentChoices;
+				this.emitter.emit('choices', choiceList);
 			}
 		});
 
 		this.emitter.on('choices', choiceList => {
 			console.log(choiceList);
 		});
+
 		/*
 		let dialogArray = ['Test 1, eheh ça marche !', 'Non mais frère ??', 'Oui ?', 'Ok mec.'];
 		let persoArray = [ Assets.George, Assets.Benoit, Assets.George, Assets.Benoit ];

@@ -7,10 +7,12 @@ export default class SplashScreen extends Phaser.Scene {
 	}
 
 	preload() {
-		let progressBar: Phaser.GameObjects.Graphics = this.add.graphics().fillStyle(0x85edd0, 0.8).fillRect(250, 270, 320, 50);
+		let progressBox: Phaser.GameObjects.Graphics = this.add.graphics().fillStyle(0x222222, 0.8).fillRect((this.scale.width/2)-150, (this.scale.height/2)-15, 300, 30);
+		let progressBar: Phaser.GameObjects.Graphics = this.add.graphics();
 
-		let loadingText: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/2-50, 'Loading...', { font: '36px monogramextended', color: 'white' }).setOrigin(0.5);
-		let percentText: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)-5, '0%', { font: '20px monogramextended', color: 'black' }).setOrigin(0.5);
+		let loadingText: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/2-50, 'Loading...', { font: '40px monospace', color: 'white' }).setOrigin(0.5);
+		let percentText: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)-5, '0%', { font: '30px monogramextended', color: 'black' }).setOrigin(0.5);
+		let assetText: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/2+50, '', { font: '24px monogramextended', color: 'white' }).setOrigin(0.5);
 
 		this.load.on('progress', (value:integer) => {
 			percentText.setText((value*100).toFixed(0) + '%');
@@ -19,10 +21,16 @@ export default class SplashScreen extends Phaser.Scene {
 			progressBar.fillRect((this.scale.width/2)-150, (this.scale.height/2)-15, value*300, 30);
 		});
 
+		this.load.on('fileprogress', function (file) {
+			assetText.setText('Loading asset: ' + file.key);
+		});
+
 		this.load.on('complete', () => {
+			progressBox.destroy();
 			progressBar.destroy();
 			loadingText.destroy();
 			percentText.destroy();
+			assetText.destroy();
 		});
 
 		assetsLoader(this);
@@ -31,8 +39,14 @@ export default class SplashScreen extends Phaser.Scene {
 	create() {
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
-		let clickedSound: Phaser.Sound.BaseSound = this.sound.add(Assets.StartSound);
-		let logo: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/2, Assets.Logo);
+		let start: Phaser.Sound.BaseSound = this.sound.add(Assets.StartSound);
+		let logo: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/2, Assets.Logo).setAlpha(0);
+		this.tweens.add({
+			targets: [logo],
+			alpha: 1,
+			duration: 100,
+			repeat: 0
+		});
 		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/4)*3, 'Please click to start...', { font: '42px monogramextended', color: 'white' }).setOrigin(0.5, 0.5);
 		this.tweens.add({
 			targets: text,
@@ -43,7 +57,8 @@ export default class SplashScreen extends Phaser.Scene {
 		});
 
 		this.input.on('pointerdown', () => {
-			clickedSound.play();
+			this.input.enabled = false;
+			start.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(1000, () => {

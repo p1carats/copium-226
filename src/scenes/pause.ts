@@ -20,6 +20,7 @@ export default class PauseMenu extends Phaser.Scene {
 		// resume game
 		let resume: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		resume.on('pointerdown', () => {
+			this.input.enabled = false;
 			click.play();
 			this.scene.wake(data.sceneFrom);
 			this.scene.stop();
@@ -28,6 +29,7 @@ export default class PauseMenu extends Phaser.Scene {
 		// option menu
 		let options: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		options.on('pointerdown', () => {
+			this.input.enabled = false;
 			click.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
@@ -41,6 +43,7 @@ export default class PauseMenu extends Phaser.Scene {
 		// quit game
 		let quit: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		quit.on('pointerdown', () => {
+			this.input.enabled = false;
 			click.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {

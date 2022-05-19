@@ -33,6 +33,7 @@ export default class TitleScreen extends Phaser.Scene {
 		// layout (background and title)
 		let background: Phaser.GameObjects.Sprite = this.add.sprite(0, 0, Assets.TitleScreen1).setOrigin(0).play('titlescreenAnim');
 		let title: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/4, Assets.Title).setAlpha(0);
+		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/10)*9, 'Copyright 2022 Copium 226 GOTY Edition', { font: '42px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
 
 		// buttons
 		let playButton: Phaser.GameObjects.Sprite = this.add.sprite(850, 540, Assets.PlayButton).setAlpha(0);
@@ -42,7 +43,7 @@ export default class TitleScreen extends Phaser.Scene {
 		// fade in effect
 		this.time.delayedCall(2500, () => {
 			this.tweens.add({
-				targets: [title, playButton, settingsButton, aboutButton],
+				targets: [title, text, playButton, settingsButton, aboutButton],
 				alpha: 1,
 				duration: 2000,
 				repeat: 0
@@ -56,7 +57,7 @@ export default class TitleScreen extends Phaser.Scene {
 		playButton.on('pointerover', () => { playButton.setTexture(Assets.PlayButtonHover) });
 		playButton.on('pointerout', () => { playButton.setTexture(Assets.PlayButton) });
 		playButton.on('pointerdown', () => {
-			playButton.disableInteractive();
+			this.input.enabled = false;
 			click.play(),
 			this.tweens.add({
 				targets: theme,
@@ -76,7 +77,7 @@ export default class TitleScreen extends Phaser.Scene {
 		settingsButton.on('pointerover', () => { settingsButton.setTexture(Assets.SettingsButtonHover) });
 		settingsButton.on('pointerout', () => { settingsButton.setTexture(Assets.SettingsButton) });
 		settingsButton.on('pointerdown', () => {
-			settingsButton.disableInteractive();
+			this.input.enabled = false;
 			click.play(),
 			this.tweens.add({
 				targets: theme,
@@ -95,7 +96,20 @@ export default class TitleScreen extends Phaser.Scene {
 		aboutButton.on('pointerover', () => { aboutButton.setTexture(Assets.AboutButtonHover) });
 		aboutButton.on('pointerout', () => { aboutButton.setTexture(Assets.AboutButton) });
 		aboutButton.on('pointerdown', () => {
+			this.input.enabled = false;
 			click.play();
+			this.tweens.add({
+				targets: theme,
+				volume: 0,
+				ease: 'Linear',
+				duration: 1500
+			});
+			this.cameras.main.fadeOut(1000, 0, 0, 0);
+			this.cameras.main.once('camerafadeoutcomplete', () => {
+				this.time.delayedCall(1000, () => {
+					this.scene.start('TitleScreen');
+				});
+			});
 		});
 	}
 }

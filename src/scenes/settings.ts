@@ -14,12 +14,9 @@ export default class SettingsScene extends Phaser.Scene {
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 		
 		// click sound and settings theme
-		let clickedSound: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
-		let settingsTheme: Phaser.Sound.BaseSound = this.sound.add(Assets.MenuTheme);
-		settingsTheme.play('', {
-			loop: true,
-			seek: 35
-		});
+		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
+		let theme: Phaser.Sound.BaseSound = this.sound.add(Assets.MenuTheme);
+		theme.play('', { loop: true, seek: 35 });
 
 		// background
 		let background = this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0x000000, 1).setOrigin(0);
@@ -36,7 +33,7 @@ export default class SettingsScene extends Phaser.Scene {
 			isMuted = !isMuted;
 			soundcontrol.setTexture(isMuted ? Assets.MuteButtonHover : Assets.DeMuteButtonHover);
 			this.sound.mute = !isMuted;
-			clickedSound.play();
+			click.play();
 		});
 
 		// mute/demute global sound
@@ -48,15 +45,16 @@ export default class SettingsScene extends Phaser.Scene {
 			setLang = !setLang;
 			languagecontrol.setTexture(setLang ? Assets.FrenchButtonHover : Assets.EnglishButtonHover);
 			//this.sound.mute = !isMuted;
-			clickedSound.play();
+			click.play();
 		});
 
 		// return to menu
 		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/3)*2, 'Retour', { font: '72px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		text.on('pointerdown', () => {
-			clickedSound.play();
+			this.input.enabled = false;
+			click.play();
 			this.tweens.add({
-				targets: settingsTheme,
+				targets: theme,
 				volume: 0,
 				ease: 'Linear',
 				duration: 1500

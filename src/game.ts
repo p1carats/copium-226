@@ -9,6 +9,8 @@ import SettingsScene from './scenes/settings';
 import PauseMenu from './scenes/pause';
 import TemplateDialogue from './scenes/templatediag';
 import MiniGameScene from './scenes/minigame';
+import EndGameScene from './scenes/endgame';
+import CreditsScene from './scenes/credits';
 
 const config: Phaser.Types.Core.GameConfig = {
 	type: Phaser.WEBGL,
@@ -25,7 +27,9 @@ const config: Phaser.Types.Core.GameConfig = {
 		SettingsScene,
 		PauseMenu,
 		TemplateDialogue,
-		MiniGameScene
+		MiniGameScene,
+		EndGameScene,
+		CreditsScene
 	],
 	plugins: {
 		global: [{

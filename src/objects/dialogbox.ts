@@ -72,7 +72,7 @@ function createTextBox(scene, perso, x, y, config) {
 }
 
 // sens : 0 right / 1 left
-export default function dialogBox(game, texture, text, sens) {
+export default function dialogBox(game, texture, text) {
 	let position, perso;
 	position = [300, 650, 100, 800];
 

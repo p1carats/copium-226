@@ -1,4 +1,4 @@
-// allows us to specify images, audio, or other assets to load before starting the game
+// allows us to specify fonts, images, audio, or other assets to load before starting the game
 export function assetsLoader(game) {
 	// font
 	game.load.rexWebFont({
@@ -42,7 +42,7 @@ export function assetsLoader(game) {
 	//game.load.image('office_gh', 'assets/scenes/office_gh.png');
 	game.load.image('office_craig', 'assets/scenes/office_craig.png');
 	//game.load.image('office_cc', 'assets/scenes/office_cd.png');
-	//game.load.image('office_amber', 'assets/scenes/office_amber.png');
+	game.load.image('office_amber', 'assets/scenes/office_amber.png');
 	game.load.image('coffee', 'assets/scenes/coffee.png');
 	game.load.image('void', 'assets/scenes/void.png');
 	// characters
@@ -127,6 +127,7 @@ export function assetsLoader(game) {
 	game.load.audio('coffee', 'assets/sounds/music/coffee.ogg');
 	game.load.audio('corpo', 'assets/sounds/music/corpo.ogg');
 	game.load.audio('power_plant', 'assets/sounds/music/power_plant.ogg');
+	game.load.audio('credits', 'assets/sounds/music/credits.ogg');
 }
 
 export enum Assets {
@@ -245,5 +246,6 @@ export enum Assets {
 	VillageTheme = 'village',
 	CoffeeTheme = 'coffee',
 	CorpoTheme = 'corpo',
-	PowerPlantTheme = 'power_plant'
+	PowerPlantTheme = 'power_plant',
+	CreditsTheme = 'credits'
 }
