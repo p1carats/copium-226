@@ -12,7 +12,7 @@ export default class TitleScreen extends Phaser.Scene {
 	}
 
 	create() {
-		// fade in scene
+		// fade-in scene
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
 		// background effect

@@ -43,7 +43,7 @@ export function assetsLoader(game) {
 	game.load.image('office_craig', 'assets/scenes/office_craig.png');
 	//game.load.image('office_cc', 'assets/scenes/office_cd.png');
 	//game.load.image('office_amber', 'assets/scenes/office_amber.png');
-	//game.load.image('coffee', 'assets/scenes/coffee.png');
+	game.load.image('coffee', 'assets/scenes/coffee.png');
 	game.load.image('void', 'assets/scenes/void.png');
 	// characters
 	game.load.image('george', 'assets/characters/george.png');
@@ -124,7 +124,7 @@ export function assetsLoader(game) {
 	game.load.audio('menu', 'assets/sounds/music/menu.ogg');
 	game.load.audio('room', 'assets/sounds/music/room.ogg');
 	game.load.audio('village', 'assets/sounds/music/village.ogg');
-	//game.load.audio('coffee', 'assets/sounds/music/coffee.ogg');
+	game.load.audio('coffee', 'assets/sounds/music/coffee.ogg');
 	game.load.audio('corpo', 'assets/sounds/music/corpo.ogg');
 	game.load.audio('power_plant', 'assets/sounds/music/power_plant.ogg');
 }
