@@ -44,6 +44,7 @@ export function assetsLoader(game) {
 	//game.load.image('office_cc', 'assets/scenes/office_cd.png');
 	//game.load.image('office_amber', 'assets/scenes/office_amber.png');
 	//game.load.image('coffee', 'assets/scenes/coffee.png');
+	game.load.image('void', 'assets/scenes/void.png');
 	// characters
 	game.load.image('george', 'assets/characters/george.png');
 	game.load.image('benoit', 'assets/characters/benoit.png');
@@ -52,6 +53,7 @@ export function assetsLoader(game) {
 	game.load.image('amber', 'assets/characters/amber.png');
 	game.load.image('marion', 'assets/characters/fatima.png');
 	game.load.image('marc', 'assets/characters/marc.png');
+	game.load.image('unknown', 'assets/characters/unknown.png');
 	// titlescreen anim
 	game.load.image('titlescreen1', 'assets/scenes/title/titlescreen1.png');
 	game.load.image('titlescreen2', 'assets/scenes/title/titlescreen2.png');
@@ -161,6 +163,7 @@ export enum Assets {
 	village3_CosmicDriveScene = 'village_3_cd',
 	ControlRoomScene = 'control_room',
 	CoffeeScene = 'coffee',
+	VoidScene = 'void',
 	// characters
 	George = 'george',
 	Benoit = 'benoit',
@@ -169,6 +172,7 @@ export enum Assets {
 	Amber = 'amber',
 	Marc = 'marc',
 	Marion = 'marion',
+	Unknown = 'unknown',
 	// titlescreen animation
 	TitleScreen1 = 'titlescreen1',
 	TitleScreen2 = 'titlescreen2',
