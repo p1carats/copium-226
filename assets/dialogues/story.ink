@@ -1,4 +1,5 @@
 EXTERNAL change_location(location)
+EXTERNAL start_minigame(level)
 
 VAR isMiniGame1Won = false
 VAR isMiniGame2Won = false
@@ -11,7 +12,7 @@ VAR georgeRelationAmber = false
 -> INTRO
 
 === INTRO ===
-{change_location("room")}
+{change_location("void")}
 Bip. Bip. Bip. Bip. Bip. Bip. Bip. Bi-
 Après avoir cherché pendant une dizaine de secondes, j'attrape enfin mon téléphone et coupe le réveil. J'ouvre un demi-œil pour confirmer ce que je sais déjà.
 George: 5h30. Encore une belle journée qui commence...
@@ -21,6 +22,7 @@ George: Ah, put-
 En y réfléchissant, ce serait probablement plus simple d'allumer la lumière, mais à cette heure-là Benoît est en train de finir sa première fournée de pain et siphonne quasiment toute l'énergie du réseau pour lui.
 George: Si son four s'arrête en pleine cuisson, ça va encore retomber sur moi...
 Je soupire et finis par arriver à ma fenêtre. J'ouvre mes volets, laissant un peu de lumière entrer dans ma petite chambre.
+{change_location("room")}
 Je reste là quelques instants, à observer le paysage et le soleil qui se lève tranquillement.
 George: Bon, il est temps de se mettre en route.
 {change_location("village_0")}
@@ -37,7 +39,8 @@ Ce travail était assuré par mon prédécesseur M. Pichard mais, du haut de ses
 Le travail en soit n’est pas des plus compliqué : les pales des éoliennes tournent avec le vent, produisant de l’électricité via le générateur situé dans la nacelle. Mon rôle principal est de surveiller la vitesse des pales et de les freiner, voire de les arrêter si elles vont trop vite.
 George: Bon, j'ai assez rêvassé comme ça. Faut que je me mette au boulot si je veux atteindre le quota aujourd'hui.
 Bienvenue dans la salle de contrôle. L'objectif ici est de tenir le temps imparti en ayant tous les boutons en position pressés. Si un bouton est relevé, vous devez simplement cliquer dessus. Attention à ne pas être trop lent...
-~ isMiniGame1Won = true
+{start_minigame(0)}
+//~ isMiniGame1Won = true
 -> CHAPTER_1
 
 === CHAPTER_1 ===
@@ -118,7 +121,8 @@ Par conséquent, je suis obligé de garder les éoliennes en fonctionnement pres
 
 === MINIGAME_2 ===
 {change_location("control_room")}
-~ isMiniGame2Won = true
+{start_minigame(1)}
+//~ isMiniGame2Won = true
 // TO-DO
 -> CHAPTER_2
 
@@ -338,8 +342,9 @@ Oui je sais que c'est extrêmement important et qu'un accident au niveau du barr
 
 === MINIGAME_3_GH ===
 {change_location("control_room")}
-~ isMiniGame3Won = true
-~ isQuotaRespected = true
+{start_minigame(2)}
+//~ isMiniGame3Won = true
+//~ isQuotaRespected = true
 -> CHAPTER_4_GH
 
 === CHAPTER_4_GH ===
@@ -572,7 +577,8 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 
 === MINIGAME_4_GH ===
 {change_location("control_room")}
-~ isMiniGame4Won = true
+//~ isMiniGame4Won = true
+{start_minigame(3)}
 // TO-DO
 -> CHAPTER_6_GH
 
@@ -611,12 +617,13 @@ J'aurais pu dire ça il y a 2 ans. Aujourd'hui, faire ça est un bon moyen de se
 Oui, je sais que je suis en partie responsable de cette situation, mais voyons les choses du bon côté : premièrement, tant qu'on arrive à se fournir en trucs à faire cramer, la centrale produit assez d'énergie pour soutenir une population de plus de 100 000 habitants. Et ça tombe bien, vu qu'il reste apparemment encore pas mal de charbon dans les montagnes de la région. C'est à se demander pourquoi les opérations de minage avaient été arrêtées à la base.
 Deuxièmement, c'est pas mon boulot de gérer la centrale ! Je suis uniquement responsable de la maintenance et des réparations en cas de besoin, ce qui arrive très rarement. Depuis l'ouverture de la centrale, j'ai dû remplacer 2 boulons, tout au plus.
 Bref, j'ai peut-être perdu quelques années d'espérance de vie, mais en échange je me la coule douce. C'est plutôt rentable je trouve.
--> MINIGAME_2_CD
+-> MINIGAME_3_CD
 
-=== MINIGAME_2_CD ===
+=== MINIGAME_3_CD ===
 {change_location("control_room")}
-~ isMiniGame3Won = true
-~ isQuotaRespected = true
+{start_minigame(1)}
+//~ isMiniGame3Won = true
+//~ isQuotaRespected = true
 -> CHAPTER_4_CD
 
 === CHAPTER_4_CD ===
@@ -786,7 +793,8 @@ Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée 
 
 === MINIGAME_4_CD ===
 {change_location("control_room")}
-~ isMiniGame4Won = true
+//~ isMiniGame4Won = true
+{start_minigame(3)}
 // TO-DO
 -> CHAPTER_6_CD
 
