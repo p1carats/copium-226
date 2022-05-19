@@ -70,7 +70,7 @@ Benoît: Il s'est mis en tête je ne sais trop comment qu'il allait faire fortun
 	... Bref. Revenons au sujet de base.
 *	[Je le fixe du regard, clairement ennuyé]
 	Il lève les mains en signe d'apaisement.
-	Benoît: Hé hé, me regarde pas comme ça, je plaisantais juste; Ça arrive à tout le monde de faire des erreurs.
+	Benoît: Hé hé, me regarde pas comme ça, je plaisantais juste. Ça arrive à tout le monde de faire des erreurs.
 	Je baisse les yeux après un moment et soupire.
 	J'ai déjà assez de personnes dans le village qui ne m'aiment pas comme ça, pas besoin d'en rajouter une.
 	Essayons de changer de sujet.
@@ -82,12 +82,12 @@ Benoît: C'est le cas, mais il est persuadé qu'en cherchant assez il va trouver
 	Benoît: Sauf qu'il ne reste rien dans les montagnes.
 	George: Oui. Bon hein.
 * [On verra bien combien de temps il tiendra.]
-	Benoît: ”Pfff, je parie qu'il ne tiendra même pas 2 semaines avant d'abandonner et de retourner s'occuper des moutons de son père.”
-	George: “Je parie 1 mois. Tu sous-estimes à quel point c'est une tête de mule.”
+	Benoît: Pfff, je parie qu'il ne tiendra même pas 2 semaines avant d'abandonner et de retourner s'occuper des moutons de son père.
+	George: Je parie 1 mois. Tu sous-estimes à quel point c'est une tête de mule.
 * [Quelle perte de temps.]
-	Benoît : ”On est d'accord.”
-	George: ”Son père doit être furieux, non ?”
-	Benoît: ”T'as pas idée. J'aimerais pas être là le moment où il retournera chez lui, la queue entre les jambes. Les murs vont trembler.”
+	Benoît : On est d'accord.
+	George: Son père doit être furieux, non ?
+	Benoît: T'as pas idée. J'aimerais pas être là le moment où il retournera chez lui, la queue entre les jambes. Les murs vont trembler.
 ~ location = "room"
 - Après ça, on a continué à parler de tout et de rien pendant une bonne heure avant que je rentre chez moi. Sur la route, je ne pouvais pas m'empêcher de repenser à François. Et s'il y arrivait ? S'il trouvait un nouveau filon d'or, ou quelque chose dans le genre dans une des mines ? Ça créerait sans doute beaucoup d'agitation dans le village.
 ....
@@ -439,7 +439,7 @@ George: Très bien, c'est noté.
 	Une main sur la porte, je me retourne subitement vers lui. J'ai pas revé, Il vient de m'appeler par mon prénom ? Il vient totalement de m'appeler par mon prénom ! C'est la première fois qu'il le fait depuis que je le connais !
 	Mr. Vermeil : Continue le bon boulot.
 	George : Oui monsieur.
-	
+	~ location = "void"
 	Je m'enfuie du bureau aussi vite que la politesse le permet.
 	Une fois dans le couloir je me pince l'avant bras.
 	George : Aïe.
@@ -465,8 +465,8 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 - georgeRelationCraig:
 	~ location = "void"
 	Je pensais qu'aujourd'hui allait être une journée lambda et plutôt calme, mais pour une raison que j'ignore Craig m'a convoqué dans son bureau ce matin. 
-	Je ne sais pas ce qui l'a mis dans cet état, mais ça doit être quelque chose de grave :  ça doit faire 2 minutes que je suis là et qu'il ne m'a rien dit. Craig a beau être inexpressif, j'ai appris un minimum à lire ses émotions après avoir passé autant de temps ensemble, et je ne l'ai jamais vu aussi troublé.
 	~ location = "office_craig"
+	Je ne sais pas ce qui l'a mis dans cet état, mais ça doit être quelque chose de grave :  ça doit faire 2 minutes que je suis là et qu'il ne m'a rien dit. Craig a beau être inexpressif, j'ai appris un minimum à lire ses émotions après avoir passé autant de temps ensemble, et je ne l'ai jamais vu aussi troublé.
 	Craig: M. Beauvois. Ce que je suis sur le point de vous dire ne doit jamais sortir de ce bureau. Si cela venait à se savoir, nos vies seraient en très grand danger. Je vous dis cela parce que nous partageons un lien fort et que je vous fais confiance.
 	George: Cra... M. Vermeil, qu'est-ce qui se passe ?
 	Craig: Green Horizon a reçu l'interdiction d'opérer dans le Lorient. Nous allons être forcés d'ici peu d'arrêter l'exploitation du Copium 226, de vendre toutes nos installations et nos actifs, et de quitter la vallée.
@@ -583,14 +583,14 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 Après un long duel entre George et le hacker de Green Horizon, la centrale fut sauvée.
 	{ 
 	- georgeRelationCraig:
-	Malheureusement, le hacker avait effacé toutes ses traces et sans preuves tangibles personne n'a réussi à déterminer qui était responsable derrière cette attaque.
-	- else:
 		George raconta tout ce qu'il s'était passé à l'armée du Lorient, responsable de l'enquête, y compris l'implication de Green Horizon. Malheureusement, le hacker avait effacé toutes ses traces, et sans preuves tangibles personne ne put incriminer l'entreprise ni le gouvernement du Fanighastan.
+	- else:
+		Malheureusement, le hacker avait effacé toutes ses traces et sans preuves tangibles personne n'a réussi à déterminer qui était responsable derrière cette attaque.
 	}
 	Green Horizon fut obligé de vendre tous ses actifs et installations à Cosmic Drive, qui se jeta sur l'occasion de remettre un pied dans la région et de pouvoir reprendre l'exploitation du Copium 226.
 	George, en récompense de sa bravoure, obtint la médaille dont il avait toujours rêvé et fut engagé en tant que directeur de la branche de Cosmic Drive.
 	Il ne goûta plus jamais à la vie en communion avec la nature comme il avait prévu en revenant à Vitry-la-Vallée, mais cette vie n'était pas trop mal non plus.
-	-> DONE // good end 1, Green Horizon
+	-> END // good end 1, Green Horizon
 - else:
 	Malgré tous ses efforts, George ne parvint pas à empêcher la centrale d'exploser. L'explosion dévasta la région, tuant une grande partie de la population qui n'avait pas encore eu le temps d'évacuer.
 	Personne ne sut expliquer ce qu'il s'était passé ce jour fatidique, mais la catastrophe nucléaire de Vitry-la-Vallée fut la pire de l'histoire de l'humanité, relançant de plus belle les débats autour de la sécurité de l'énergie nucléaire et coupant nette l'exploitation du Copium 226.
@@ -615,7 +615,7 @@ Bref, j'ai peut-être perdu quelques années d'espérance de vie, mais en échan
 
 === MINIGAME_2_CD ===
 ~ location = "control_room"
-~ isMiniGame2Won = true
+~ isMiniGame3Won = true
 ~ isQuotaRespected = true
 -> CHAPTER_4_CD
 
@@ -627,7 +627,7 @@ George: Bonnes ou mauvaises ?
 Amber: Je te laisserais décider.
 Légèrement inquiet, je m'assois sur l'un des fauteuils en cuir devant le bureau d'Amber. Je n'ai pas eu l'impression de faire du mauvais boulot récemment, donc ça devrait bien se passer, pas vrai ?
 {
-- !isMiniGame1Won :
+- !isMiniGame3Won :
 	Amber: Alors George. Au vu de tes performances récentes chez Cosmic Drive, j'ai le plaisir de t'annoncer... que tu vas pouvoir participer à une formation longue durée dans la maintenance de réseaux électriques, entièrement financée par Cosmic Drive !
 	George: Pardon !?
 	Amber: Je n'ai pas le choix George. Tu n'es pas assez performant dans ton travail, et ça commence à nuire à l'entreprise. Je suis obligé de faire quelque chose. Tu as de la chance que je t'aime bien, sinon ça aurait été la porte direct.
@@ -657,6 +657,7 @@ Amber: C'est un peu un pari sur l'avenir si l'on veut, pas vrai ? Allez, étant 
 	Je me lève de mon fauteuil et me dirige vers la porte.
 	Amber: Essaie de pas trop t'amuser quand même, tu vas faire des jaloux.
 	George: Je ne promets rien !
+	~ location = "void"
 	Je me dépêche de quitter les locaux de Cosmic Drive et me dirige vers le café de Gérard. J'y croise là bas Benoît, que je n'avais pas vu depuis un bon bout de temps : on discute, on boit, on rigole, on se raconte nos vies...
 	Y'a pas à dire, la vie est belle.
 	-> CHAPTER_4_CD
@@ -770,7 +771,7 @@ George: Désolé, mais je ne peux pas faire ça. Tu auras tout le temps que tu v
 		Amber: Je te pardonnerai seulement si tu reviens en vie.
 		George: Si c'est juste ça alors, ça devrait aller.
 		...
-		Je suis arrivé à la console.
+		George: Je suis arrivé à la console.
 		Amber: ... Bonne chance.
 		Je raccroche le téléphone et me dirige vers la console principale. 
 		Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée repose sur moi.
@@ -782,7 +783,9 @@ Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée 
 
 === MINIGAME_4_CD ===
 ~ location = "control_room"
--> CHAPTER_5_CD
+~ isMiniGame4Won = true
+// TO-DO
+-> CHAPTER_6_CD
 
 === CHAPTER_6_CD ===
 ~ location = "void"
