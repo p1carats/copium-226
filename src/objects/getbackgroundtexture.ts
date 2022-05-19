@@ -9,6 +9,7 @@ const backgrounds = [
     Assets.village3_GreenHorizonScene,
     Assets.village2_CosmicDriveScene,
     Assets.village3_CosmicDriveScene,
+    Assets.ControlRoomScene,
     Assets.VoidScene
 ]
 
@@ -21,22 +22,31 @@ export default function getbackgroundtexture(game, background){
             game.background.setTexture(backgrounds[1]);
             return;
         case 'village_0':
-            return backgrounds[2];
+            game.background.setTexture(backgrounds[2]);
+            return;
         case 'village_1':
-            return backgrounds[3];
+            game.background.setTexture(backgrounds[3]);
+            return;
         case 'village_2_gh':
-            return backgrounds[4];
+            game.background.setTexture(backgrounds[4]);
+            return;
         case 'village_3_gh':
-            return backgrounds[5];
+            game.background.setTexture(backgrounds[5]);
+            return;
         case 'village_2_cd':
-            return backgrounds[6];
+            game.background.setTexture(backgrounds[6]);
+            return;
         case 'village_3_cd':
-            return backgrounds[7];
-        case 'void':
+            game.background.setTexture(backgrounds[7]);
+            return;
+        case  'control_room':
             game.background.setTexture(backgrounds[8]);
             return;
+        case 'void':
+            game.background.setTexture(backgrounds[9]);
+            return;
         default:
-            game.background.setTexture(backgrounds[8]);
+            game.background.setTexture(backgrounds[9]);
             return;
     }
 }
