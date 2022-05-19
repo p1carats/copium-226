@@ -1,12 +1,14 @@
 import { Assets } from '../assets';
 import { loadStory } from "../utils";
 import dialogBox from '../objects/dialogbox';
+import pause from "../objects/pause";
 
 export default class TemplateDialogue extends Phaser.Scene {
 	/*
 	private choix: any[];
+	 */
 	private emitter: Phaser.Events.EventEmitter;
-	*/
+	private theme: Phaser.Sound.BaseSound;
 
 	constructor() {
 		super({ key: 'TemplateDialogue' });
@@ -25,23 +27,23 @@ export default class TemplateDialogue extends Phaser.Scene {
 
 		// music (room theme, looped) and click sound
 		let clickedSound: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
-		let theme: Phaser.Sound.BaseSound = this.sound.add(Assets.RoomTheme);
-		theme.play('', { loop: true });
+		this.theme = this.sound.add(Assets.RoomTheme);
+		this.theme.play('', { loop: true });
 
 		// dialog
 		let story = loadStory(this);
 		//console.log(story.ContinueMaximally());
-		let text = null;
+		let text = '';
 		let choiceList;
 		while (story.canContinue) {
-      let paragraphText = story.Continue();
-			text += paragraphText;
-			// if this is the last line, render the text & the choices
-			if (!story.canContinue) {
-				// update the main paragraph text ?
-				// update the list of possible choices
-				choiceList = story.currentChoices;
-			}
+			let paragraphText = story.Continue();
+				text += paragraphText;
+				// if this is the last line, render the text & the choices
+				if (!story.canContinue) {
+					// update the main paragraph text ?
+					// update the list of possible choices
+					choiceList = story.currentChoices;
+				}
     }
 		dialogBox(this, null, text, 0);
 		console.log(choiceList);
@@ -63,16 +65,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 		*/
 
 		// pause button and trigger
-		let pauseSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseInSound);
-		let pauseButton: Phaser.GameObjects.Sprite = this.add.sprite(50, 50, Assets.PauseButton).setOrigin(0).setInteractive();
-		pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
-		pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
-		pauseButton.on('pointerdown', () => {
-			theme.pause();
-			pauseSound.play();
-			this.scene.launch('PauseMenu', { sceneFrom: this.scene.key }).bringToTop();
-			this.scene.sendToBack();
-			this.scene.pause();
-		});
+		pause(this);
 	}
 }
