@@ -1,5 +1,6 @@
 import { Assets } from "../assets";
-import game from "../game";
+
+import getcharactertexture from "./getcharactertexture";
 
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	return scene.add.text(0, 0, '', {
@@ -43,29 +44,28 @@ function createTextBox(scene, perso, x, y, config) {
 	});
 
 	textBox.on('pageend', function() {
-		if (this.isLastPage) {
-			return;
-		} else {
-			let icon = this.getElement('action').setVisible(true);
-			this.resetChildVisibleState(icon);
-			icon.y -= 30;
-			let tween = scene.tweens.add({
-				targets: icon,
-				y: '+=30', // '+=100'
-				ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
-				duration: 500,
-				repeat: 0, // -1: infinity
-				yoyo: false
-			});
-		}
+		let icon = this.getElement('action').setVisible(true);
+		this.resetChildVisibleState(icon);
+		icon.y -= 30;
+		let tween = scene.tweens.add({
+			targets: icon,
+			y: '+=30', // '+=100'
+			ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
+			duration: 500,
+			repeat: 0, // -1: infinity
+			yoyo: false
+		});
 	}, textBox);
 
 	textBox.on('complete', function (){
 		textBox.off('pointerdown');
 		textBox.off('pageend');
-		scene.time.delayedCall(2000, () => {
+		textBox.on('pointerdown', function() {
+			let icon = this.getElement('action').setVisible(false);
 			textBox.destroy();
-			if (perso !== null) perso.destroy();
+			if (perso !== null) {
+				perso.destroy();
+			}
 			scene.emitter.emit('next');
 		});
 	});
@@ -73,12 +73,21 @@ function createTextBox(scene, perso, x, y, config) {
 }
 
 // sens : 0 right / 1 left
-export default function dialogBox(game, texture, text) {
+export default function dialogBox(game, text) {
+	let character: string;
+	let regex: RegExp = /[a-zA-Z]+:/;
+	if(regex.test(text)) {
+		regex = /[a-zA-Z]+/; 
+		character = regex.exec(text)[0].normalize('NFD').replace(/\p{Diacritic}/gu, '');
+		console.log(character);
+	} else {
+		character = null;
+	}
 	let position, perso;
 	position = [300, 650, 100, 800];
 
-	if (texture !== null) {
-		perso = game.add.sprite(position[0], position[1], texture);
+	if (character !== null) {
+		perso = game.add.sprite(position[0], position[1], getcharactertexture(character));
 	} else {
 		perso = null
 	}

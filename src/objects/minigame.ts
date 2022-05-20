@@ -67,7 +67,7 @@ export default function startMiniGame(game, difficulty, texture) {
 	let failure: Phaser.Sound.BaseSound = game.sound.add(Assets.FailureSound);
 	// easier to implement
 	let sounds = [redClick, arrowClick, stickClick, failure];
-	dialogBox(game, null, content);
+	dialogBox(game, content);
 
 	// manage click on button
 	game.buttonsArray.forEach(button => button.on('pointerdown', () => {
@@ -114,7 +114,7 @@ export default function startMiniGame(game, difficulty, texture) {
 			number_of_issue--;
 		} else {
 			endGame = true;
-			dialogBox(game, null, 'Bravo, vous avez un score de ' + score);
+			dialogBox(game, 'Bravo, vous avez un score de ' + score);
 		}
 	});
 }

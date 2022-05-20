@@ -1,4 +1,5 @@
 EXTERNAL change_location(location)
+EXTERNAL play_sound(sound)
 EXTERNAL start_minigame(level)
 
 VAR isMiniGame1Won = false
@@ -12,9 +13,10 @@ VAR georgeRelationAmber = false
 -> INTRO
 
 === INTRO ===
+# play_sound
+{play_sound("clock")}
 # change_location
-{change_location("void")}
-Bip. Bip. Bip. Bip. Bip. Bip. Bip. Bi-
+{change_location("room")}
 Après avoir cherché pendant une dizaine de secondes, j'attrape enfin mon téléphone et coupe le réveil. J'ouvre un demi-œil pour confirmer ce que je sais déjà.
 George: 5h30. Encore une belle journée qui commence...
 Je me lève lentement de mon lit et tâtonne dans le noir vers ma fenêtre.
@@ -23,8 +25,6 @@ George: Ah, put-
 En y réfléchissant, ce serait probablement plus simple d'allumer la lumière, mais à cette heure-là Benoît est en train de finir sa première fournée de pain et siphonne quasiment toute l'énergie du réseau pour lui.
 George: Si son four s'arrête en pleine cuisson, ça va encore retomber sur moi...
 Je soupire et finis par arriver à ma fenêtre. J'ouvre mes volets, laissant un peu de lumière entrer dans ma petite chambre.
-# change_location
-{change_location("room")}
 Je reste là quelques instants, à observer le paysage et le soleil qui se lève tranquillement.
 George: Bon, il est temps de se mettre en route.
 # change_location
@@ -48,16 +48,16 @@ Bienvenue dans la salle de contrôle. L'objectif ici est de tenir le temps impar
 
 === CHAPTER_1 ===
 {change_location("void")}
-Ma journée de travail finie, je décide comme d'habitude d'aller au café du village avant de rentrer. C'est un peu une tradition au village : la majorité des habitants se retrouvent là le soir, pour discuter, boire un coup et à l'occasion regarder un match de foot ou de rugby. Le fait que Gérard, le gérant du café, possède la seule télé du village, qu'il n'y a pas de wifi et qu'on capte mal la 4G dans la vallée aide certainement à attirer les plus récalcitrant au contact humain.
+Ma journée de travail finie, je décide comme d'habitude d'aller au café du village avant de rentrer. C'est un peu une tradition au village. La majorité des habitants se retrouvent là le soir, pour discuter, boire un coup et à l'occasion regarder un match de foot ou de rugby. Le fait que Gérard, le gérant du café, possède la seule télé du village, qu'il n'y a pas de wifi et qu'on capte mal la 4G dans la vallée aide certainement à attirer les plus récalcitrant au contact humain.
 {change_location("coffee")}
 J'ouvre la porte du café, et la majorité des personnes déjà présentes tournent le regard vers moi.
 {
 - isMiniGame1Won:
 	Je les salue d'un petit mouvement de tête avant d’aller au comptoir m'asseoir à ma place habituelle, laissée libre. L'avantage de vivre dans une petite communauté.
 - else:
-	Je commence à m'avancer vers le comptoir, mais les regards insistants des autres clients me clouent sur place. Ce n'est pas compliqué de deviner ce qu'ils pensent : tout à l'heure une forte bourrasque de vent a traversé la vallée et je n'ai pas réagi assez vite. Une des éoliennes s'est emballée et j'ai été forcé de tout couper pendant plusieurs heures le temps que j'aille vérifier leur état.
-	Heureusement les dégâts étaient minimes et j'ai pu tout réparer, mais le mal a été fait: j'ai perdu plusieurs heures de production, et le village passera donc plusieurs heures ce soir et demain matin sans courant. Par ma faute.
-	Les nouvelles vont vite dans un petit endroit comme celui-ci. Je regarde les visages des gens qui me fixent: certains, au vu des sourires en coin qu'ils affichent, trouvent la situation plutôt amusante et je ne doute pas qu'ils ne rateront pas une occasion pour se moquer de moi pendant 3 semaines au moins. Ce qui me dérange plus, ce sont les autres regards. Ceux qui sont vraiment en colère, ceux qui me regardent avec mépris pour mon échec. Je peux presque entendre ce qu'ils pensent.
+	Je commence à m'avancer vers le comptoir, mais les regards insistants des autres clients me clouent sur place. Ce n'est pas compliqué de deviner ce qu'ils pensent... Tout à l'heure, une forte bourrasque de vent a traversé la vallée et je n'ai pas réagi assez vite. Une des éoliennes s'est emballée et j'ai été forcé de tout couper pendant plusieurs heures le temps que j'aille vérifier leur état.
+	Heureusement les dégâts étaient minimes et j'ai pu tout réparer, mais le mal a été fait, et j'ai perdu plusieurs heures de production. Le village passera donc plusieurs heures ce soir et demain matin sans courant. Par ma faute.
+	Les nouvelles vont vite dans un petit endroit comme celui-ci. Je regarde les visages des gens qui me fixent. Certains, au vu des sourires en coin qu'ils affichent, trouvent la situation plutôt amusante et je ne doute pas qu'ils ne rateront pas une occasion pour se moquer de moi pendant 3 semaines au moins. Ce qui me dérange plus, ce sont les autres regards. Ceux qui sont vraiment en colère, ceux qui me regardent avec mépris pour mon échec. Je peux presque entendre ce qu'ils pensent.
 	???: Il est arrivé il y a moins d'un mois et il a presque déjà détruit une éolienne. Pichard n'aurait jamais fait une erreur aussi stupide. Quelle incompétence.
 	Je soupire intérieurement et me dirige vers ma place habituelle, près du comptoir. Au moins j'ai toujours ça.
 }

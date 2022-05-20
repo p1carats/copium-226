@@ -3,9 +3,6 @@ import { loadStory } from "../utils";
 import dialogBox from '../objects/dialogbox';
 import pause from "../objects/pause";
 
-import getcharactertexture from "../objects/getcharactertexture";
-import getbackgroundtexture from "../objects/getbackgroundtexture";
-
 export default class TemplateDialogue extends Phaser.Scene {
 	private story;
 	private emitter: Phaser.Events.EventEmitter;
@@ -22,39 +19,48 @@ export default class TemplateDialogue extends Phaser.Scene {
 
 		this.emitter.on('next', () => {
 			let text = this.story.Continue();
-			if (this.story.canContinue){
-				// If there are tags, we need to call the good event
-				if (this.story.currentTags.length !== 0){
+			if (this.story.canContinue) {
+				// if there are tags, we need to call the good event
+				if (this.story.currentTags.length !== 0) {
 					let event = this.story.currentTags[0];
 					switch (event) {
 						case 'change_location':
 							this.emitter.emit('change_location', text);
 							return;
+						case 'play_sound':
+								this.emitter.emit('play_sound', text);
+								return;
 						case 'start_minigame':
 							this.emitter.emit('start_minigame');
 							return;
 					}
-				}else{
+				} else {
 					this.emitter.emit('nextDialog', text);
 				}
-			}else{
+			} else {
 				this.emitter.emit('choices');
 			}
 		});
 
 		this.emitter.on('nextDialog', text => {
-			dialogBox(this, getcharactertexture(text), text);
+			dialogBox(this, text);
 		});
 
 		this.emitter.on('change_location', text => {
-			console.log("Changing location...");
-			this.time.delayedCall(2500, () => {
+			this.time.delayedCall(2000, () => {
 				this.emitter.emit('nextDialog', text);
 			})
 		});
 
-		this.emitter.on('start_minigame', () => {
+		this.emitter.on('play_sound', text => {
+			this.time.delayedCall(5000, () => {
+				this.emitter.emit('nextDialog', text);
+			})
+		});
+
+		this.emitter.on('start_minigame', text => {
 			console.log('start_minigame');
+			//this.emitter.emit('nextDialog', text);
 		});
 
 		this.emitter.on('choices', choiceList => {
@@ -63,16 +69,9 @@ export default class TemplateDialogue extends Phaser.Scene {
 
 		// default (void) background
 		this.background = this.add.sprite(0, 0, Assets.VoidScene).setOrigin(0);
-		//this.theme = this.sound.add(Assets.RoomTheme);
-		//this.theme.play('', { loop: true });
 
-		// light effects (to-do)
-		// this.background.setPipeline('Light2D');
-		// this.lights.addLight(856, 346, 300, 0xffffff, 1);
-		// this.lights.enable().setAmbientColor(0x555555);
-
-		// music (room theme, looped) and click sound
-		let clickedSound: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
+		// click sound
+		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
 
 		// dialog
 		this.story = loadStory(this);
@@ -80,35 +79,71 @@ export default class TemplateDialogue extends Phaser.Scene {
 
 		// change background from ink file
 		this.story.BindExternalFunction('change_location', (location:string) => {
+			console.log(location);
 			// stop existing music
 			this.tweens.add({
 				targets: this.theme,
 				volume: 0,
 				ease: 'Linear',
-				duration: 1000
+				duration: 1500
 			});
 			// fade-out camera (black screen)
 			this.cameras.main.fadeOut(750, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
-				this.time.delayedCall(1000, () => {
-					getbackgroundtexture(this, location);
-					// start music if neccessary
-					if (location === 'room') {
+				this.time.delayedCall(500, () => {
+					// change background and start music if neccessary
+					if (location == 'room') {
+						this.background.setTexture(Assets.RoomTheme);
 						this.theme = this.sound.add(Assets.RoomTheme);
 						this.theme.play('', { loop: true });
-					} else if (location === 'coffee') {
+					} else if (location == 'coffee') {
+						this.background.setTexture(Assets.CoffeeScene);
 						this.theme = this.sound.add(Assets.CoffeeTheme);
 						this.theme.play('', { loop: true });
-					} else if (location.search('village') !== -1) {
-						this.theme = this.sound.add(Assets.RoomTheme);
+					} else if (location.startsWith('village')) {
+						switch (location) {
+							case 'village_0':
+								this.background.setTexture(Assets.village0Scene);
+								break;
+							case 'village_1':
+								this.background.setTexture(Assets.village1Scene);
+								break;
+							case 'village_2_gh':
+								this.background.setTexture(Assets.village2_GreenHorizonScene);
+								break;
+							case 'village_2_cd':
+								this.background.setTexture(Assets.village2_CosmicDriveScene);
+								break;
+							case 'village_3_gh':
+								this.background.setTexture(Assets.village3_GreenHorizonScene);
+								break;
+							case 'village_3_cd':
+								this.background.setTexture(Assets.village3_CosmicDriveScene);
+								break;
+							default:
+								this.background.setTexture(Assets.village3_CosmicDriveScene);
+								break;
+						}
+						this.theme = this.sound.add(Assets.VillageTheme);
 						this.theme.play('', { loop: true });
-					} else if (location === 'control_room') {
+					} else if (location == 'control_room') {
+						this.background.setTexture(Assets.ControlRoomScene);
 						this.theme = this.sound.add(Assets.PowerPlantTheme);
 						this.theme.play('', { loop: true });
+					} else {
+						this.background.setTexture(Assets.VoidScene);
 					}
 					this.cameras.main.fadeIn(750, 0, 0, 0);
 				});
 			});
+		}, false);
+
+		this.story.BindExternalFunction('play_sound', (sound:string) => {
+			let ss = this.sound.add(Assets.ClockSound);
+			ss.play();
+			this.time.delayedCall(5000, () => {
+				ss.stop();
+			})
 		}, false);
 
 		this.story.BindExternalFunction('start_minigame', (level:integer) => {
@@ -116,7 +151,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 		}, false);
 
 		// starting dialog
-		//this.story.Continue();
 		this.emitter.emit('next');
 
 		// pause button and trigger
