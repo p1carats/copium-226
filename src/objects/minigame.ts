@@ -1,5 +1,6 @@
 import { Assets } from "../assets";
 import dialogBox from "../objects/dialogbox";
+import animation from "./animation";
 
 // time for clicking, time between two buttons, number of buttons, score for win
 const TUTO = [2000, 3000, 6, 3];
@@ -55,11 +56,56 @@ function fixMe(game, score, difficulty, sounds, texture) {
 	});
 }
 
-export default function startMiniGame(game, difficulty, texture) {
-	let content = 'Bienvenue dans la salle de contrôle. L\'objectif ici est de tenir le temps imparti en ayant tous les boutons en position pressés. Si un bouton est relevé, vous devez simplement cliquer dessus. Attention à ne pas être trop lent ...';
+export default function startMiniGame(game, difficulty) {
+
+	// All textures
+	let red_button: Phaser.GameObjects.Sprite = game.add.sprite(450, 700, Assets.RedButton).setOrigin(0).setInteractive();
+	let green_button_down: Phaser.GameObjects.Sprite = game.add.sprite(950, 750, Assets.GreenButtonDown).setOrigin(0).setInteractive();
+	let green_button_right: Phaser.GameObjects.Sprite = game.add.sprite(1100, 700, Assets.GreenButtonRight).setOrigin(0).setInteractive();
+	let green_button_up: Phaser.GameObjects.Sprite = game.add.sprite(950, 650, Assets.GreenButtonUp).setOrigin(0).setInteractive();
+	let green_button_left: Phaser.GameObjects.Sprite = game.add.sprite(800, 700, Assets.GreenButtonLeft).setOrigin(0).setInteractive();
+	let stick: Phaser.GameObjects.Sprite = game.add.sprite(1450, 700, Assets.Stick0).setOrigin(0).setInteractive();
+	game.buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
+
+	// background effect
+	animation(game, 'eolAnim', [
+		{ key: Assets.ControlRoomEol1 },
+		{ key: Assets.ControlRoomEol2 },
+		{ key: Assets.ControlRoomEol3 },
+		{ key: Assets.ControlRoomEol4 },
+		{ key: Assets.ControlRoomEol5 },
+		{ key: Assets.ControlRoomEol6 },
+		{ key: Assets.ControlRoomEol7 },
+		{ key: Assets.ControlRoomEol8 },
+	]);
+
+	animation(game, 'coalAnim', [
+		{ key: Assets.ControlRoomCoal1 },
+		{ key: Assets.ControlRoomCoal2 },
+		{ key: Assets.ControlRoomCoal3 },
+		{ key: Assets.ControlRoomCoal4 },
+		{ key: Assets.ControlRoomCoal5 },
+		{ key: Assets.ControlRoomCoal6 },
+		{ key: Assets.ControlRoomCoal7 },
+		{ key: Assets.ControlRoomCoal8 },
+	]);
+
+	animation(game, 'hydroelectricAnim', [
+		{ key: Assets.ControlRoomHydroelectricDam1 },
+		{ key: Assets.ControlRoomHydroelectricDam2 },
+		{ key: Assets.ControlRoomHydroelectricDam3 },
+		{ key: Assets.ControlRoomHydroelectricDam4 },
+		{ key: Assets.ControlRoomHydroelectricDam5 },
+		{ key: Assets.ControlRoomHydroelectricDam6 },
+		{ key: Assets.ControlRoomHydroelectricDam7 },
+		{ key: Assets.ControlRoomHydroelectricDam8 },
+	]);
+
+	let bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('eolAnim');
+	let texture = game.add.sprite(150, 290, Assets.SmallScreen).setOrigin(0);
+
 	let difficultySettings = DIFFICULTY_ARRAY[difficulty];
 	let score: number = 0;
-	let endGame: boolean = false;
 	let number_of_issue: number = difficultySettings[2];
 	let redClick: Phaser.Sound.BaseSound = game.sound.add(Assets.RedButtonSound);
 	let arrowClick: Phaser.Sound.BaseSound = game.sound.add(Assets.ArrowsSound);
@@ -67,7 +113,13 @@ export default function startMiniGame(game, difficulty, texture) {
 	let failure: Phaser.Sound.BaseSound = game.sound.add(Assets.FailureSound);
 	// easier to implement
 	let sounds = [redClick, arrowClick, stickClick, failure];
-	dialogBox(game, content);
+
+
+	// let's start after 2s !
+	game.time.delayedCall(2000, () => {
+		fixMe(game, score, difficultySettings, sounds, texture);
+
+	})
 
 	// manage click on button
 	game.buttonsArray.forEach(button => button.on('pointerdown', () => {
@@ -98,23 +150,17 @@ export default function startMiniGame(game, difficulty, texture) {
 		}
 	}));
 
-	game.emitter.on('nextDialog', () => {
-		if (!endGame) {
-			// let's start!
-			fixMe(game, score, difficultySettings, sounds, texture);
-		} else {
-			let resultat = score >= difficultySettings[3] ? 1 : 0;
-			console.log('Fin du mini-jeu : ', resultat);
-		}
-	});
-
 	game.emitter.on('nextButton', () => {
 		if (number_of_issue > 0) {
 			fixMe(game, score, difficultySettings, sounds, texture);
 			number_of_issue--;
 		} else {
-			endGame = true;
-			dialogBox(game, 'Bravo, vous avez un score de ' + score);
+			let resultat = score >= difficultySettings[3] ? 1 : 0;
+			game.emitter.emit('end_minigame', difficulty, resultat);
+			game.buttonsArray.forEach(e => e.destroy());
+			texture.destroy();
+			bigScreen.destroy();
+
 		}
 	});
 }

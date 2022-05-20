@@ -8,7 +8,7 @@ import TitleScreen from './scenes/titlescreen';
 import SettingsScene from './scenes/settings';
 import PauseMenu from './scenes/pause';
 import TemplateDialogue from './scenes/templatediag';
-import MiniGameScene from './scenes/minigame';
+//import MiniGameScene from './scenes/minigame';
 import EndGameScene from './scenes/endgame';
 import CreditsScene from './scenes/credits';
 
@@ -27,7 +27,6 @@ const config: Phaser.Types.Core.GameConfig = {
 		SettingsScene,
 		PauseMenu,
 		TemplateDialogue,
-		MiniGameScene,
 		EndGameScene,
 		CreditsScene
 	],

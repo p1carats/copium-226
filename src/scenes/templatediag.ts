@@ -2,12 +2,14 @@ import { Assets } from '../assets';
 import { loadStory } from "../utils";
 import dialogBox from '../objects/dialogbox';
 import pause from "../objects/pause";
+import startMiniGame from "../objects/minigame";
 
 export default class TemplateDialogue extends Phaser.Scene {
 	private story;
 	private emitter: Phaser.Events.EventEmitter;
 	private background: Phaser.GameObjects.Sprite;
 	private theme: Phaser.Sound.BaseSound;
+	private text: string;
 	// private choix: any[];
 
 	constructor() {
@@ -17,25 +19,27 @@ export default class TemplateDialogue extends Phaser.Scene {
 	create() {
 		this.emitter = new Phaser.Events.EventEmitter();
 
+		// pause button and trigger
+		pause(this);
+
 		this.emitter.on('next', () => {
-			let text = this.story.Continue();
+			this.text = this.story.Continue();
 			if (this.story.canContinue) {
 				// if there are tags, we need to call the good event
 				if (this.story.currentTags.length !== 0) {
 					let event = this.story.currentTags[0];
 					switch (event) {
 						case 'change_location':
-							this.emitter.emit('change_location', text);
+							this.emitter.emit('change_location', this.text);
 							return;
 						case 'play_sound':
-								this.emitter.emit('play_sound', text);
+								this.emitter.emit('play_sound', this.text);
 								return;
 						case 'start_minigame':
-							this.emitter.emit('start_minigame');
 							return;
 					}
 				} else {
-					this.emitter.emit('nextDialog', text);
+					this.emitter.emit('nextDialog', this.text);
 				}
 			} else {
 				this.emitter.emit('choices');
@@ -53,14 +57,16 @@ export default class TemplateDialogue extends Phaser.Scene {
 		});
 
 		this.emitter.on('play_sound', text => {
-			this.time.delayedCall(5000, () => {
+			this.time.delayedCall(3000, () => {
 				this.emitter.emit('nextDialog', text);
 			})
 		});
 
-		this.emitter.on('start_minigame', text => {
-			console.log('start_minigame');
-			//this.emitter.emit('nextDialog', text);
+		this.emitter.on('end_minigame', (level, result) => {
+			console.log('end_minigame lv :', level, result);
+			let inkVariables = ['isMiniGame1Won', 'isMiniGame2Won', 'isMiniGame3Won', 'isMiniGame4Won'];
+			this.story.variablesState.$(inkVariables[level], Boolean(result));
+			this.emitter.emit('nextDialog', this.text);
 		});
 
 		this.emitter.on('choices', choiceList => {
@@ -79,7 +85,6 @@ export default class TemplateDialogue extends Phaser.Scene {
 
 		// change background from ink file
 		this.story.BindExternalFunction('change_location', (location:string) => {
-			console.log(location);
 			// stop existing music
 			this.tweens.add({
 				targets: this.theme,
@@ -147,13 +152,11 @@ export default class TemplateDialogue extends Phaser.Scene {
 		}, false);
 
 		this.story.BindExternalFunction('start_minigame', (level:integer) => {
-			console.log(level);
+			startMiniGame(this, level);
 		}, false);
 
 		// starting dialog
 		this.emitter.emit('next');
 
-		// pause button and trigger
-		pause(this);
 	}
 }

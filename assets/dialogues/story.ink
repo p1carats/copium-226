@@ -13,10 +13,11 @@ VAR georgeRelationAmber = false
 -> INTRO
 
 === INTRO ===
+# change_location
+{change_location("void")}
 # play_sound
 {play_sound("clock")}
-# change_location
-{change_location("room")}
+Bip. Bip. Bip. Bip. Bip. Bip. Bip. Bi-
 Après avoir cherché pendant une dizaine de secondes, j'attrape enfin mon téléphone et coupe le réveil. J'ouvre un demi-œil pour confirmer ce que je sais déjà.
 George: 5h30. Encore une belle journée qui commence...
 Je me lève lentement de mon lit et tâtonne dans le noir vers ma fenêtre.
@@ -25,6 +26,8 @@ George: Ah, put-
 En y réfléchissant, ce serait probablement plus simple d'allumer la lumière, mais à cette heure-là Benoît est en train de finir sa première fournée de pain et siphonne quasiment toute l'énergie du réseau pour lui.
 George: Si son four s'arrête en pleine cuisson, ça va encore retomber sur moi...
 Je soupire et finis par arriver à ma fenêtre. J'ouvre mes volets, laissant un peu de lumière entrer dans ma petite chambre.
+# change_location
+{change_location("room")}
 Je reste là quelques instants, à observer le paysage et le soleil qui se lève tranquillement.
 George: Bon, il est temps de se mettre en route.
 # change_location
@@ -35,20 +38,22 @@ C'est donc ce que j'ai fait. Une fois mes études finies, je suis revenu à la p
 -> MINIGAME_1
 
 === MINIGAME_1 ===
-// Tutorial
+//
+# change_location
 {change_location("control_room")}
 Le réseau électrique de la ville est particulier. A cause de l'isolement du village, il n'est relié à aucun réseau national et est géré entièrement en interne via cette station. Les quelques éoliennes présentes dans la région, généreusement financées par un philanthrope Lorientais, servent d'unique source de production d'électricité du réseau et doivent être contrôlées manuellement via la console en face de moi.
 Ce travail était assuré par mon prédécesseur M. Pichard mais, du haut de ses 86 ans, cela devenait de plus en plus difficile pour lui de se déplacer tous les matins jusqu’à la station de contrôle. Sans mon arrivée, il aurait sans doute été forcé d'arrêter après quelques mois, et le village se serait retrouvé dans le noir total pendant qui sait combien de temps.
 Le travail en soit n’est pas des plus compliqué : les pales des éoliennes tournent avec le vent, produisant de l’électricité via le générateur situé dans la nacelle. Mon rôle principal est de surveiller la vitesse des pales et de les freiner, voire de les arrêter si elles vont trop vite.
 George: Bon, j'ai assez rêvassé comme ça. Faut que je me mette au boulot si je veux atteindre le quota aujourd'hui.
 Bienvenue dans la salle de contrôle. L'objectif ici est de tenir le temps imparti en ayant tous les boutons en position pressés. Si un bouton est relevé, vous devez simplement cliquer dessus. Attention à ne pas être trop lent...
+# start_minigame
 {start_minigame(0)}
 //~ isMiniGame1Won = true
 -> CHAPTER_1
 
 === CHAPTER_1 ===
-{change_location("void")}
 Ma journée de travail finie, je décide comme d'habitude d'aller au café du village avant de rentrer. C'est un peu une tradition au village. La majorité des habitants se retrouvent là le soir, pour discuter, boire un coup et à l'occasion regarder un match de foot ou de rugby. Le fait que Gérard, le gérant du café, possède la seule télé du village, qu'il n'y a pas de wifi et qu'on capte mal la 4G dans la vallée aide certainement à attirer les plus récalcitrant au contact humain.
+# change_location
 {change_location("coffee")}
 J'ouvre la porte du café, et la majorité des personnes déjà présentes tournent le regard vers moi.
 {
@@ -93,16 +98,19 @@ Benoît: C'est le cas, mais il est persuadé qu'en cherchant assez il va trouver
 	Benoît: On est d'accord.
 	George: Son père doit être furieux, non ?
 	Benoît: T'as pas idée. J'aimerais pas être là le moment où il retournera chez lui, la queue entre les jambes. Les murs vont trembler.
+# change_location
 {change_location("room")}
 - Après ça, on a continué à parler de tout et de rien pendant une bonne heure avant que je rentre chez moi. Sur la route, je ne pouvais pas m'empêcher de repenser à François. Et s'il y arrivait ? S'il trouvait un nouveau filon d'or, ou quelque chose dans le genre dans une des mines ? Ça créerait sans doute beaucoup d'agitation dans le village.
 ....
 Ouais, pas sûr qu'on en ait vraiment besoin en fait.
+# change_location
 {change_location("void")}
 // 2 mois plus tard (timeskip)
 Quelques jours plus tard, François trouva un filon gigantesque dans les mines. Mais pas un filon d'or, ou de charbon. Quelque chose d'inconnu. Un nouveau minerai. Il vendit ses échantillons à plusieurs laboratoires au prix fort et, avant qu'on ait eu le temps de se retourner, l'attention du monde entier se porta soudainement sur notre petit village.
 Apparemment ce nouveau minerai, baptisé Copium 226, possédait des propriétés jamais vu auparavant qui pourrait permettre de faire progresser la recherche scientifique de plusieurs décennies dans plusieurs domaines en un claquement de doigts, si correctement exploité.
 Plusieurs entreprises se sont maintenant installées dans la région dans l'espoir d'exploiter le copium 226, et les travailleurs ont suivi. Ce qui était avant un petit hameau de quelques dizaines d'habitants s'est transformé en l'espace de quelques mois en un bourg de plusieurs centaines. Tout cela a bien évidemment plongé notre petite communauté dans le chaos, et le fait que les 2 pays qui nous entourent, le Fanighastan et le Lorient, revendiquent la région n'aide certainement pas à calmer les choses. Personnellement, j'étais toujours persuadé que la question ne se posait pas et que nous étions des Lorientais, mais il semblerait que le Fanighastan ait vraiment des arguments et des preuves pour appuyer leur demandes.
 Pas que j'ai eu le temps de vraiment suivre cette situation de près : je suis bien trop occupé avec le travail en ce moment.
+# change_location
 {change_location("village_1")}
 Le réseau électrique de Vitry-la-Vallée a été conçu pour alimenter au maximum une centaine d'habitations, et c'est en supposant que chacun ait une consommation responsable -ce qui est un acquis pour les anciens habitants, mais beaucoup moins pour les nouveaux arrivants.
 Par conséquent, je suis obligé de garder les éoliennes en fonctionnement presque 24 heures sur 24, 7 jours sur 7. Je ne me souviens pas quand j'ai eu une bonne nuit de repos pour la dernière fois.
@@ -123,13 +131,16 @@ Par conséquent, je suis obligé de garder les éoliennes en fonctionnement pres
 -> MINIGAME_2
 
 === MINIGAME_2 ===
+# change_location
 {change_location("control_room")}
+# start_minigame
 {start_minigame(1)}
 //~ isMiniGame2Won = true
 // TO-DO
 -> CHAPTER_2
 
 === CHAPTER_2 ===
+# change_location
 {change_location("village_1")}
 Je sors de la station, heureux d'avoir enfin fini cette journée d'enfer. Il doit être aux alentours de minuit, ou une heure du mat.
 {
@@ -146,6 +157,7 @@ Je sors de la station, heureux d'avoir enfin fini cette journée d'enfer. Il doi
 La lune est haute dans le ciel, la seule source de lumière dans la vallée. Enfin presque : je peux encore voir de la lumière s'échapper du café de Gérard.
 George: Ça fait quoi, 3 semaines que j'y suis pas allé ?
 Je ne devrais vraiment pas y aller. Je devrais rentrer chez moi direct et gratter quelques heures de sommeil tant que je le peux. Mais j'ai vraiment besoin d'un verre.
+# change_location
 {change_location("coffee")}
 Malgré l'heure avancée, le café est encore bondé. Ça fait plaisir de voir qu'au moins une personne profite de l'arrivée de tous ces citadins.
 Ma place au comptoir est évidemment prise. Je me mets à faire le tour de la pièce du regard pour essayer de trouver une place de libre.
@@ -328,6 +340,7 @@ Amber: Je répondrai à tout ce que vous voulez savoir !
 	-> CHOICES
 
 === CHAPTER_3_GH ===
+# change_location
 {change_location("room")}
 // timeskip 2: 2 ans plus tard
 Cela fait maintenant 2 ans que je travaille pour Green Horizon. Deux années durant lesquelles le village a continué de se développer à la vitesse d'une comète. D'ailleurs utiliser le terme de village ne fait plus justice à Vitry-la-Vallée : c'est maintenant devenu une grande métropole d'une dizaine de milliers d'habitants. Des routes supplémentaires ont été construites pour que la ville soit accessible en permanence et un supermarché a ouvert récemment dans le centre-ville. Il y a même un kebab !
@@ -336,6 +349,7 @@ Un kebab à Vitry-la-Vallée !
 Travailler avec M. Vermeil est à la fois stimulant et effrayant. Il a des attentes très élevées sur comment le travail doit être fait et il n'hésite pas à le faire savoir au reste de l'équipe.
 Ceux qui arrivent à suivre le rythme sont récompensés avec des promotions et des avantages non négligeables, et M. Vermeil se débarrasse de ceux qui n'y arrivent pas. Je l'ai déjà vu virer un stagiaire en pleine réunion parce qu'il lui avait ramené un café froid. Ce qui viole probablement plusieurs lignes du code du travail, mais personne dans la salle n'a osé le faire remarquer. Personne n'a envie de "parler en privé" avec le patron.
 Phrase pour dire que George part
+# change_location
 {change_location("village_2_gh")}
 La construction du tant attendu barrage hydroélectrique s'est terminée il y a quelques mois. Avant cela, la demande d'énergie que le réseau ne pouvait pas gérer était prise en charge par des groupes électrogènes généreusement offerts par Green Horizon au habitants dans le besoin. Mais depuis, tout est retombé sur moi.
 Point positif : le barrage est capable de produire jusqu'à 100 000 000 KWh/an, suffisant pour fournir de l'électricité à presque 45 000 personnes : le réseau électrique ne devrait pas subir de problème de surcharge avant un long moment. Le point négatif, c'est que tout problème qu'il pourrait avoir sur le réseau maintenant sera directement lié à mon incompétence. Et M. Vermeil n'aime pas l'incompétence.
@@ -344,18 +358,22 @@ Oui je sais que c'est extrêmement important et qu'un accident au niveau du barr
 -> MINIGAME_3_GH
 
 === MINIGAME_3_GH ===
+# change_location
 {change_location("control_room")}
+# start_minigame
 {start_minigame(2)}
 //~ isMiniGame3Won = true
 //~ isQuotaRespected = true
 -> CHAPTER_4_GH
 
 === CHAPTER_4_GH ===
+# change_location
 {change_location("void")}
 Ma journée de travail finie, je me dirige vers le bureau de M. Vermeil. Tous les lundis, nous avons un rendez-vous où nous discutons de mes performances, de l'état et des besoins du réseau, ainsi que des choses à prioriser pour l'entreprise.
 Le pire moment de ma semaine.
 Je toque à la porte.
 M. Vermeil: Entrez.
+# change_location
 {change_location("office_craig")}
 J'entre dans le bureau. Assis dans son fauteuil, M. Vermeil lève la tête du document qu'il était en train de lire. Deux ans après, je suis toujours aussi intimidé par son regard intense caché derrière ses lunettes noires.
 {
@@ -375,6 +393,7 @@ J'entre dans le bureau. Assis dans son fauteuil, M. Vermeil lève la tête du do
 	George: ...
 	M. Vermeil: Si c'est tout, la porte se trouve derrière vous. Green Horizon vous remercie pour vos services.
 	...
+	# change_location
 	{change_location("void")}
 	Je ferme la porte derrière moi en sortant du bureau. Je serre les poings de frustration. Frustration d'avoir perdu mon travail. Frustration de ne pas avoir pu mieux argumenter en face de mon patron. Frustration d'avoir gâché une des meilleures opportunités de ma vie.
 	J'ai envie de taper dans le mur à côté. Peut-être même de péter une fenêtre. A la place je lâche un long soupir et quitte les locaux de Green Horizon.
@@ -421,6 +440,7 @@ George: Très bien, c'est noté.
 		George: Ah ah, c'est marrant, je savais pas que t'étais capable de faire des blagues comme ça !
 		George: ...
 		George: C'était une blague hein ?
+		# change_location
 		{change_location("void")}
 		Après ça, Craig m'a emmené dans son restaurant. Un étoilé !
 		Je ne savais même pas qu'il y avait un étoilé en ville.
@@ -457,8 +477,10 @@ George: Très bien, c'est noté.
 }
 
 === CHAPTER_5_GH ===
+# change_location
 {change_location("room")}
 Cela fait maintenant 8 ans que je travaille chez Green Horizon. En regardant la mégapole de plus d'un million d'habitants s'étendre à travers toute la vallée, personne ne pourrait penser qu'il n'y avait presque rien il n'y a même pas 10 ans. Le petit village de Vitry-la-Vallée est devenu une agglomération capable de rivaliser avec les plus grandes capitales du monde, et je ne peux pas m'empêcher de me sentir un peu fier en me disant que j'ai joué un rôle là dedans. Cette réussite est liée en grande partie à la nouvelle centrale nucléaire, dont la construction s'est achevée l'année dernière. Avec une capacité maximale de production de 5 TWh par an, l'autonomie énergétique de Vitry-la-Vallée est assurée pour les décennies à venir.
+# change_location
 {change_location("village_3_gh")}
 La ville n'est pas la seule chose qui s'est étendue ces dernières années. Green Horizon exploite la quasi-totalité du Copium 226, et a même investi dans beaucoup d'autres entreprises dans la vallée. De nos jours, il est rare de trouver un business dans la région qui n'est pas lié de près ou de loin à Green Horizon.
 D'ailleurs, ça fait quelques années maintenant que je dirige une équipe ! Fini les journées de 10 heures à courir partout pour régler des problèmes mineurs, maintenant je peux juste tout déléguer et rentrer chez moi regarder questions pour un champion.
@@ -471,8 +493,10 @@ Vive le patronat.
 Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a quelques semaines, le Lorient a présenté à la communauté internationale des preuves irréfutables qu'elle possède bien la vallée de Vitry, et que les revendications du Fanighastan sont totalement infondées. Depuis, une ambiance assez lourde pèse dans les locaux de l'entreprise. Personne n'ose le dire, mais tout le monde pense la même chose : il est probable que Green Horizon soit forcé de plier bagage et de quitter la vallée dans les semaines ou les mois qui viennent...
 {
 - georgeRelationCraig:
+    # change_location
 	{change_location("void")}
 	Je pensais qu'aujourd'hui allait être une journée lambda et plutôt calme, mais pour une raison que j'ignore Craig m'a convoqué dans son bureau ce matin.
+	# change_location
 	{change_location("office_craig")}
 	Je ne sais pas ce qui l'a mis dans cet état, mais ça doit être quelque chose de grave :  ça doit faire 2 minutes que je suis là et qu'il ne m'a rien dit. Craig a beau être inexpressif, j'ai appris un minimum à lire ses émotions après avoir passé autant de temps ensemble, et je ne l'ai jamais vu aussi troublé.
 	Craig: M. Beauvois. Ce que je suis sur le point de vous dire ne doit jamais sortir de ce bureau. Si cela venait à se savoir, nos vies seraient en très grand danger. Je vous dis cela parce que nous partageons un lien fort et que je vous fais confiance.
@@ -579,13 +603,16 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 }
 
 === MINIGAME_4_GH ===
+# change_location
 {change_location("control_room")}
 //~ isMiniGame4Won = true
+# start_minigame
 {start_minigame(3)}
 // TO-DO
 -> CHAPTER_6_GH
 
 === CHAPTER_6_GH ===
+# change_location
 {change_location("void")}
 {
 - isMiniGame4Won:
@@ -607,12 +634,14 @@ Après un long duel entre George et le hacker de Green Horizon, la centrale fut 
 }
 
 === CHAPTER_3_CD ===
+# change_location
 {change_location("room")}
 Cela fait maintenant 2 ans que je travaille pour Cosmic Drive. 2 années durant lesquelles le village a continué de se développer à la vitesse d'une comète. D'ailleurs utiliser le terme de village ne fait plus justice à Vitry-la-Vallée : c'est maintenant devenu une grande métropole d'une dizaine de milliers d'habitants. Des routes supplémentaires ont été construites pour que la ville soit accessible en permanence et un supermarché a ouvert récemment dans le centre-ville. Il y a même un kebab !
 Un kebab à Vitry-la-Vallée !
 .. Ahem.
 Amber est une personne très... excentrique, c'est le premier mot qui me vient en tête. Elle a une approche très passive de la gestion de l'entreprise : tant que les employés remplissent leurs objectifs, ils sont libres de faire ce qu'ils veulent de leur journée. J'ai vu certains de mes collègues lancer des parties de LotL (Legends of the League) en plein milieu de la journée et j'en ai juste pas vu d'autres parce qu'ils préfèrent rester chez eux et travailler en distanciel.
 Amber ne fait pas exception à cela. Je la vois plus souvent en train de poster des memes sur Tweether qu'en train de bosser. Je ne sais pas comment la boîte n'a pas encore coulé. Peut-être qu'elle n'a juste pas tant de responsabilités que ça...
+# change_location
 {change_location("village_2_cd")}
 En sortant de chez moi, je prends une grande bouffée d'air pure et propre de montagne, intouché par l'homme.
 ...
@@ -623,7 +652,9 @@ Bref, j'ai peut-être perdu quelques années d'espérance de vie, mais en échan
 -> MINIGAME_3_CD
 
 === MINIGAME_3_CD ===
+# change_location
 {change_location("control_room")}
+# start_minigame
 {start_minigame(1)}
 //~ isMiniGame3Won = true
 //~ isQuotaRespected = true
@@ -667,6 +698,7 @@ Amber: C'est un peu un pari sur l'avenir si l'on veut, pas vrai ? Allez, étant 
 	Je me lève de mon fauteuil et me dirige vers la porte.
 	Amber: Essaie de pas trop t'amuser quand même, tu vas faire des jaloux.
 	George: Je ne promets rien !
+	# change_location
 	{change_location("void")}
 	Je me dépêche de quitter les locaux de Cosmic Drive et me dirige vers le café de Gérard. J'y croise là bas Benoît, que je n'avais pas vu depuis un bon bout de temps : on discute, on boit, on rigole, on se raconte nos vies...
 	Y'a pas à dire, la vie est belle.
@@ -689,6 +721,7 @@ Amber: C'est un peu un pari sur l'avenir si l'on veut, pas vrai ? Allez, étant 
 		...
 		Amber: Du coup ! On disait qu'on allait boire un verre ensemble ! Allez c'est parti ! Donne moi juste 5 minutes pour ranger 2-3 trucs et récupérer mon manteau et on y va ! Ouais ouais ouais !
 		George: D'accord, je... Je vais attendre dehors.
+		# change_location
 		{change_location("void")}
 		Je sors rapidement du bureau. Je savais qu'Amber était.... tête en l'air... mais à ce point...
 		Wow.
@@ -712,6 +745,7 @@ Amber: C'est un peu un pari sur l'avenir si l'on veut, pas vrai ? Allez, étant 
 	}
 
 === CHAPTER_5_CD ===
+# change_location
 {change_location("village_3_cd")}
 Cela fait maintenant 8 ans que je travaille chez Cosmic Drive. En regardant la mégapole de plus d'un million d'habitants s'étendre à travers toute la vallée, personne ne pourrait penser qu'il n'y avait presque rien il n'y a même pas 10 ans. Le petit village de Vitry-la-Vallée est devenu une agglomération capable de rivaliser avec les plus grandes capitales du monde, et je ne peux pas m'empêcher de me sentir un peu fier en me disant que j'ai joué un rôle là dedans. Cette réussite est liée en grande partie à la nouvelle centrale nucléaire, dont la construction s'est achevée l'année dernière. Avec une capacité maximale de production de 5 TWh par an, l'autonomie énergétique de Vitry-la-Vallée est assurée pour les décennies à venir.
 La ville n'est pas la seule chose qui s'est étendue ces dernières années. Cosmic Drive exploite la quasi-totalité du Copium 226, et a même investi dans beaucoup d'autres entreprises dans la vallée. De nos jours, il est rare de trouver un business dans la région qui n'est pas lié de près ou de loin à Cosmic Drive.
@@ -721,6 +755,7 @@ La ville n'est pas la seule chose qui s'est étendue ces dernières années. Cos
 }
 En plus, il y a quelques mois, le Lorient a présenté à la communauté internationale des preuves irréfutables qu'elle possède bien la vallée de Vitry, et que les revendications du Fanighastan sont totalement infondées. Depuis les entreprises Fanighastanaises se sont lentement retirées de la région, dont Green Horizon qui restait notre principal concurrent même après toutes ces années.
 Si on continue sur cette lancée, Cosmic Drive devrait d'ici une ou deux années avoir un monopole total, non seulement sur le Copium 226 mais également sur toutes les entreprises de la vallée. Et difficile de voir ce qui pourrait nous arrêter maintenant !
+# change_location
 {change_location("office_cd")}
 C'est une autre journée tranquille aujourd'hui : assis à mon bureau, je regarde les allers eretours des membres de mon équipe qui font leur travail, et de temps en temps je jette un oeil à mon panneau de contrôle : tous les voyants de la centrale nucléaire sont au vert, la centrale fonctionne comme un charme, de manière optimale.
 Oui, tous les voyants sont au vert. Sauf un.
@@ -785,6 +820,7 @@ George: Désolé, mais je ne peux pas faire ça. Tu auras tout le temps que tu v
 		...
 		George: Je suis arrivé à la console.
 		Amber: ... Bonne chance.
+		# change_location
 		{change_location("void")}
 		Je raccroche le téléphone et me dirige vers la console principale.
 		Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée repose sur moi.
@@ -795,13 +831,16 @@ Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée 
 -> MINIGAME_4_CD
 
 === MINIGAME_4_CD ===
+# change_location
 {change_location("control_room")}
 //~ isMiniGame4Won = true
+# change_location
 {start_minigame(3)}
 // TO-DO
 -> CHAPTER_6_CD
 
 === CHAPTER_6_CD ===
+# change_location
 {change_location("void")}
 {
 	- isMiniGame4Won:
