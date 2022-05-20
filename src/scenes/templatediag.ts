@@ -20,6 +20,47 @@ export default class TemplateDialogue extends Phaser.Scene {
 	create() {
 		this.emitter = new Phaser.Events.EventEmitter();
 
+		this.emitter.on('next', () => {
+			let text = this.story.Continue();
+			if (this.story.canContinue){
+				// If there are tags, we need to call the good event
+				if (this.story.currentTags.length !== 0){
+					let event = this.story.currentTags[0];
+					switch (event) {
+						case 'change_location':
+							this.emitter.emit('change_location', text);
+							return;
+						case 'start_minigame':
+							this.emitter.emit('start_minigame');
+							return;
+					}
+				}else{
+					this.emitter.emit('nextDialog', text);
+				}
+			}else{
+				this.emitter.emit('choices');
+			}
+		});
+
+		this.emitter.on('nextDialog', text => {
+			dialogBox(this, getcharactertexture(text), text);
+		});
+
+		this.emitter.on('change_location', text => {
+			console.log("Changing location...");
+			this.time.delayedCall(2500, () => {
+				this.emitter.emit('nextDialog', text);
+			})
+		});
+
+		this.emitter.on('start_minigame', () => {
+			console.log('start_minigame');
+		});
+
+		this.emitter.on('choices', choiceList => {
+			console.log(choiceList);
+		});
+
 		// default (void) background
 		this.background = this.add.sprite(0, 0, Assets.VoidScene).setOrigin(0);
 		//this.theme = this.sound.add(Assets.RoomTheme);
@@ -38,10 +79,9 @@ export default class TemplateDialogue extends Phaser.Scene {
 		let choiceList;
 
 		// change background from ink file
-    this.story.BindExternalFunction('change_location', (location:string) => {
-			console.log(location);
+		this.story.BindExternalFunction('change_location', (location:string) => {
 			// stop existing music
-      this.tweens.add({
+			this.tweens.add({
 				targets: this.theme,
 				volume: 0,
 				ease: 'Linear',
@@ -53,55 +93,31 @@ export default class TemplateDialogue extends Phaser.Scene {
 				this.time.delayedCall(1000, () => {
 					getbackgroundtexture(this, location);
 					// start music if neccessary
-					if (location = 'room') {
+					if (location === 'room') {
 						this.theme = this.sound.add(Assets.RoomTheme);
 						this.theme.play('', { loop: true });
-					} else if (location = 'coffee') {
+					} else if (location === 'coffee') {
 						this.theme = this.sound.add(Assets.CoffeeTheme);
 						this.theme.play('', { loop: true });
-					} else if (location = 'village_0' || 'village_1' || 'village_2_gh' || 'village_2_cd' || 'village_3_gh' || 'village_3_cd') {
+					} else if (location.search('village') !== -1) {
 						this.theme = this.sound.add(Assets.RoomTheme);
-						console.log(this.theme);
 						this.theme.play('', { loop: true });
-					} else if (location = 'control_room') {
+					} else if (location === 'control_room') {
 						this.theme = this.sound.add(Assets.PowerPlantTheme);
 						this.theme.play('', { loop: true });
 					}
 					this.cameras.main.fadeIn(750, 0, 0, 0);
 				});
 			});
-		});
+		}, false);
+
+		this.story.BindExternalFunction('start_minigame', (level:integer) => {
+			console.log(level);
+		}, false);
 
 		// starting dialog
-		dialogBox(this, null, this.story.Continue());
-		this.emitter.on('nextDialog', () => {
-			if (this.story.canContinue) {
-				let text = this.story.Continue();
-				dialogBox(this, getcharactertexture(text), text);
-			} else {
-				choiceList = this.story.currentChoices;
-				this.emitter.emit('choices', choiceList);
-			}
-		});
-
-		this.emitter.on('choices', choiceList => {
-			console.log(choiceList);
-		});
-
-		/*
-		let dialogArray = ['Test 1, eheh ça marche !', 'Non mais frère ??', 'Oui ?', 'Ok mec.'];
-		let persoArray = [ Assets.George, Assets.Benoit, Assets.George, Assets.Benoit ];
-		let index = 0;
-		this.choix = [];
-		this.emitter.on('nextDialog', () => {
-			if (index < 4) {
-				dialogBox(this, persoArray[index], dialogArray[index], index % 2 === 0 ? 1 : 0);
-				index++;
-			}
-		}, this);
-		//this.emitter.on('choice', script, this);
-		this.emitter.emit('nextDialog');
-		*/
+		//this.story.Continue();
+		this.emitter.emit('next');
 
 		// pause button and trigger
 		pause(this);

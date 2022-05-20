@@ -7,7 +7,9 @@ export default function pause(game) {
 	pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
 	pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
 	pauseButton.on('pointerdown', () => {
-		game.theme.pause();
+		if (game.theme){
+			game.theme.pause();
+		}
 		pauseSound.play();
 		game.scene.launch('PauseMenu', { sceneFrom: game.scene.key }).bringToTop();
 		game.scene.sendToBack();

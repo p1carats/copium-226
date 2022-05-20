@@ -12,6 +12,7 @@ VAR georgeRelationAmber = false
 -> INTRO
 
 === INTRO ===
+# change_location
 {change_location("void")}
 Bip. Bip. Bip. Bip. Bip. Bip. Bip. Bi-
 Après avoir cherché pendant une dizaine de secondes, j'attrape enfin mon téléphone et coupe le réveil. J'ouvre un demi-œil pour confirmer ce que je sais déjà.
@@ -22,9 +23,11 @@ George: Ah, put-
 En y réfléchissant, ce serait probablement plus simple d'allumer la lumière, mais à cette heure-là Benoît est en train de finir sa première fournée de pain et siphonne quasiment toute l'énergie du réseau pour lui.
 George: Si son four s'arrête en pleine cuisson, ça va encore retomber sur moi...
 Je soupire et finis par arriver à ma fenêtre. J'ouvre mes volets, laissant un peu de lumière entrer dans ma petite chambre.
+# change_location
 {change_location("room")}
 Je reste là quelques instants, à observer le paysage et le soleil qui se lève tranquillement.
 George: Bon, il est temps de se mettre en route.
+# change_location
 {change_location("village_0")}
 Mon nom est George, je suis un ingénieur fraîchement diplômé et ceci est mon village natal qui porte le doux nom de Vitry-la-Vallée. Perdu au fin fond des montagnes servant de frontière naturelle entre le Fanighastan et le Lorient, dire que ce village est isolé du reste du monde est un euphémisme. Ses 27 habitants sont quasiment autosuffisants, autant par choix que par nécessité : la seule route menant au village est impraticable pour un véhicule normal à peu près 11 mois sur 12.
 Que fait un ingénieur comme moi ici, alors ? Eh bien, j’avais envie de rentrer à la maison, tout simplement. J’ai dû quitter la vallée vers l’âge des 10 ans pour avoir une éducation correcte, mais j’ai toujours voulu revenir : vivre dans une grande ville a ses avantages mais le calme de ce village, perdu au milieu des neiges et de la nature, me manquait vraiment.
