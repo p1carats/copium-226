@@ -10,41 +10,41 @@ const HARD = [1000, 2000, 20, 17];
 // Easier to implement
 const DIFFICULTY_ARRAY = [TUTO, EASY, MEDIUM, HARD];
 
-function fixMe(game, score, difficulty, sounds, texture) {
-	let choice = Math.floor(Math.random() * game.buttonsArray.length);
+function fixMe(game, score, difficulty, sounds, texture, buttonsArray) {
+	let choice = Math.floor(Math.random() * buttonsArray.length);
 	// check if the sprite is pressed
-	if (game.buttonsArray[choice].texture.key.indexOf('_pressed') === -1 && game.buttonsArray[choice].texture.key.indexOf('stick') === -1) {
-		game.buttonsArray[choice].setTexture(game.buttonsArray[choice].texture.key + '_pressed');
-		if (game.buttonsArray[choice].texture.key.search('red') !== -1) {
+	if (buttonsArray[choice].texture.key.indexOf('_pressed') === -1 && buttonsArray[choice].texture.key.indexOf('stick') === -1) {
+		buttonsArray[choice].setTexture(buttonsArray[choice].texture.key + '_pressed');
+		if (buttonsArray[choice].texture.key.search('red') !== -1) {
 			sounds[0].play();
 		} else {
 			sounds[1].play();
 		}
 		// set the texture to the normal position after 2s if it's not clicked
 		game.time.delayedCall(difficulty[0], () => {
-			if (game.buttonsArray[choice].texture.key.search('_pressed') !== -1) {
+			if (buttonsArray[choice].texture.key.search('_pressed') !== -1) {
 				sounds[3].play();
 				texture.setTexture(Assets.SmallScreenError);
 				game.time.delayedCall(200, () => {
 					texture.setTexture(Assets.SmallScreen);
 				});
-				game.buttonsArray[choice].setTexture(game.buttonsArray[choice].texture.key.replace('_pressed', ''));
+				buttonsArray[choice].setTexture(buttonsArray[choice].texture.key.replace('_pressed', ''));
 				score--;
 			}
 		});
-	} else if (game.buttonsArray[choice].texture.key.indexOf('stick') !== -1) { // or if it's a stick
+	} else if (buttonsArray[choice].texture.key.indexOf('stick') !== -1) { // or if it's a stick
 		let sprite = 'stick' + (Math.floor(Math.random() * 3) + 1);
-		game.buttonsArray[choice].setTexture(sprite);
+		buttonsArray[choice].setTexture(sprite);
 		sounds[2].play();
 		// set the texture to the normal position after 2s if it's not clicked
 		game.time.delayedCall(difficulty[0], () => {
-			if (game.buttonsArray[choice].texture.key.search(/[1-3]/) !== -1) {
+			if (buttonsArray[choice].texture.key.search(/[1-3]/) !== -1) {
 				sounds[3].play();
 				texture.setTexture(Assets.SmallScreenError);
 				game.time.delayedCall(200, () => {
 					texture.setTexture(Assets.SmallScreen);
 				});
-				game.buttonsArray[choice].setTexture(game.buttonsArray[choice].texture.key.replace(/[1-3]/, '0'));
+				buttonsArray[choice].setTexture(buttonsArray[choice].texture.key.replace(/[1-3]/, '0'));
 				score--;
 			}
 		});
@@ -64,7 +64,7 @@ export default function startMiniGame(game, difficulty) {
 	let green_button_up: Phaser.GameObjects.Sprite = game.add.sprite(950, 650, Assets.GreenButtonUp).setOrigin(0).setInteractive();
 	let green_button_left: Phaser.GameObjects.Sprite = game.add.sprite(800, 700, Assets.GreenButtonLeft).setOrigin(0).setInteractive();
 	let stick: Phaser.GameObjects.Sprite = game.add.sprite(1450, 700, Assets.Stick0).setOrigin(0).setInteractive();
-	game.buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
+	let buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
 
 	// background effect
 	animation(game, 'eolAnim', [
@@ -102,17 +102,17 @@ export default function startMiniGame(game, difficulty) {
 
 	let bigScreen;
 
-	switch (game.script.variablesState['company']) {
+	switch (game.story.variablesState['company']) {
 		case 0:
 			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('eolAnim');
-			return;
+			break;
 		case 1:
 			// Green Horizon
 			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('hydroelectricAnim');
-			return;
+			break;
 		case 2:
 			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('coalAnim');
-			return;
+			break;
 	}
 
 	let texture = game.add.sprite(150, 290, Assets.SmallScreen).setOrigin(0);
@@ -130,12 +130,11 @@ export default function startMiniGame(game, difficulty) {
 
 	// let's start after 2s !
 	game.time.delayedCall(2000, () => {
-		fixMe(game, score, difficultySettings, sounds, texture);
-
+		fixMe(game, score, difficultySettings, sounds, texture, buttonsArray);
 	})
 
 	// manage click on button
-	game.buttonsArray.forEach(button => button.on('pointerdown', () => {
+	buttonsArray.forEach(button => button.on('pointerdown', () => {
 		if (button.texture.key.indexOf('_pressed') !== -1) {
 			if (button.texture.key.indexOf('green') !== -1) {
 				arrowClick.play();
@@ -148,9 +147,9 @@ export default function startMiniGame(game, difficulty) {
 		} else if (button.texture.key.search(/[1-3]/) !== -1) {
 			stickClick.play();
 			// shitty line use for decrease the number on the stick's sprite
-			let texture = button.texture.key.replace(/[1-3]/, String(button.texture.key[button.texture.key.search(/[1-3]/)] - 1));
+			let texture = button.texture.key.replace(/[1-3]/, String(button.texture.key.search(/[1-3]/) - 1));
 			button.setTexture(texture);
-			if (button.texture.key[button.texture.key.search(/[1-3]/)] === 0) {
+			if (button.texture.key.search(/[1-3]/) === 0) {
 				score++;
 			}
 		} else {
@@ -165,16 +164,18 @@ export default function startMiniGame(game, difficulty) {
 
 	game.emitter.on('nextButton', () => {
 		if (number_of_issue > 0) {
-			fixMe(game, score, difficultySettings, sounds, texture);
+			fixMe(game, score, difficultySettings, sounds, texture, buttonsArray);
 			number_of_issue--;
 		} else {
 			let resultat = score >= difficultySettings[3] ? 1 : 0;
 			let quota = score === difficultySettings[3] ? 1 : 0;
 			game.emitter.emit('end_minigame', difficulty, resultat, quota);
-			game.buttonsArray.forEach(e => e.destroy());
+			buttonsArray.forEach(e => {
+				e.destroy()
+			});
 			texture.destroy();
 			bigScreen.destroy();
-
+			return;
 		}
 	});
 }

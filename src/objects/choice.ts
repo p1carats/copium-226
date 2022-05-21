@@ -7,7 +7,7 @@ let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight, text) 
 		wordWrap: {
 			width: wrapWidth
 		},
-		maxLines: 4
+		maxLines: 6
 	}).setFixedSize(fixedWidth, fixedHeight);
 }
 

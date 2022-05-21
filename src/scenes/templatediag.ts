@@ -154,7 +154,7 @@ export default class TemplateDialogue extends Phaser.Scene {
 		this.story.BindExternalFunction('play_sound', (sound:string) => {
 			let ss = this.sound.add(Assets.ClockSound);
 			ss.play();
-			this.time.delayedCall(5000, () => {
+			this.time.delayedCall(3000, () => {
 				ss.stop();
 			})
 		}, false);

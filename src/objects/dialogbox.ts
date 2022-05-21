@@ -86,7 +86,7 @@ export default function dialogBox(game, text) {
 	let position, perso;
 	position = [300, 650, 100, 800];
 
-	if (character !== null && character.length < 13) {
+	if (character !== null && character.split(" ").length < 2) {
 		perso = game.add.sprite(position[0], position[1], getcharactertexture(character));
 	} else {
 		perso = null
