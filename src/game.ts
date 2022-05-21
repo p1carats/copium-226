@@ -6,9 +6,8 @@ import UIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin';
 import SplashScreen from './scenes/preload';
 import TitleScreen from './scenes/titlescreen';
 import SettingsScene from './scenes/settings';
-import PauseMenu from './scenes/pause';
-import TemplateDialogue from './scenes/templatediag';
-//import MiniGameScene from './scenes/minigame';
+import PauseScene from './scenes/pause';
+import GameScene from './scenes/templatediag';
 import EndGameScene from './scenes/endgame';
 import CreditsScene from './scenes/credits';
 
@@ -25,8 +24,8 @@ const config: Phaser.Types.Core.GameConfig = {
 		SplashScreen,
 		TitleScreen,
 		SettingsScene,
-		PauseMenu,
-		TemplateDialogue,
+		PauseScene,
+		GameScene,
 		EndGameScene,
 		CreditsScene
 	],

@@ -1,30 +1,27 @@
 import { Assets } from '../assets';
 import { loadStory } from "../utils";
-import dialogBox from '../objects/dialogbox';
-import pause from "../objects/pause";
+
 import startMiniGame from "../objects/minigame";
+import dialogBox from '../objects/dialog';
 import choiceBox from "../objects/choice";
 
-export default class TemplateDialogue extends Phaser.Scene {
+export default class GameScene extends Phaser.Scene {
 	private story;
 	private emitter: Phaser.Events.EventEmitter;
 	private background: Phaser.GameObjects.Sprite;
 	private theme: Phaser.Sound.BaseSound;
 	private text: string;
-	// private choix: any[];
 
 	constructor() {
-		super({ key: 'TemplateDialogue' });
+		super({ key: 'GameScene' });
 	}
 
 	create() {
 		this.emitter = new Phaser.Events.EventEmitter();
 
-		// pause button and trigger
-		pause(this);
-
 		this.emitter.on('next', () => {
 			this.text = this.story.Continue();
+			this.text = this.text.trim();
 			if (this.story.canContinue) {
 				// if there are tags, we need to call the good event
 				if (this.story.currentTags.length !== 0) {
@@ -34,62 +31,60 @@ export default class TemplateDialogue extends Phaser.Scene {
 							this.emitter.emit('change_location', this.text);
 							return;
 						case 'play_sound':
-								this.emitter.emit('play_sound', this.text);
-								return;
+							this.emitter.emit('play_sound', this.text);
+							return;
+						case 'timeskip':
+							this.emitter.emit('timeskip', this.text);
+							return;
 						case 'start_minigame':
 							return;
 					}
 				} else {
-					this.emitter.emit('nextDialog', this.text);
+					this.emitter.emit('dialog', this.text);
 				}
 			} else {
 				this.emitter.emit('choices', this.text);
 			}
 		});
 
-		this.emitter.on('nextDialog', text => {
+		this.emitter.on('dialog', text => {
 			dialogBox(this, text);
 		});
 
 		this.emitter.on('change_location', text => {
 			this.time.delayedCall(2000, () => {
-				this.emitter.emit('nextDialog', text);
-			})
+				this.emitter.emit('dialog', text);
+			});
 		});
 
 		this.emitter.on('play_sound', text => {
-			this.time.delayedCall(3000, () => {
-				this.emitter.emit('nextDialog', text);
-			})
+			this.time.delayedCall(5000, () => {
+				this.emitter.emit('dialog', text);
+			});
 		});
 
 		this.emitter.on('end_minigame', (level, result, quota) => {
 			console.log('end_minigame lv :', level, result, quota);
 			let inkVariables = ['isMiniGame1Won', 'isMiniGame2Won', 'isMiniGame3Won', 'isMiniGame4Won'];
 			// if it's a prefect during the first day with your new boss
-			if (level === 2){
+			if (level === 2) {
 				this.story.variablesState.$('isQuotaRespected', Boolean(quota));
 			}
 			this.story.variablesState.$(inkVariables[level], Boolean(result));
-			this.emitter.emit('nextDialog', this.text);
+			this.emitter.emit('dialog', this.text);
 		});
 
 		this.emitter.on('choices', text => {
 			console.log(text);
 			console.log(this.story.currentChoices);
-			choiceBox(this, null, text, this.story.currentChoices);
-
+			choiceBox(this, text, this.story.currentChoices);
 		});
 
 		// default (void) background
 		this.background = this.add.sprite(0, 0, Assets.VoidScene).setOrigin(0);
 
-		// click sound
-		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.ClickSound);
-
 		// dialog
 		this.story = loadStory(this);
-		let choiceList;
 
 		// change background from ink file
 		this.story.BindExternalFunction('change_location', (location:string) => {
@@ -155,8 +150,17 @@ export default class TemplateDialogue extends Phaser.Scene {
 			let ss = this.sound.add(Assets.ClockSound);
 			ss.play();
 			this.time.delayedCall(3000, () => {
-				ss.stop();
+				this.tweens.add({
+					targets: ss,
+					volume: 0,
+					ease: 'Linear',
+					duration: 1500
+				});
 			})
+		}, false);
+
+		this.story.BindExternalFunction('timeskip', (level:integer) => {
+			console.log('wouhou');
 		}, false);
 
 		this.story.BindExternalFunction('start_minigame', (level:integer) => {
@@ -166,5 +170,7 @@ export default class TemplateDialogue extends Phaser.Scene {
 		// starting dialog
 		this.emitter.emit('next');
 
+		// pause menu and trigger (WIP)
+		// this.scene.launch('PauseScene');
 	}
 }

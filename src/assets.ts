@@ -39,9 +39,9 @@ export function assetsLoader(game) {
 	game.load.image('village_3_cc', 'assets/scenes/village_3_cd.png');
 	game.load.image('control_room', 'assets/scenes/control_room.png');
 	game.load.image('coffee', 'assets/scenes/coffee.png');
-	//game.load.image('office_gh', 'assets/scenes/office_gh.png');
+	game.load.image('office_gh', 'assets/scenes/office_gh.png');
 	game.load.image('office_craig', 'assets/scenes/office_craig.png');
-	//game.load.image('office_cc', 'assets/scenes/office_cd.png');
+	game.load.image('office_cc', 'assets/scenes/office_cd.png');
 	game.load.image('office_amber', 'assets/scenes/office_amber.png');
 	game.load.image('coffee', 'assets/scenes/coffee.png');
 	game.load.image('void', 'assets/scenes/void.png');
@@ -51,7 +51,7 @@ export function assetsLoader(game) {
 	game.load.image('gerard', 'assets/characters/gerard.png');
 	game.load.image('craig', 'assets/characters/craig.png');
 	game.load.image('amber', 'assets/characters/amber.png');
-	game.load.image('marion', 'assets/characters/fatima.png');
+	game.load.image('marion', 'assets/characters/marion.png');
 	game.load.image('marc', 'assets/characters/marc.png');
 	game.load.image('unknown', 'assets/characters/unknown.png');
 	// titlescreen anim

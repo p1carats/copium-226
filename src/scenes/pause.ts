@@ -1,9 +1,9 @@
 import { Assets } from "../assets";
 
-export default class PauseMenu extends Phaser.Scene {
+export default class PauseScene extends Phaser.Scene {
 
 	constructor() {
-		super({ key: 'PauseMenu' });
+		super({ key: 'PauseScene' });
 	}
 
 	preload() {
@@ -11,44 +11,70 @@ export default class PauseMenu extends Phaser.Scene {
 	}
 
 	create(data) {
-		let click: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseOutSound);
-		let otherscene: Phaser.Scene = this.scene.get(data.sceneFrom);
+		let pauseInSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseInSound);
+		let pauseOutSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseOutSound);
+		let gameScene = this.scene.get('TemplateDialogue');
 
-		// title
-		let title: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/3, 'Pause', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
+		// pause menu elements
+		let title, resume, options, quit;
+		title = this.add.text(this.scale.width/2, this.scale.height/3, 'Pause', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+			resume = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+			options = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+			quit = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+
+		// pause button
+		let pauseButton = this.add.sprite(50, 50, Assets.PauseButton).setOrigin(0).setInteractive();
+		pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
+		pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
+		pauseButton.on('pointerdown', () => {
+			pauseInSound.play();
+			gameScene.scene.pause();
+			// pause menu elements
+			title.setAlpha(1).setInteractive();
+			resume.setAlpha(1).setInteractive();
+			options.setAlpha(1).setInteractive();
+			quit.setAlpha(1).setInteractive();
+		});
 
 		// resume game
-		let resume: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		resume.on('pointerdown', () => {
 			this.input.enabled = false;
-			click.play();
-			this.scene.wake(data.sceneFrom);
-			this.scene.stop();
+			pauseOutSound.play();
+			gameScene.scene.wake();
+			// pause menu elements
+			title.setAlpha(0).removeInteractive();
+			resume.setAlpha(0).removeInteractive();
+			options.setAlpha(0).removeInteractive();
+			quit.setAlpha(0).removeInteractive();
 		});
 
 		// option menu
-		let options: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		options.on('pointerdown', () => {
 			this.input.enabled = false;
-			click.play();
+			pauseOutSound.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {
 					this.scene.start('SettingsScene', { sceneFrom: this.scene.key });
-					this.scene.stop();
+					//this.scene.stop();
 				});
 			});
 		});
 
 		// quit game
-		let quit: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
 		quit.on('pointerdown', () => {
 			this.input.enabled = false;
-			click.play();
+			pauseOutSound.play();
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {
+					// pause menu elements
+					title.setAlpha(0).removeInteractive();
+					resume.setAlpha(0).removeInteractive();
+					options.setAlpha(0).removeInteractive();
+					quit.setAlpha(0).removeInteractive();
 					this.scene.start('TitleScreen');
+					gameScene.scene.stop();
 					this.scene.stop();
 				});
 			});

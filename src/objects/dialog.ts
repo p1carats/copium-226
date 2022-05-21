@@ -1,7 +1,5 @@
 import { Assets } from "../assets";
 
-import getcharactertexture from "./getcharactertexture";
-
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	return scene.add.text(0, 0, '', {
 		fontSize: '52px',
@@ -13,14 +11,14 @@ let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	}).setFixedSize(fixedWidth, fixedHeight);
 }
 
-function createTextBox(scene, perso, x, y, config) {
+function createTextBox(scene, perso, config) {
 	let wrapWidth = Phaser.Utils.Objects.GetValue(config, 'wrapWidth', 0);
 	let fixedWidth = Phaser.Utils.Objects.GetValue(config, 'fixedWidth', 0);
 	let fixedHeight = Phaser.Utils.Objects.GetValue(config, 'fixedHeight', 0);
 	let backgroundTexture = scene.add.image(0, 0, Assets.DialogBox).setAlpha(0.9);
 	let textBox = scene.rexUI.add.textBox({
-		x: x,
-		y: y,
+		x: 100,
+		y: 800,
 		background: backgroundTexture,
 		text: getBuiltInText(scene, wrapWidth, fixedWidth, fixedHeight),
 		action: scene.add.image(0, 0, Assets.LineBreak).setScale(0.5).setVisible(false),
@@ -73,25 +71,47 @@ function createTextBox(scene, perso, x, y, config) {
 }
 
 export default function dialogBox(game, text) {
-	let character: string;
-	let regex: RegExp = /[a-zA-Zî.?\s-]+:/;
+	let character;
+	let regex: RegExp = /\[.*\]/;
 	if(regex.test(text)) {
-		regex = /[a-zA-Zî.?\s-]+/;
-		character = regex.exec(text)[0].normalize('NFD').replace(/\p{Diacritic}/gu, '');
-		//console.log(character);
+		regex = /[^\]]*/;
+		character = regex.exec(text)[0].normalize('NFD').replace('[', '').replace(/\p{Diacritic}/gu, '').trim();
+		character === 'M. Vermeil' ? character = 'Craig' : '';
+		switch (character) {
+			case 'George':
+				character = Assets.George;
+				break;
+			case 'Benoit':
+				character = Assets.Benoit;
+				break;
+			case 'Gerard':
+				character = Assets.Gerard;
+				break;
+			case 'Amber':
+				character = Assets.Amber;
+				break;
+			case 'Craig':
+				character = Assets.Craig;
+				break;
+			case 'Marion':
+				character = Assets.Marion;
+				break;
+			case 'Marc':
+				character = Assets.Marc;
+				break;
+			case '???':
+				character = Assets.Unknown;
+				break;
+			default:
+				character = null;
+				break;
+		}
+		character = game.add.sprite(300, 650, character);
 	} else {
 		character = null;
 	}
-	console.log(character);
-	let position, perso;
-	position = [300, 650, 100, 800];
 
-	if (character !== null && character.split(" ").length < 2) {
-		perso = game.add.sprite(position[0], position[1], getcharactertexture(character));
-	} else {
-		perso = null
-	}
-	return createTextBox(game, perso, position[2], position[3], {
+	return createTextBox(game, character, {
 		wrapWidth: 800,
 		fixedWidth: 900,
 		fixedHeight: 225,

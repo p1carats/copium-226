@@ -1,13 +1,13 @@
 import { Assets } from "../assets";
 
-let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight, text) {
-	return scene.add.text(0, 0, text, {
-		fontSize: '40px',
-		fontFamily: 'monogramextended',
+let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
+	return scene.add.text(0, 0, '', {
+		fontSize: '52px',
+		fontFamily : 'monogramextended',
 		wordWrap: {
 			width: wrapWidth
 		},
-		maxLines: 6
+		maxLines: 4
 	}).setFixedSize(fixedWidth, fixedHeight);
 }
 
@@ -27,15 +27,34 @@ let createLabel = function (scene, text, backgroundColor) {
 	});
 }
 
-function createChoiceBox(game, text, x, y, choicesArray) {
-	let backgroundTexture = game.add.image(0, 0, Assets.DialogBox).setAlpha(0.9);
+function createTextBox(game, character, choicesArray, config) {
+	// annoying config
+	let wrapWidth = Phaser.Utils.Objects.GetValue(config, 'wrapWidth', 0);
+	let fixedWidth = Phaser.Utils.Objects.GetValue(config, 'fixedWidth', 0);
+	let fixedHeight = Phaser.Utils.Objects.GetValue(config, 'fixedHeight', 0);
+	// true config
+	let backgroundTexture = game.add.image(0, 0, Assets.DialogBox);
 	let choices = [];
-	choicesArray.forEach(elem => choices.push(createLabel(game, elem.text, 0x2F312E)))
-	let dialog = game.rexUI.add.dialog({
-		x: x,
-		y: y,
+	choicesArray.forEach(elem => choices.push(createLabel(game, elem.text, 0x2F312E)));
+
+	let textBox = game.rexUI.add.textBox({
+		x: 100,
+		y: 800,
 		background: backgroundTexture,
-		description: getBuiltInText(game, 800, 900, 225, text),
+		text: getBuiltInText(game, wrapWidth, fixedWidth, fixedHeight),
+		action: game.add.image(0, 0, Assets.LineBreak).setScale(0.5).setVisible(false),
+		space: {
+			left: 35,
+			right: 50,
+			top: 50,
+			bottom: 40,
+			text: 10,
+		}
+	}).setOrigin(0).setScale(0.75).setAlpha(0.95).setInteractive().layout();
+
+	let dialog = game.rexUI.add.dialog({
+		x: 1200,
+		y: 800,
 		choices: choices,
 		space: {
 			left: 35,
@@ -48,30 +67,107 @@ function createChoiceBox(game, text, x, y, choicesArray) {
 			// content is a pure text object
 			content: false,
 		}
-	}).layout().popUp(1000);
+	}).setAlpha(0).layout();
 
-	dialog.alpha = 0.9;
-
-	dialog.on('button.click', function (button, groupName, index) {
-		game.story.ChooseChoiceIndex(index);
-		game.emitter.emit('next');
-		dialog.destroy();
-		choices.forEach(elem => elem.destroy() );
-		console.log("Le bouton " + index + " a été choisi !");
+	textBox.on('pointerdown', function() {
+		let icon = this.getElement('action').setVisible(false);
+		this.resetChildVisibleState(icon);
+		if (this.isTyping) {
+			this.stop(true);
+		} else {
+			this.typeNextPage();
+		}
 	});
+
+	textBox.on('pageend', function() {
+		let icon = this.getElement('action').setVisible(true);
+		this.resetChildVisibleState(icon);
+		icon.y -= 30;
+		let tween = game.tweens.add({
+			targets: icon,
+			y: '+=30', // '+=100'
+			ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
+			duration: 500,
+			repeat: 0, // -1: infinity
+			yoyo: false
+		});
+	}, textBox);
+
+	textBox.on('complete', function () {
+		textBox.off('pointerdown');
+		textBox.off('pageend');
+		textBox.on('pointerdown', function() {
+			let icon = this.getElement('action').setVisible(false);
+			dialog.setAlpha(1);
+		});
+	});
+
 	dialog.on('button.over', function (button, groupName, index) {
 		button.getElement('background').setStrokeStyle(1, 0xffffff);
 	});
+
 	dialog.on('button.out', function (button, groupName, index) {
 		button.getElement('background').setStrokeStyle();
 	});
+
+	dialog.on('button.click', function (button, groupName, index) {
+		game.story.ChooseChoiceIndex(index);
+		choices.forEach(elem => elem.destroy());
+		if (character !== null) {
+			character.destroy();
+		}
+		textBox.destroy();
+		dialog.destroy();
+		game.emitter.emit('next');
+	});
+
+	return textBox;
 }
 
-export default function choiceBox(game, perso, text, choicesArray) {
-	let position = [100, 650, 1000, 800];
-
-	if (perso !== null){
-		game.add.sprite(position[0], position[1], perso);
+export default function choiceBox(game, text, choices) {
+	let character;
+	let regex: RegExp = /\[.*\]/;
+	if(regex.test(text)) {
+		regex = /[^\]]*/;
+		character = regex.exec(text)[0].normalize('NFD').replace('[', '').replace(/\p{Diacritic}/gu, '').trim();
+		character === 'M. Vermeil' ? character = 'Craig' : '';
+		switch (character) {
+			case 'George':
+				character = Assets.George;
+				break;
+			case 'Benoit':
+				character = Assets.Benoit;
+				break;
+			case 'Gerard':
+				character = Assets.Gerard;
+				break;
+			case 'Amber':
+				character = Assets.Amber;
+				break;
+			case 'Craig':
+				character = Assets.Craig;
+				break;
+			case 'Marion':
+				character = Assets.Marion;
+				break;
+			case 'Marc':
+				character = Assets.Marc;
+				break;
+			case '???':
+				character = Assets.Unknown;
+				break;
+			default:
+				character = null;
+				break;
+		}
+		character = game.add.sprite(300, 650, character);
+	} else {
+		character = null;
 	}
-	createChoiceBox(game, text, position[2], position[3], choicesArray);
+
+	return createTextBox(game, character, choices, {
+		wrapWidth: 800,
+		fixedWidth: 900,
+		fixedHeight: 225,
+	}).start(text, 60);
 }
