@@ -3,6 +3,7 @@ import { loadStory } from "../utils";
 import dialogBox from '../objects/dialogbox';
 import pause from "../objects/pause";
 import startMiniGame from "../objects/minigame";
+import choiceBox from "../objects/choice";
 
 export default class TemplateDialogue extends Phaser.Scene {
 	private story;
@@ -42,7 +43,7 @@ export default class TemplateDialogue extends Phaser.Scene {
 					this.emitter.emit('nextDialog', this.text);
 				}
 			} else {
-				this.emitter.emit('choices');
+				this.emitter.emit('choices', this.text);
 			}
 		});
 
@@ -62,15 +63,22 @@ export default class TemplateDialogue extends Phaser.Scene {
 			})
 		});
 
-		this.emitter.on('end_minigame', (level, result) => {
-			console.log('end_minigame lv :', level, result);
+		this.emitter.on('end_minigame', (level, result, quota) => {
+			console.log('end_minigame lv :', level, result, quota);
 			let inkVariables = ['isMiniGame1Won', 'isMiniGame2Won', 'isMiniGame3Won', 'isMiniGame4Won'];
+			// if it's a prefect during the first day with your new boss
+			if (level === 2){
+				this.story.variablesState.$('isQuotaRespected', Boolean(quota));
+			}
 			this.story.variablesState.$(inkVariables[level], Boolean(result));
 			this.emitter.emit('nextDialog', this.text);
 		});
 
-		this.emitter.on('choices', choiceList => {
-			console.log(choiceList);
+		this.emitter.on('choices', text => {
+			console.log(text);
+			console.log(this.story.currentChoices);
+			choiceBox(this, null, text, this.story.currentChoices);
+
 		});
 
 		// default (void) background

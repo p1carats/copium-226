@@ -30,7 +30,7 @@ let createLabel = function (scene, text, backgroundColor) {
 function createChoiceBox(game, text, x, y, choicesArray) {
 	let backgroundTexture = game.add.image(0, 0, Assets.DialogBox).setAlpha(0.9);
 	let choices = [];
-	choicesArray.forEach(elem => choices.push(createLabel(game, elem, 0x2F312E)))
+	choicesArray.forEach(elem => choices.push(createLabel(game, elem.text, 0x2F312E)))
 	let dialog = game.rexUI.add.dialog({
 		x: x,
 		y: y,
@@ -65,13 +65,11 @@ function createChoiceBox(game, text, x, y, choicesArray) {
 	});
 }
 
-export default function choiceBox(game, texture, text, sens, choicesArray) {
-	let position;
-	if (sens === 0){
-		position = [300, 650, 1000, 800];
-	} else {
-		position = [1600, 650, 1000, 800];
+export default function choiceBox(game, perso, text, choicesArray) {
+	let position = [300, 650, 1000, 800];
+
+	if (perso !== null){
+		game.add.sprite(position[0], position[1], perso);
 	}
-	game.add.sprite(position[0], position[1], texture);
 	createChoiceBox(game, text, position[2], position[3], choicesArray);
 }

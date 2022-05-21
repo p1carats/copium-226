@@ -156,7 +156,8 @@ export default function startMiniGame(game, difficulty) {
 			number_of_issue--;
 		} else {
 			let resultat = score >= difficultySettings[3] ? 1 : 0;
-			game.emitter.emit('end_minigame', difficulty, resultat);
+			let quota = score === difficultySettings[3] ? 1 : 0;
+			game.emitter.emit('end_minigame', difficulty, resultat, quota);
 			game.buttonsArray.forEach(e => e.destroy());
 			texture.destroy();
 			bigScreen.destroy();

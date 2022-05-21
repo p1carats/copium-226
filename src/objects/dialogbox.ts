@@ -75,18 +75,18 @@ function createTextBox(scene, perso, x, y, config) {
 // sens : 0 right / 1 left
 export default function dialogBox(game, text) {
 	let character: string;
-	let regex: RegExp = /[a-zA-Z]+:/;
+	let regex: RegExp = /[a-zA-Zî.?\s-]+:/;
 	if(regex.test(text)) {
-		regex = /[a-zA-Z]+/; 
+		regex = /[a-zA-Zî.?\s-]+/;
 		character = regex.exec(text)[0].normalize('NFD').replace(/\p{Diacritic}/gu, '');
-		console.log(character);
+		//console.log(character);
 	} else {
 		character = null;
 	}
 	let position, perso;
 	position = [300, 650, 100, 800];
 
-	if (character !== null) {
+	if (character !== null && character.length < 13) {
 		perso = game.add.sprite(position[0], position[1], getcharactertexture(character));
 	} else {
 		perso = null
