@@ -9,6 +9,12 @@ VAR isQuotaRespected = false
 VAR isMiniGame4Won = false
 VAR georgeRelationCraig = false
 VAR georgeRelationAmber = false
+VAR debug = true
+
+{
+    - debug:
+        -> CHAPTER_1
+}
 
 -> INTRO
 

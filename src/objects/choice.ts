@@ -35,15 +35,14 @@ function createChoiceBox(game, text, x, y, choicesArray) {
 		x: x,
 		y: y,
 		background: backgroundTexture,
-		description: getBuiltInText(game, 800, 900, 150, text),
+		description: getBuiltInText(game, 800, 900, 225, text),
 		choices: choices,
 		space: {
-			content: 60,
-			choice: 20,
-			left: 40,
-			right: 40,
-			top: 25,
-			bottom: 25,
+			left: 35,
+			right: 50,
+			top: 50,
+			bottom: 40,
+			text: 10,
 		},
 		expand: {
 			// content is a pure text object
@@ -51,10 +50,11 @@ function createChoiceBox(game, text, x, y, choicesArray) {
 		}
 	}).layout().popUp(1000);
 
-	game.print = game.add.text(0, 0, '');
 	dialog.on('button.click', function (button, groupName, index) {
-		game.choix.push(index);
-		game.emitter.emit('choice', game);
+		game.story.ChooseChoiceIndex(index);
+		game.emitter.emit('next');
+		dialog.destroy();
+		choices.forEach(elem => elem.destroy() );
 		console.log("Le bouton " + index + " a été choisi !");
 	});
 	dialog.on('button.over', function (button, groupName, index) {
