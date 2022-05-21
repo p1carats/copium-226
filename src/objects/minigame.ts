@@ -175,6 +175,7 @@ export default function startMiniGame(game, difficulty) {
 			});
 			texture.destroy();
 			bigScreen.destroy();
+			game.emitter.off('nextButton');
 			return;
 		}
 	});
