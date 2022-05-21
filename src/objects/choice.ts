@@ -2,7 +2,7 @@ import { Assets } from "../assets";
 
 let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight, text) {
 	return scene.add.text(0, 0, text, {
-		fontSize: '52px',
+		fontSize: '40px',
 		fontFamily: 'monogramextended',
 		wordWrap: {
 			width: wrapWidth
@@ -50,6 +50,8 @@ function createChoiceBox(game, text, x, y, choicesArray) {
 		}
 	}).layout().popUp(1000);
 
+	dialog.alpha = 0.9;
+
 	dialog.on('button.click', function (button, groupName, index) {
 		game.story.ChooseChoiceIndex(index);
 		game.emitter.emit('next');
@@ -66,7 +68,7 @@ function createChoiceBox(game, text, x, y, choicesArray) {
 }
 
 export default function choiceBox(game, perso, text, choicesArray) {
-	let position = [300, 650, 1000, 800];
+	let position = [100, 650, 1000, 800];
 
 	if (perso !== null){
 		game.add.sprite(position[0], position[1], perso);

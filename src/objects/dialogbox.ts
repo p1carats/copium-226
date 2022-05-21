@@ -72,7 +72,6 @@ function createTextBox(scene, perso, x, y, config) {
 	return textBox;
 }
 
-// sens : 0 right / 1 left
 export default function dialogBox(game, text) {
 	let character: string;
 	let regex: RegExp = /[a-zA-Zî.?\s-]+:/;
@@ -83,6 +82,7 @@ export default function dialogBox(game, text) {
 	} else {
 		character = null;
 	}
+	console.log(character);
 	let position, perso;
 	position = [300, 650, 100, 800];
 

@@ -1,5 +1,4 @@
 import { Assets } from "../assets";
-import dialogBox from "../objects/dialogbox";
 import animation from "./animation";
 
 // time for clicking, time between two buttons, number of buttons, score for win
@@ -101,7 +100,21 @@ export default function startMiniGame(game, difficulty) {
 		{ key: Assets.ControlRoomHydroelectricDam8 },
 	]);
 
-	let bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('eolAnim');
+	let bigScreen;
+
+	switch (game.script.variablesState['company']) {
+		case 0:
+			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('eolAnim');
+			return;
+		case 1:
+			// Green Horizon
+			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('hydroelectricAnim');
+			return;
+		case 2:
+			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('coalAnim');
+			return;
+	}
+
 	let texture = game.add.sprite(150, 290, Assets.SmallScreen).setOrigin(0);
 
 	let difficultySettings = DIFFICULTY_ARRAY[difficulty];

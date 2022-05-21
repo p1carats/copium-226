@@ -9,7 +9,8 @@ VAR isQuotaRespected = false
 VAR isMiniGame4Won = false
 VAR georgeRelationCraig = false
 VAR georgeRelationAmber = false
-VAR debug = true
+VAR company = 0
+VAR debug = false
 
 {
     - debug:
@@ -44,14 +45,13 @@ C'est donc ce que j'ai fait. Une fois mes études finies, je suis revenu à la p
 -> MINIGAME_1
 
 === MINIGAME_1 ===
-//
 # change_location
 {change_location("control_room")}
 Le réseau électrique de la ville est particulier. A cause de l'isolement du village, il n'est relié à aucun réseau national et est géré entièrement en interne via cette station. Les quelques éoliennes présentes dans la région, généreusement financées par un philanthrope Lorientais, servent d'unique source de production d'électricité du réseau et doivent être contrôlées manuellement via la console en face de moi.
 Ce travail était assuré par mon prédécesseur M. Pichard mais, du haut de ses 86 ans, cela devenait de plus en plus difficile pour lui de se déplacer tous les matins jusqu’à la station de contrôle. Sans mon arrivée, il aurait sans doute été forcé d'arrêter après quelques mois, et le village se serait retrouvé dans le noir total pendant qui sait combien de temps.
 Le travail en soit n’est pas des plus compliqué : les pales des éoliennes tournent avec le vent, produisant de l’électricité via le générateur situé dans la nacelle. Mon rôle principal est de surveiller la vitesse des pales et de les freiner, voire de les arrêter si elles vont trop vite.
 George: Bon, j'ai assez rêvassé comme ça. Faut que je me mette au boulot si je veux atteindre le quota aujourd'hui.
-Bienvenue dans la salle de contrôle. L'objectif ici est de tenir le temps imparti en ayant tous les boutons en position pressés. Si un bouton est relevé, vous devez simplement cliquer dessus. Attention à ne pas être trop lent...
+Bienvenue dans la salle de contrôle. L'objectif ici est de tenir le temps imparti en ayant tous les boutons en position relevés. Si un bouton est enfoncé, vous devez simplement cliquer dessus. Attention à ne pas être trop lent...
 # start_minigame
 {start_minigame(0)}
 //~ isMiniGame1Won = true
@@ -79,17 +79,25 @@ George: D'autres choses à faire ? À Vitry-la-Vallée ??
 Voyant que je le regarde comme s'il venait de se frapper la tête contre le comptoir à plusieurs reprises, il hausse les épaules.
 Benoît: Il s'est mis en tête je ne sais trop comment qu'il allait faire fortune en devenant mineur. Franchement, entre sa nouvelle obsession et tes éoliennes, j'ai bien cru que j'allais boire tout seul ce soir.
 *	[Je suis désolé...]
-	Benoît: Oh, t'excuse pas comme ça. Ça arrive à tout le monde de faire des erreurs quand on débute quelque part. L'important c'est qu'il n'y ait pas de dégâts permanents sur les éoliennes. De nos jours, le village ne survivrait sans doute pas plus de quelques mois sans elles.
-	George: Ouais...
-	Je me sens encore assez coupable de ce qu'il s'est passé tout à l'heure, mais Benoît, la personne probablement la plus impactée par la panne, essaye de me réconforter ?
-	Soit c'est vraiment un mec cool, soit je suis particulièrement pathétique.
-	... Bref. Revenons au sujet de base.
+{
+- !isMiniGame1Won:
+    	Benoît: Oh, t'excuse pas comme ça. Ça arrive à tout le monde de faire des erreurs quand on débute quelque part. L'important c'est qu'il n'y ait pas de dégâts permanents sur les éoliennes. De nos jours, le village ne survivrait sans doute pas plus de quelques mois sans elles.
+    	George: Ouais...
+    	Je me sens encore assez coupable de ce qu'il s'est passé tout à l'heure, mais Benoît, la personne probablement la plus impactée par la panne, essaye de me réconforter ?
+    	Soit c'est vraiment un mec cool, soit je suis particulièrement pathétique.
+}
+	Revenons au sujet de base...
 *	[Je le fixe du regard, clairement ennuyé]
+{
+- !isMiniGame1Won:
 	Il lève les mains en signe d'apaisement.
 	Benoît: Hé hé, me regarde pas comme ça, je plaisantais juste. Ça arrive à tout le monde de faire des erreurs.
 	Je baisse les yeux après un moment et soupire.
 	J'ai déjà assez de personnes dans le village qui ne m'aiment pas comme ça, pas besoin d'en rajouter une.
 	Essayons de changer de sujet.
+- else:
+    Revenons au sujet de base...
+}
 - George: Devenir mineur ? Je croyais que toutes les mines de la vallée avaient été complètement exploitées et abandonnées il y a au moins 40 ans ?
 Benoît: C'est le cas, mais il est persuadé qu'en cherchant assez il va trouver quelque chose que les anciens mineurs ont raté. Je lui ai dit plusieurs fois qu'il perdait son temps, mais il ne veut rien entendre, c'est fou !
 *	[Qui sait, peut-être qu'il va vraiment trouver quelque chose.]
@@ -139,13 +147,14 @@ Par conséquent, je suis obligé de garder les éoliennes en fonctionnement pres
 === MINIGAME_2 ===
 # change_location
 {change_location("control_room")}
+C'est l'heure de se mettre au travail !
 # start_minigame
 {start_minigame(1)}
 //~ isMiniGame2Won = true
-// TO-DO
 -> CHAPTER_2
 
 === CHAPTER_2 ===
+Fini, enfin !
 # change_location
 {change_location("village_1")}
 Je sors de la station, heureux d'avoir enfin fini cette journée d'enfer. Il doit être aux alentours de minuit, ou une heure du mat.
@@ -185,7 +194,8 @@ Il pue l'alcool. C'est clair qu'il est complètement bourré.
 	Le lendemain matin, le bourg est plongé dans le noir. Les habitants supposent une panne, comme d'habitude, plusieurs commencent à se rendre compte que quelque chose ne va pas quand le soir arrive et qu'ils n'ont toujours pas d'électricité.
 	Un groupe se forme pour aller directement à la maison de George, où il découvre que sa voiture a disparu. Le groupe finit par forcer la porte d'entrée et trouve une maison complètement vide. Sur la table du salon, il trouve une note avec un trousseau de clé à côté.
 	"Voici les clés de la station de contrôle du réseau électrique de Vitry-la-Vallée. Tous les outils dont vous pourriez avoir besoin pour l'entretien du matériel se trouvent là-bas. Bonne chance."
-	-> END // bad end 1, pathétique
+	# Bad end 1 : pathétique
+	-> END 
 - (!isMiniGame1Won && isMiniGame2Won) || (isMiniGame1Won && !isMiniGame2Won):
 	???: Attends.... Je te r'connais toi... Ouais... t'es le mec qui s'occupe du réseau hein ? C'est à cause de toi la panne aujourd'hui !
 	Les gens autour de nous commencent à se retourner en entendant ça.
@@ -261,6 +271,7 @@ Mon choix va sans doute décider du sort de la vallée pour les décennies qui v
 - Les deux représentants se rapprochent du bord de leur siège. La tension autour de la table est palpable. Trop tard pour se désister.
 George: Je choisis de travailler avec...
 * [Green Horizon]
+    ~ company = 1
 	George: Green Horizon.
 	Et jusque comme ça, toute la pression qui nous entourait disparut. M. Vermeil me serre la main en souriant, et j'ai soudainement l'impression d'être devant un loup qui vient d'attraper sa proie. A côté, j'entends Amber soupirer.
 	Amber: Je vois. C'est bien regrettable, mais ce qui est fait est fait.
@@ -270,6 +281,7 @@ George: Je choisis de travailler avec...
 	-> CHAPTER_3_GH
 * [Cosmic Drive]
 	George: Cosmic Drive.
+	~ company = 2
 	Amber: YESSSSS ! Allez tu peux rentrer chez toi le vampire, on n'a plus besoin de toi ici.
 	L'explosion d'Amber a au moins le mérite de détendre immédiatement l'atmosphère autour de la table. Même si j'ai du mal à me dire que cette personne est plus vieille que moi.
 	M. Vermeil: Voilà qui est extrêmement décevant. Je ne peux que vous demander d'y réfléchir à nouveau cette nuit. Si vous vous réveillez demain et trouvez que vous avez changé d'avis, appelez moi.
@@ -366,6 +378,7 @@ Oui je sais que c'est extrêmement important et qu'un accident au niveau du barr
 === MINIGAME_3_GH ===
 # change_location
 {change_location("control_room")}
+Le travail m'appelle !
 # start_minigame
 {start_minigame(2)}
 //~ isMiniGame3Won = true
@@ -373,9 +386,9 @@ Oui je sais que c'est extrêmement important et qu'un accident au niveau du barr
 -> CHAPTER_4_GH
 
 === CHAPTER_4_GH ===
+Ma journée de travail finie, je me dirige vers le bureau de M. Vermeil. Tous les lundis, nous avons un rendez-vous où nous discutons de mes performances, de l'état et des besoins du réseau, ainsi que des choses à prioriser pour l'entreprise.
 # change_location
 {change_location("void")}
-Ma journée de travail finie, je me dirige vers le bureau de M. Vermeil. Tous les lundis, nous avons un rendez-vous où nous discutons de mes performances, de l'état et des besoins du réseau, ainsi que des choses à prioriser pour l'entreprise.
 Le pire moment de ma semaine.
 Je toque à la porte.
 M. Vermeil: Entrez.
@@ -408,6 +421,7 @@ J'entre dans le bureau. Assis dans son fauteuil, M. Vermeil lève la tête du do
 	J'y étais venu pour profiter de la nature en toute tranquillité, mais ça fait longtemps que ce n'est plus possible. Seul le boulot me retenait ici.
 	...
 	Oui, il est temps de déménager.
+	# Bad end 2 : les temps changent
 	-> END // bad end 2, les temps changent
 }
 M. Vermeil: Ah, M. Beauvois. Asseyez-vous. Nous n'avons pas énormément de choses à nous dire cette semaine, donc je pense que ça devrait aller assez vite.
@@ -463,6 +477,7 @@ George: Très bien, c'est noté.
 		George: Oui, une autre fois ! Définitivement ! Si c'est tout ce que vous vouliez...
 		M. Vermeil: Oui, vous pouvez y aller M. Beauvois.
 		George: Très bien. Passez une bonne soirée Mr Vermeil.
+		# change_location
 		{change_location("void")}
 		Je m'échappe du bureau et quitte les locaux aussi vite que possible.
 		Je reçois quelques autres invitations dans les semaines qui suivent, que j'esquive avec quelques autres mensonges bien placés. Puis plus rien. J'ai sans doute légèrement froissé le patron en faisant ça, mais c'est toujours mieux que de perdre complètement mon travail.
@@ -473,6 +488,7 @@ George: Très bien, c'est noté.
 	Une main sur la porte, je me retourne subitement vers lui. J'ai pas revé, Il vient de m'appeler par mon prénom ? Il vient totalement de m'appeler par mon prénom ! C'est la première fois qu'il le fait depuis que je le connais !
 	Mr. Vermeil: Continue le bon boulot.
 	George: Oui monsieur.
+	# change_location
 	{change_location("void")}
 	Je m'enfuie du bureau aussi vite que la politesse le permet.
 	Une fois dans le couloir je me pince l'avant bras.
@@ -547,6 +563,7 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 		Normalement, c'est le moment dans ce genre d'histoire où je vous dis que malgré tout ce que je possède, ma vie est vide de sens et que je ne suis pas heureux.
 		Mais ce n'est pas le cas : je vis ma meilleure vie.
 		Peut être que j'aurais pu faire des meilleurs choix. Mais cette fin n'est pas si mal non plus.
+		# Greed end : Vendre son âme au diable
 		-> END // greed end, vendre son âme au diable
 	* [Non. Je ne peux pas.]
 		Craig: George...
@@ -579,6 +596,8 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 	Attends, c'est pas le moment de se poser ce genre de questions !
 	N'écoutant que mon courage, je décide...
 	* [Aller à mon poste de travail pour vérifier moi même l'état de la centrale.]
+	    # change_location
+	    {change_location("control_room")}
 		Il y a quelque chose qui ne tourne pas rond ici. Ce n'est pas normal que l'alarme sonne comme ça sans prévenir. Heureusement pour moi, M. Vermeil est occupé avec l'évacuation. Je me dirige discrètement vers mon poste de travail.
 		Arrivé à ma console, je lance un diagnostic de la centrale.
 		George: ... Qu'est ce que c'est  que cette connerie !?
@@ -595,8 +614,7 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 		Attends, ce n'est pas le moment de penser à ça ! Je suis probablement la seule personne encore dans le bâtiment. Si je ne fais rien la centrale va exploser et raser l'entièreté de la vallée !
 		Je commence à redémarrer le pare-feu de la centrale. Heureusement que j'ai un minimum de connaissances en informatique.
 		George: Hein !?
-		Oh, il semblerait que quelqu'un en face ait remarqué ce que j'étais en train de faire !
-		L'attaque a gagné en intensité : à ce rythme là, la région ne va pas être rasée dans quelques heures mais dans quelques minutes ! Je dois faire quelque chose !
+		Oh, il semblerait que quelqu'un en face ait remarqué ce que j'étais en train de faire ! L'attaque a gagné en intensité : à ce rythme là, la région ne va pas être rasée dans quelques heures mais dans quelques minutes ! Je dois faire quelque chose !
 		-> MINIGAME_4_GH
 	* [Aider M. Vermeil à organiser l'évacuation du personnel.]
 		J'ai confiance en M. Vermeil. C'est en grande partie grâce à lui que l'entreprise a pû devenir ce qu'elle est. S'il dit qu'on évacue, alors on évacue.
@@ -605,12 +623,11 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 		Finalement, après le retentissement de l'alarme dans les bureaux de Green Horizon, la centrale explosa, inondant l'entièreté de la vallée de radiations. Les retombées vont rendre la région inhabitable pendant des décennies au grand minimum, coupant court à l'exploitation du Copium 226 par la même occasion. Personne n'est mort de l'explosion en elle-même, mais il est probable que beaucoup aient souffert des complications liées aux radiations subies.
 		La branche de Green Horizon à Vitry-la-Vallée ferma évidemment ses portes, licenciant l'intégralité de son personnel. Je perdis contact avec M. Vermeil peu longtemps après ça. Retrouver un travail après ça ne fut pas aisé, mais j'y suis parvenu. C'était clairement moins prestigieux (et surtout moins bien payé) que ce que je faisais à Green Horizon, mais au moins le travail était honnête.
 		Si je garde un regret encore aujourd'hui, dans mes vieux jours, c'est qu'on n'a jamais découvert la vérité derrière cet accident. Je ne peux m'empêcher de penser qu'il y avait plus dans cette histoire, une face cachée que je n'ai pas su voir...
+		# Bad end 3 : Que s'est-il passé ?
 		-> END // bad end 3, que s'est-il passé ?
 }
 
 === MINIGAME_4_GH ===
-# change_location
-{change_location("control_room")}
 //~ isMiniGame4Won = true
 # start_minigame
 {start_minigame(3)}
@@ -618,6 +635,7 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 -> CHAPTER_6_GH
 
 === CHAPTER_6_GH ===
+C'est fini...
 # change_location
 {change_location("void")}
 {
@@ -632,10 +650,12 @@ Après un long duel entre George et le hacker de Green Horizon, la centrale fut 
 	Green Horizon fut obligé de vendre tous ses actifs et installations à Cosmic Drive, qui se jeta sur l'occasion de remettre un pied dans la région et de pouvoir reprendre l'exploitation du Copium 226.
 	George, en récompense de sa bravoure, obtint la médaille dont il avait toujours rêvé et fut engagé en tant que directeur de la branche de Cosmic Drive.
 	Il ne goûta plus jamais à la vie en communion avec la nature comme il avait prévu en revenant à Vitry-la-Vallée, mais cette vie n'était pas trop mal non plus.
+	# Good end 1 : Green Horizon
 	-> END // good end 1, Green Horizon
 - else:
 	Malgré tous ses efforts, George ne parvint pas à empêcher la centrale d'exploser. L'explosion dévasta la région, tuant une grande partie de la population qui n'avait pas encore eu le temps d'évacuer.
 	Personne ne sut expliquer ce qu'il s'était passé ce jour fatidique, mais la catastrophe nucléaire de Vitry-la-Vallée fut la pire de l'histoire de l'humanité, relançant de plus belle les débats autour de la sécurité de l'énergie nucléaire et coupant nette l'exploitation du Copium 226.
+	# Bad end 4 : Faire empirer les choses en voulant aider 
 	-> END // bad end 4, faire empirer les choses en voulant aider
 }
 
@@ -660,6 +680,7 @@ Bref, j'ai peut-être perdu quelques années d'espérance de vie, mais en échan
 === MINIGAME_3_CD ===
 # change_location
 {change_location("control_room")}
+Le devoir m'appelle !
 # start_minigame
 {start_minigame(1)}
 //~ isMiniGame3Won = true
@@ -689,6 +710,7 @@ Légèrement inquiet, je m'assois sur l'un des fauteuils en cuir devant le burea
 	Je lâche un soupir en quittant le bureau.
 	Une formation ? Je suppose que ça pourrait être pire. Le plus ennuyant dans cette histoire, c'est que je doive quitter la vallée, mais je n'ai pas trop le choix si je veux garder un job.
 	Il va falloir prendre son mal en patience...
+	# Bad end 2 : En formation
 	-> END // bad end 2, en formation
 }
 Amber: Alors George. Au vu de tes performances récentes chez Cosmic Drive, j'ai le plaisir de t'annoncer... que tu vas recevoir une promotion !
@@ -743,8 +765,9 @@ Amber: C'est un peu un pari sur l'avenir si l'on veut, pas vrai ? Allez, étant 
 		George: ... Bon bah... C'est pas grave, une autre fois alors ! Je vous laisse heu... finir ça.
 		Amber: Ouais. A demain George.
 		George: Ahem. A demain.
+		# change_location
 		{change_location("void")}
-		Je quitte rapidement le bureau et les locaux de Cosmic Drive. Mon Dieu que c'était gênant !
+		Je quitte rapidement le bureau et les locaux de Cosmic Drive. Mon Dieu que c'était gênant ! 
 		Bon c'est pas grave, ça aurait pu être pire. Au moins elle a pas l'air de l'avoir mal pris. On va faire comme si rien ne s'était passé.
 		Seul, je me dirige vers le café de Gérard pour boire un coup et oublier.
 		-> CHAPTER_5_CD
@@ -815,6 +838,7 @@ George: Désolé, mais je ne peux pas faire ça. Tu auras tout le temps que tu v
 		Mon psy me dit souvent qu'on fait tous des erreurs dans la vie, et que l'important est d'apprendre à vivre avec. Je ne sais pas si j'arriverai un jour à tourner la page sur tout ça.
 		Mais une chose est sûre.
 		Je ne m'approcherai plus jamais d'une centrale nucléaire. Ni d'une mine.
+		# Bad end 3 : J'aurais pu faire plus
 		-> END // bad end 3, j'aurais pu faire plus
 
 	* [C'est pourquoi je ne peux pas abandonner.]
@@ -833,19 +857,20 @@ George: Désolé, mais je ne peux pas faire ça. Tu auras tout le temps que tu v
 		-> MINIGAME_4_CD
 }
 Je raccroche le téléphone et me dirige vers la console principale.
-Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée repose sur moi.
 -> MINIGAME_4_CD
 
 === MINIGAME_4_CD ===
 # change_location
 {change_location("control_room")}
 //~ isMiniGame4Won = true
+Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée repose sur moi.
 # change_location
 {start_minigame(3)}
 // TO-DO
 -> CHAPTER_6_CD
 
 === CHAPTER_6_CD ===
+C'est fini...
 # change_location
 {change_location("void")}
 {
@@ -858,9 +883,11 @@ Le moment décisif approche, j'ai pas intérêt à me planter. Toute la vallée 
 		- else:
 			Amber et George gardèrent une relation strictement professionnelle tout au long de leur vie. Cela ne veut pas dire que George était malheureux pour autant: il s'était lié d'amitié avec les membres de son équipe, et ensemble ils firent de Cosmic Drive la plus grande entreprise de la planète (et de Rams aussi).
 		}
+		# Good end 2 : Cosmic Drive 
 		-> END // good end 2, Cosmic Drive
 	- else:
 		Malgré tous ses efforts, George ne parvint pas à empêcher la centrale d'exploser. L'explosion dévasta la région, tuant une grande partie de la population et son équipe qui n'avaient pas encore eu le temps d'évacuer.
 		Personne ne sut expliquer ce qu'il s'était passé ce jour fatidique, mais la catastrophe nucléaire de Vitry-la-Vallée fut la pire de l'histoire de l'humanité, relançant de plus belle les débats autour de la sécurité de l'énergie nucléaire et coupant nette l'exploitation du copium 226.
+		# Bad end 4 : Faire empirer les choses en voulant aider
 		-> END // bad end 4, faire empirer les choses en voulant aider
 }
