@@ -13,20 +13,22 @@ export default class PauseScene extends Phaser.Scene {
 	create(data) {
 		let pauseInSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseInSound);
 		let pauseOutSound: Phaser.Sound.BaseSound = this.sound.add(Assets.PauseOutSound);
-		let gameScene = this.scene.get('TemplateDialogue');
+		let gameScene = this.scene.get('GameScene');
+
+		this.scene.bringToTop();
 
 		// pause menu elements
-		let title, resume, options, quit;
-		title = this.add.text(this.scale.width/2, this.scale.height/3, 'Pause', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
-			resume = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
-			options = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
-			quit = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+		let title = this.add.text(this.scale.width/2, this.scale.height/3, 'Pause', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+		let resume = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+		let options = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+		let quit = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
 
 		// pause button
-		let pauseButton = this.add.sprite(50, 50, Assets.PauseButton).setOrigin(0).setInteractive();
+		let pauseButton = this.add.sprite(30, 30, Assets.PauseButton).setOrigin(0).setInteractive();
 		pauseButton.on('pointerover', () => { pauseButton.setTexture(Assets.PauseButtonHover) });
 		pauseButton.on('pointerout', () => { pauseButton.setTexture(Assets.PauseButton) });
 		pauseButton.on('pointerdown', () => {
+			pauseButton.setAlpha(0).disableInteractive();
 			pauseInSound.play();
 			gameScene.scene.pause();
 			// pause menu elements
@@ -38,7 +40,7 @@ export default class PauseScene extends Phaser.Scene {
 
 		// resume game
 		resume.on('pointerdown', () => {
-			this.input.enabled = false;
+			pauseButton.setAlpha(1).setInteractive();
 			pauseOutSound.play();
 			gameScene.scene.wake();
 			// pause menu elements
@@ -56,7 +58,6 @@ export default class PauseScene extends Phaser.Scene {
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(2000, () => {
 					this.scene.start('SettingsScene', { sceneFrom: this.scene.key });
-					//this.scene.stop();
 				});
 			});
 		});

@@ -1,5 +1,4 @@
 import { Assets } from "../assets";
-import animation from "./animation";
 
 // time for clicking, time between two buttons, number of buttons, score for win
 const TUTO = [2000, 3000, 6, 3];
@@ -66,39 +65,52 @@ export default function startMiniGame(game, difficulty) {
 	let stick: Phaser.GameObjects.Sprite = game.add.sprite(1450, 700, Assets.Stick0).setOrigin(0).setInteractive();
 	let buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
 
-	// background effect
-	animation(game, 'eolAnim', [
-		{ key: Assets.ControlRoomEol1 },
-		{ key: Assets.ControlRoomEol2 },
-		{ key: Assets.ControlRoomEol3 },
-		{ key: Assets.ControlRoomEol4 },
-		{ key: Assets.ControlRoomEol5 },
-		{ key: Assets.ControlRoomEol6 },
-		{ key: Assets.ControlRoomEol7 },
-		{ key: Assets.ControlRoomEol8 },
-	]);
-
-	animation(game, 'coalAnim', [
-		{ key: Assets.ControlRoomCoal1 },
-		{ key: Assets.ControlRoomCoal2 },
-		{ key: Assets.ControlRoomCoal3 },
-		{ key: Assets.ControlRoomCoal4 },
-		{ key: Assets.ControlRoomCoal5 },
-		{ key: Assets.ControlRoomCoal6 },
-		{ key: Assets.ControlRoomCoal7 },
-		{ key: Assets.ControlRoomCoal8 },
-	]);
-
-	animation(game, 'hydroelectricAnim', [
-		{ key: Assets.ControlRoomHydroelectricDam1 },
-		{ key: Assets.ControlRoomHydroelectricDam2 },
-		{ key: Assets.ControlRoomHydroelectricDam3 },
-		{ key: Assets.ControlRoomHydroelectricDam4 },
-		{ key: Assets.ControlRoomHydroelectricDam5 },
-		{ key: Assets.ControlRoomHydroelectricDam6 },
-		{ key: Assets.ControlRoomHydroelectricDam7 },
-		{ key: Assets.ControlRoomHydroelectricDam8 },
-	]);
+	// animations on screen
+	game.anims.create({
+		key: 'eolAnim',
+		frames: [
+			{ key: Assets.ControlRoomEol1 },
+			{ key: Assets.ControlRoomEol2 },
+			{ key: Assets.ControlRoomEol3 },
+			{ key: Assets.ControlRoomEol4 },
+			{ key: Assets.ControlRoomEol5 },
+			{ key: Assets.ControlRoomEol6 },
+			{ key: Assets.ControlRoomEol7 },
+			{ key: Assets.ControlRoomEol8 },
+		],
+		frameRate: 2,
+		repeat: -1
+	});
+	game.anims.create({
+		key: 'coalAnim',
+		frames: [
+			{ key: Assets.ControlRoomCoal1 },
+			{ key: Assets.ControlRoomCoal2 },
+			{ key: Assets.ControlRoomCoal3 },
+			{ key: Assets.ControlRoomCoal4 },
+			{ key: Assets.ControlRoomCoal5 },
+			{ key: Assets.ControlRoomCoal6 },
+			{ key: Assets.ControlRoomCoal7 },
+			{ key: Assets.ControlRoomCoal8 },
+		],
+		frameRate: 2,
+		repeat: -1
+	});
+	game.anims.create({
+		key: 'hydroelectricAnim',
+		frames: [
+			{ key: Assets.ControlRoomHydroelectricDam1 },
+			{ key: Assets.ControlRoomHydroelectricDam2 },
+			{ key: Assets.ControlRoomHydroelectricDam3 },
+			{ key: Assets.ControlRoomHydroelectricDam4 },
+			{ key: Assets.ControlRoomHydroelectricDam5 },
+			{ key: Assets.ControlRoomHydroelectricDam6 },
+			{ key: Assets.ControlRoomHydroelectricDam7 },
+			{ key: Assets.ControlRoomHydroelectricDam8 },
+		],
+		frameRate: 2,
+		repeat: -1
+	});
 
 	let bigScreen;
 

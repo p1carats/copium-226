@@ -1,5 +1,4 @@
 import { Assets } from '../assets';
-import animation from "../objects/animation";
 
 export default class TitleScreen extends Phaser.Scene {
 
@@ -15,15 +14,20 @@ export default class TitleScreen extends Phaser.Scene {
 		// fade-in scene
 		this.cameras.main.fadeIn(1000, 0, 0, 0);
 
-		// background effect
-		animation(this, 'titlescreenAnim', [
-			{ key: Assets.TitleScreen1 },
-			{ key: Assets.TitleScreen2 },
-			{ key: Assets.TitleScreen3 },
-			{ key: Assets.TitleScreen4 },
-			{ key: Assets.TitleScreen5 },
-			{ key: Assets.TitleScreen6 },
-		]);
+		// background animation effect
+		this.anims.create({
+			key: 'titlescreenAnim',
+			frames: [
+				{ key: Assets.TitleScreen1 },
+				{ key: Assets.TitleScreen2 },
+				{ key: Assets.TitleScreen3 },
+				{ key: Assets.TitleScreen4 },
+				{ key: Assets.TitleScreen5 },
+				{ key: Assets.TitleScreen6 },
+			],
+			frameRate: 2,
+			repeat: -1
+		});
 
 		// menu music (looped) and click sound
 		let theme: Phaser.Sound.BaseSound = this.sound.add(Assets.MainTheme);

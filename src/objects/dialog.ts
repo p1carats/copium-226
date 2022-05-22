@@ -11,17 +11,40 @@ let getBuiltInText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
 	}).setFixedSize(fixedWidth, fixedHeight);
 }
 
-function createTextBox(scene, perso, config) {
+let createLabel = function (scene, text, backgroundColor) {
+	return scene.rexUI.add.label({
+		background: scene.rexUI.add.roundRectangle(0, 0, 50, 40, 0, backgroundColor),
+		text: scene.add.text(0, 0, text, {
+			fontSize: '40px',
+			fontFamily: 'monogramextended'
+		}),
+		space: {
+			left: 10,
+			right: 10,
+			top: 10,
+			bottom: 10
+		}
+	});
+}
+
+function createTextBox(game, character, choicesArray, config) {
+	// annoying config
 	let wrapWidth = Phaser.Utils.Objects.GetValue(config, 'wrapWidth', 0);
 	let fixedWidth = Phaser.Utils.Objects.GetValue(config, 'fixedWidth', 0);
 	let fixedHeight = Phaser.Utils.Objects.GetValue(config, 'fixedHeight', 0);
-	let backgroundTexture = scene.add.image(0, 0, Assets.DialogBox).setAlpha(0.9);
-	let textBox = scene.rexUI.add.textBox({
+	// true config
+	let backgroundTexture = game.add.image(0, 0, Assets.DialogBox);
+	let choices = [];
+	if (typeof choicesArray !== 'undefined') {
+		choicesArray.forEach(elem => choices.push(createLabel(game, elem.text, 0x2F312E)));
+	}
+
+	let textBox = game.rexUI.add.textBox({
 		x: 100,
 		y: 800,
 		background: backgroundTexture,
-		text: getBuiltInText(scene, wrapWidth, fixedWidth, fixedHeight),
-		action: scene.add.image(0, 0, Assets.LineBreak).setScale(0.5).setVisible(false),
+		text: getBuiltInText(game, wrapWidth, fixedWidth, fixedHeight),
+		action: game.add.image(0, 0, Assets.LineBreak).setScale(0.5).setVisible(false),
 		space: {
 			left: 35,
 			right: 50,
@@ -29,7 +52,46 @@ function createTextBox(scene, perso, config) {
 			bottom: 40,
 			text: 10,
 		}
-	}).setOrigin(0).setScale(0.75).setInteractive().layout();
+	}).setOrigin(0).setScale(0.75).setAlpha(0.95).setInteractive().layout();
+
+	let dialog;
+	if (typeof choicesArray !== 'undefined') {
+		dialog = game.rexUI.add.dialog({
+			x: 1200,
+			y: 800,
+			choices: choices,
+			space: {
+				left: 35,
+				right: 50,
+				top: 50,
+				bottom: 40,
+				text: 10,
+			},
+			expand: {
+				// content is a pure text object
+				content: false,
+			}
+		}).setAlpha(0).layout();
+
+		dialog.on('button.over', function (button, groupName, index) {
+			button.getElement('background').setStrokeStyle(1, 0xffffff);
+		});
+	
+		dialog.on('button.out', function (button, groupName, index) {
+			button.getElement('background').setStrokeStyle();
+		});
+	
+		dialog.on('button.click', function (button, groupName, index) {
+			game.story.ChooseChoiceIndex(index);
+			choices.forEach(elem => elem.destroy());
+			if (character !== null) {
+				character.destroy();
+			}
+			textBox.destroy();
+			dialog.destroy();
+			game.emitter.emit('next');
+		});
+	}
 
 	textBox.on('pointerdown', function() {
 		let icon = this.getElement('action').setVisible(false);
@@ -45,7 +107,7 @@ function createTextBox(scene, perso, config) {
 		let icon = this.getElement('action').setVisible(true);
 		this.resetChildVisibleState(icon);
 		icon.y -= 30;
-		let tween = scene.tweens.add({
+		let tween = game.tweens.add({
 			targets: icon,
 			y: '+=30', // '+=100'
 			ease: 'Bounce', // 'Cubic', 'Elastic', 'Bounce', 'Back'
@@ -55,22 +117,27 @@ function createTextBox(scene, perso, config) {
 		});
 	}, textBox);
 
-	textBox.on('complete', function (){
+	textBox.on('complete', function () {
 		textBox.off('pointerdown');
 		textBox.off('pageend');
 		textBox.on('pointerdown', function() {
 			let icon = this.getElement('action').setVisible(false);
-			textBox.destroy();
-			if (perso !== null) {
-				perso.destroy();
+			if (typeof choicesArray !== 'undefined') {
+				dialog.setAlpha(1);
+			} else {
+				if (character !== null) {
+					character.destroy();
+				}
+				textBox.destroy();
+				game.emitter.emit('next');
 			}
-			scene.emitter.emit('next');
 		});
 	});
+
 	return textBox;
 }
 
-export default function dialogBox(game, text) {
+export default function dialogBox(game, text, choices?) {
 	let character;
 	let regex: RegExp = /\[.*\]/;
 	if(regex.test(text)) {
@@ -111,9 +178,9 @@ export default function dialogBox(game, text) {
 		character = null;
 	}
 
-	return createTextBox(game, character, {
+	return createTextBox(game, character, choices, {
 		wrapWidth: 800,
 		fixedWidth: 900,
 		fixedHeight: 225,
-	}).start(text, 50);
+	}).start(text, 60);
 }
