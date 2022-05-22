@@ -170,8 +170,8 @@ Il pue l'alcool. C'est clair qu'il est complètement bourré.
 	Le lendemain matin, le bourg est plongé dans le noir. Les habitants supposent une panne, comme d'habitude, plusieurs commencent à se rendre compte que quelque chose ne va pas quand le soir arrive et qu'ils n'ont toujours pas d'électricité.
 	Un groupe se forme pour aller directement à la maison de George, où il découvre que sa voiture a disparu. Le groupe finit par forcer la porte d'entrée et trouve une maison complètement vide. Sur la table du salon, il trouve une note avec un trousseau de clé à côté.
 	"Voici les clés de la station de contrôle du réseau électrique de Vitry-la-Vallée. Tous les outils dont vous pourriez avoir besoin pour l'entretien du matériel se trouvent là-bas. Bonne chance."
-	# Bad end 1 : pathétique
-	-> END 
+	# END # Bad end 1 # pathétique
+	-> END
 - (!isMiniGame1Won && isMiniGame2Won) || (isMiniGame1Won && !isMiniGame2Won):
 	[???] Attends.... Je te r'connais toi... Ouais... t'es le mec qui s'occupe du réseau hein ? C'est à cause de toi la panne aujourd'hui !
 	Les gens autour de nous commencent à se retourner en entendant ça.
@@ -390,7 +390,7 @@ J'entre dans le bureau. Assis dans son fauteuil, M. Vermeil lève la tête du do
 	J'y étais venu pour profiter de la nature en toute tranquillité, mais ça fait longtemps que ce n'est plus possible. Seul le boulot me retenait ici.
 	...
 	Oui, il est temps de déménager.
-	# Bad end 2 : les temps changent
+	# END # Bad end 2 # Les temps changent
 	-> END // bad end 2, les temps changent
 }
 [M. Vermeil] Ah, M. Beauvois. Asseyez-vous. Nous n'avons pas énormément de choses à nous dire cette semaine, donc je pense que ça devrait aller assez vite.
@@ -525,7 +525,7 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 		Normalement, c'est le moment dans ce genre d'histoire où je vous dis que malgré tout ce que je possède, ma vie est vide de sens et que je ne suis pas heureux.
 		Mais ce n'est pas le cas : je vis ma meilleure vie.
 		Peut être que j'aurais pu faire des meilleurs choix. Mais cette fin n'est pas si mal non plus.
-		# Greed end : Vendre son âme au diable
+		# END # Greed end # Vendre son âme au diable
 		-> END // greed end, vendre son âme au diable
 	* [Non. Je ne peux pas.]
 		[Craig] George...
@@ -584,7 +584,7 @@ Mais évidemment, les bonnes choses ne durent jamais très longtemps. Il y a que
 		Finalement, après le retentissement de l'alarme dans les bureaux de Green Horizon, la centrale explosa, inondant l'entièreté de la vallée de radiations. Les retombées vont rendre la région inhabitable pendant des décennies au grand minimum, coupant court à l'exploitation du Copium 226 par la même occasion. Personne n'est mort de l'explosion en elle-même, mais il est probable que beaucoup aient souffert des complications liées aux radiations subies.
 		La branche de Green Horizon à Vitry-la-Vallée ferma évidemment ses portes, licenciant l'intégralité de son personnel. Je perdis contact avec M. Vermeil peu longtemps après ça. Retrouver un travail après ça ne fut pas aisé, mais j'y suis parvenu. C'était clairement moins prestigieux (et surtout moins bien payé) que ce que je faisais à Green Horizon, mais au moins le travail était honnête.
 		Si je garde un regret encore aujourd'hui, dans mes vieux jours, c'est qu'on n'a jamais découvert la vérité derrière cet accident. Je ne peux m'empêcher de penser qu'il y avait plus dans cette histoire, une face cachée que je n'ai pas su voir...
-		# Bad end 3 : Que s'est-il passé ?
+		# END # Bad end 3 # Que s'est-il passé ?
 		-> END // bad end 3, que s'est-il passé ?
 }
 
@@ -608,12 +608,12 @@ Après un long duel entre George et le hacker de Green Horizon, la centrale fut 
 	Green Horizon fut obligé de vendre tous ses actifs et installations à Cosmic Drive, qui se jeta sur l'occasion de remettre un pied dans la région et de pouvoir reprendre l'exploitation du Copium 226.
 	George, en récompense de sa bravoure, obtint la médaille dont il avait toujours rêvé et fut engagé en tant que directeur de la branche de Cosmic Drive.
 	Il ne goûta plus jamais à la vie en communion avec la nature comme il avait prévu en revenant à Vitry-la-Vallée, mais cette vie n'était pas trop mal non plus.
-	# Good end 1 : Green Horizon
+	# END # Good end 1 # Green Horizon
 	-> END // good end 1, Green Horizon
 - else:
 	Malgré tous ses efforts, George ne parvint pas à empêcher la centrale d'exploser. L'explosion dévasta la région, tuant une grande partie de la population qui n'avait pas encore eu le temps d'évacuer.
 	Personne ne sut expliquer ce qu'il s'était passé ce jour fatidique, mais la catastrophe nucléaire de Vitry-la-Vallée fut la pire de l'histoire de l'humanité, relançant de plus belle les débats autour de la sécurité de l'énergie nucléaire et coupant nette l'exploitation du Copium 226.
-	# Bad end 4 : Faire empirer les choses en voulant aider 
+	# END # Bad end 4 # Faire empirer les choses en voulant aider
 	-> END // bad end 4, faire empirer les choses en voulant aider
 }
 
@@ -636,7 +636,7 @@ Bref, j'ai peut-être perdu quelques années d'espérance de vie, mais en échan
 === MINIGAME_3_CD ===
 # location=control_room
 Le devoir m'appelle !
-# start_minigame=2
+# minigame=2
 //~ isMiniGame3Won = true
 //~ isQuotaRespected = true
 -> CHAPTER_4_CD
@@ -664,7 +664,7 @@ Légèrement inquiet, je m'assois sur l'un des fauteuils en cuir devant le burea
 	Je lâche un soupir en quittant le bureau.
 	Une formation ? Je suppose que ça pourrait être pire. Le plus ennuyant dans cette histoire, c'est que je doive quitter la vallée, mais je n'ai pas trop le choix si je veux garder un job.
 	Il va falloir prendre son mal en patience...
-	# Bad end 2 : En formation
+	# END # Bad end 2 # En formation
 	-> END // bad end 2, en formation
 }
 [Amber] Alors George. Au vu de tes performances récentes chez Cosmic Drive, j'ai le plaisir de t'annoncer... que tu vas recevoir une promotion !
@@ -718,7 +718,7 @@ Je m'attendais à beaucoup de choses en arrivant ici, mais pas à ça. Je pensai
 		[Amber] Ouais. A demain George.
 		[George] Ahem. A demain.
 		# location=void
-		Je quitte rapidement le bureau et les locaux de Cosmic Drive. Mon Dieu que c'était gênant ! 
+		Je quitte rapidement le bureau et les locaux de Cosmic Drive. Mon Dieu que c'était gênant !
 		Bon c'est pas grave, ça aurait pu être pire. Au moins elle a pas l'air de l'avoir mal pris. On va faire comme si rien ne s'était passé.
 		Seul, je me dirige vers le café de Gérard pour boire un coup et oublier.
 		-> CHAPTER_5_CD
@@ -787,7 +787,7 @@ C'est Amber.
 		Mon psy me dit souvent qu'on fait tous des erreurs dans la vie, et que l'important est d'apprendre à vivre avec. Je ne sais pas si j'arriverai un jour à tourner la page sur tout ça.
 		Mais une chose est sûre.
 		Je ne m'approcherai plus jamais d'une centrale nucléaire. Ni d'une mine.
-		# Bad end 3 : J'aurais pu faire plus
+		# END # Bad end 3 # J'aurais pu faire plus
 		-> END // bad end 3, j'aurais pu faire plus
 
 	* [C'est pourquoi je ne peux pas abandonner.]
@@ -828,11 +828,11 @@ C'est fini...
 		- else:
 			Amber et George gardèrent une relation strictement professionnelle tout au long de leur vie. Cela ne veut pas dire que George était malheureux pour autant: il s'était lié d'amitié avec les membres de son équipe, et ensemble ils firent de Cosmic Drive la plus grande entreprise de la planète (et de Rams aussi).
 		}
-		# Good end 2 : Cosmic Drive 
+		# END # Good end 2 # Cosmic Drive
 		-> END // good end 2, Cosmic Drive
 	- else:
 		Malgré tous ses efforts, George ne parvint pas à empêcher la centrale d'exploser. L'explosion dévasta la région, tuant une grande partie de la population et son équipe qui n'avaient pas encore eu le temps d'évacuer.
 		Personne ne sut expliquer ce qu'il s'était passé ce jour fatidique, mais la catastrophe nucléaire de Vitry-la-Vallée fut la pire de l'histoire de l'humanité, relançant de plus belle les débats autour de la sécurité de l'énergie nucléaire et coupant nette l'exploitation du Copium 226.
-		# Bad end 4 : Faire empirer les choses en voulant aider
+		# END # Bad end 4 # Faire empirer les choses en voulant aider
 		-> END // bad end 4, faire empirer les choses en voulant aider
 }

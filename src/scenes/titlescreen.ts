@@ -111,7 +111,7 @@ export default class TitleScreen extends Phaser.Scene {
 			this.cameras.main.fadeOut(1000, 0, 0, 0);
 			this.cameras.main.once('camerafadeoutcomplete', () => {
 				this.time.delayedCall(1000, () => {
-					this.scene.start('EndGameScene');
+					this.scene.start('CreditsScene');
 				});
 			});
 		});

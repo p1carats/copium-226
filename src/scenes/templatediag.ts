@@ -49,6 +49,13 @@ export default class GameScene extends Phaser.Scene {
 					this.emitter.emit('dialog', this.text);
 				}
 			} else {
+				if (this.story.currentTags !== 0){
+					let title = this.story.currentTags[1];
+					let subtitle = this.story.currentTags[2];
+					let color = title.indexOf('Good') === -1 ? '#ff0000' : '#00ff00';
+					this.scene.start('EndGameScene', {title: title, subtitle: subtitle, color: color});
+					this.scene.stop();
+				}
 				this.emitter.emit('choices', this.text);
 			}
 		});

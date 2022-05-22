@@ -189,7 +189,7 @@ export default function startMiniGame(game, difficulty) {
 			} else {
 				result = 0;
 			}
-			if (score === difficultySettings[2]) {
+			if (score >= difficultySettings[2]) {
 				quota = 1;
 			} else {
 				quota = 0;
