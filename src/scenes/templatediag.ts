@@ -151,15 +151,29 @@ export default class GameScene extends Phaser.Scene {
 						case 'village_3_cd':
 							this.background.setTexture(Assets.village3_CosmicDriveScene);
 							break;
-						default:
-							this.background.setTexture(Assets.village3_CosmicDriveScene);
-							break;
 					}
 					this.theme = this.sound.add(Assets.VillageTheme);
 					this.theme.play('', { loop: true });
 				} else if (location == 'control_room') {
 					this.background.setTexture(Assets.ControlRoomScene);
 					this.theme = this.sound.add(Assets.PowerPlantTheme);
+					this.theme.play('', { loop: true });
+				} else if (location.startsWith('office')) {
+					switch (location) {
+						case 'office_gh':
+							this.background.setTexture(Assets.GreenHorizonOfficeScene);
+							break;
+						case 'office_cd':
+							this.background.setTexture(Assets.CosmicDriveOfficeScene);
+							break;
+						case 'office_craig':
+							this.background.setTexture(Assets.CraigOfficeScene);
+							break;
+						case 'office_amber':
+							this.background.setTexture(Assets.AmberOfficeScene);
+							break;
+					}
+					this.theme = this.sound.add(Assets.CorpoTheme);
 					this.theme.play('', { loop: true });
 				} else {
 					this.background.setTexture(Assets.VoidScene);
@@ -171,9 +185,9 @@ export default class GameScene extends Phaser.Scene {
 
 	play_sound(sound: String) {
 		let ss;
-		if (sound = 'clock') {
+		if (sound == 'clock') {
 			ss = this.sound.add(Assets.ClockSound);
-		} else if (sound = 'alarm') {
+		} else if (sound == 'alarm') {
 			ss = this.sound.add(Assets.AlarmSound);
 		}
 		ss.play();
