@@ -31,8 +31,9 @@ function fixMe(game, score, difficulty, sounds, texture, buttonsArray) {
 				score--;
 			}
 		});
-	} else if (buttonsArray[choice].texture.key.indexOf('stick') !== -1) { // or if it's a stick
-		let sprite = 'stick' + (Math.floor(Math.random() * 3) + 1);
+	} else if (buttonsArray[choice].texture.key.indexOf('stick') !== -1) { 
+		// or if it's a stick
+		let sprite = 'stick' + (Math.floor(Math.random()*3)+1);
 		buttonsArray[choice].setTexture(sprite);
 		sounds[2].play();
 		// set the texture to the normal position after 2s if it's not clicked
@@ -63,7 +64,7 @@ export default function startMiniGame(game, difficulty) {
 	let green_button_up: Phaser.GameObjects.Sprite = game.add.sprite(950, 650, Assets.GreenButtonUp).setOrigin(0).setInteractive();
 	let green_button_left: Phaser.GameObjects.Sprite = game.add.sprite(800, 700, Assets.GreenButtonLeft).setOrigin(0).setInteractive();
 	let stick: Phaser.GameObjects.Sprite = game.add.sprite(1450, 700, Assets.Stick0).setOrigin(0).setInteractive();
-	let buttonsArray = [red_button, green_button_down, green_button_left, green_button_up, green_button_right, stick];
+	let buttonsArray = [red_button, green_button_down, green_button_right, green_button_up, green_button_left, stick];
 
 	// animations on screen
 	game.anims.create({
@@ -116,6 +117,7 @@ export default function startMiniGame(game, difficulty) {
 
 	switch (game.story.variablesState['company']) {
 		case 0:
+			// no company
 			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('eolAnim');
 			break;
 		case 1:
@@ -123,6 +125,7 @@ export default function startMiniGame(game, difficulty) {
 			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('hydroelectricAnim');
 			break;
 		case 2:
+			// Cosmic Drive
 			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('coalAnim');
 			break;
 	}
@@ -132,13 +135,13 @@ export default function startMiniGame(game, difficulty) {
 	let difficultySettings = DIFFICULTY_ARRAY[difficulty];
 	let score: number = 0;
 	let number_of_issue: number = difficultySettings[2];
+
+	// sounds
 	let redClick: Phaser.Sound.BaseSound = game.sound.add(Assets.RedButtonSound);
 	let arrowClick: Phaser.Sound.BaseSound = game.sound.add(Assets.ArrowsSound);
 	let stickClick: Phaser.Sound.BaseSound = game.sound.add(Assets.StickSound);
 	let failure: Phaser.Sound.BaseSound = game.sound.add(Assets.FailureSound);
-	// easier to implement
 	let sounds = [redClick, arrowClick, stickClick, failure];
-
 
 	// let's start after 2s !
 	game.time.delayedCall(2000, () => {
@@ -179,13 +182,22 @@ export default function startMiniGame(game, difficulty) {
 			fixMe(game, score, difficultySettings, sounds, texture, buttonsArray);
 			number_of_issue--;
 		} else {
-			let resultat = score >= difficultySettings[3] ? 1 : 0;
-			let quota = score === difficultySettings[3] ? 1 : 0;
-			game.emitter.emit('end_minigame', difficulty, resultat, quota);
+			let result, quota;
+			if (score >= difficultySettings[3]) {
+				result = 1;
+			} else {
+				result = 0;
+			}
+			if (score === difficultySettings[3]) {
+				quota = 1;
+			} else {
+				quota = 0;
+			}
+			game.emitter.emit('end_minigame', difficulty, result, quota);
 			buttonsArray.forEach(e => {
 				e.destroy()
 			});
-			texture.destroy();
+			texture.destroy(); // small screen
 			bigScreen.destroy();
 			game.emitter.off('nextButton');
 			return;
