@@ -31,7 +31,7 @@ function fixMe(game, score, difficulty, sounds, texture, buttonsArray) {
 				score--;
 			}
 		});
-	} else if (buttonsArray[choice].texture.key.indexOf('stick') !== -1) { 
+	} else if (buttonsArray[choice].texture.key.indexOf('stick') !== -1) {
 		// or if it's a stick
 		let sprite = 'stick' + (Math.floor(Math.random()*3)+1);
 		buttonsArray[choice].setTexture(sprite);
@@ -162,9 +162,10 @@ export default function startMiniGame(game, difficulty) {
 		} else if (button.texture.key.search(/[1-3]/) !== -1) {
 			stickClick.play();
 			// shitty line use for decrease the number on the stick's sprite
-			let texture = button.texture.key.replace(/[1-3]/, String(button.texture.key.search(/[1-3]/) - 1));
+			// @ts-ignore
+			let texture = button.texture.key.replace(/[1-3]/, String(button.texture.key[button.texture.key.search(/[1-3]/)] - 1));
 			button.setTexture(texture);
-			if (button.texture.key.search(/[1-3]/) === 0) {
+			if (button.texture.key.search(/[1-3]/) === -1) {
 				score++;
 			}
 		} else {
@@ -188,7 +189,7 @@ export default function startMiniGame(game, difficulty) {
 			} else {
 				result = 0;
 			}
-			if (score === difficultySettings[3]) {
+			if (score === difficultySettings[2]) {
 				quota = 1;
 			} else {
 				quota = 0;
