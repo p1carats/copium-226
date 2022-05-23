@@ -21,6 +21,15 @@ module.exports = {
 		// list of extensions to resolve (in specific order)
 		extensions: ['.ts', '.tsx', '.js']
 	},
+	devServer: {
+		static: {
+			directory: path.join(__dirname, 'assets'),
+    	publicPath: '/assets'
+		},
+    compress: true,
+		hot: true,
+    port: 3000
+  },
 	devtool: 'inline-source-map',
 	module: {
 		rules: [

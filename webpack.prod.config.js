@@ -22,15 +22,6 @@ module.exports = {
 		extensions: ['.ts', '.tsx', '.js']
 	},
 	devtool: 'inline-source-map',
-	devServer: {
-		static: {
-			directory: path.join(__dirname, 'assets'),
-    	publicPath: '/assets'
-		},
-    compress: true,
-		hot: true,
-    port: 3000
-  },
 	module: {
 		rules: [
 			{
