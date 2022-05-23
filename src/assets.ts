@@ -88,6 +88,15 @@ export function assetsLoader(game) {
 	game.load.image('charb6', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb6.png');
 	game.load.image('charb7', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb7.png');
 	game.load.image('charb8', 'assets/scenes/control_room/coal_power_plant/Control-RoomCharb8.png');
+	// nuclear power plant anim
+	game.load.image('Control-RoomNucl1', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl1.png');
+	game.load.image('Control-RoomNucl2', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl2.png');
+	game.load.image('Control-RoomNucl3', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl3.png');
+	game.load.image('Control-RoomNucl4', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl4.png');
+	game.load.image('Control-RoomNucl5', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl5.png');
+	game.load.image('Control-RoomNucl6', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl6.png');
+	game.load.image('Control-RoomNucl7', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl7.png');
+	game.load.image('Control-RoomNucl8', 'assets/scenes/control_room/nuclear_power_plant/Control-RoomNucl8.png');
 	// mini game assets
 	game.load.image('red_button', 'assets/minigame/red_button.png');
 	game.load.image('red_button_pressed', 'assets/minigame/red_button_pressed.png');
@@ -212,6 +221,15 @@ export enum Assets {
 	ControlRoomCoal6 = 'charb4',
 	ControlRoomCoal7 = 'charb7',
 	ControlRoomCoal8 = 'charb8',
+	// nuclear power plant
+	NuclearControlRoom1 = 'Control-RoomNucl1',
+	NuclearControlRoom2 = 'Control-RoomNucl2',
+	NuclearControlRoom3 = 'Control-RoomNucl3',
+	NuclearControlRoom4 = 'Control-RoomNucl4',
+	NuclearControlRoom5 = 'Control-RoomNucl5',
+	NuclearControlRoom6 = 'Control-RoomNucl6',
+	NuclearControlRoom7 = 'Control-RoomNucl7',
+	NuclearControlRoom8 = 'Control-RoomNucl8',
 	// mini game
 	SmallScreen = 'small_screen',
 	SmallScreenError = 'small_screen_error',

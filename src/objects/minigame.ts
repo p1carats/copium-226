@@ -112,6 +112,21 @@ export default function startMiniGame(game, difficulty) {
 		frameRate: 2,
 		repeat: -1
 	});
+	game.anims.create({
+		key: 'nuclearAnim',
+		frames: [
+			{ key: Assets.NuclearControlRoom1 },
+			{ key: Assets.NuclearControlRoom2 },
+			{ key: Assets.NuclearControlRoom3 },
+			{ key: Assets.NuclearControlRoom4 },
+			{ key: Assets.NuclearControlRoom5 },
+			{ key: Assets.NuclearControlRoom6 },
+			{ key: Assets.NuclearControlRoom7 },
+			{ key: Assets.NuclearControlRoom8 },
+		],
+		frameRate: 2,
+		repeat: -1
+	});
 
 	let bigScreen;
 
@@ -127,6 +142,10 @@ export default function startMiniGame(game, difficulty) {
 		case 2:
 			// Cosmic Drive
 			bigScreen = game.add.sprite(600, 150, Assets.ControlRoomCoal1).setOrigin(0).play('coalAnim');
+			break;
+		case 3:
+			// final mini game
+			bigScreen = game.add.sprite(600, 150, Assets.NuclearControlRoom1).setOrigin(0).play('nuclearAnim');
 			break;
 	}
 
