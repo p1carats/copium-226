@@ -23,7 +23,7 @@ export default class CreditsScene extends Phaser.Scene {
 
 		// title
 		let title: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/4 - 200, 'Crédits :', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();
-		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/3+100, 'Crée par\nCyril  Cuvelier (Code)\nMatéo Danton (Textures)\nNoé Barlet (Code)\nRomain Altmayer (Script)\nSimon Losson (Happyness manager)\nÉléves de CIR 2 à l\'ISEN Lille\nMerci d\'avoir joué.e !', { font: '72px monogramextended', color: '#FFFFFFFF' }).setOrigin(0.5).setInteractive();
+		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, this.scale.height/3+100, 'Crée par\nCyril  Cuvelier (Code)\nMatéo Danton (Textures)\nNoé Barlet (Code)\nRomain Altmayer (Script)\nSimon Losson (Code/Traduction)\nÉléves de CIR 2 à l\'ISEN Lille\nMerci d\'avoir joué !', { font: '72px monogramextended', color: '#FFFFFFFF' }).setOrigin(0.5).setInteractive();
 
 		// quit
 		let quit: Phaser.GameObjects.Text = this.add.text((this.scale.width/4)*2, (this.scale.height/3)+600, 'Quitter', { font: '72px monogramextended', color: 'white' }).setOrigin(0.5).setInteractive();

@@ -49,7 +49,8 @@ export default class GameScene extends Phaser.Scene {
 					this.emitter.emit('dialog', this.text);
 				}
 			} else {
-				if (this.story.currentTags !== 0){
+				console.log(this.story.currentTags);
+				if (this.story.currentTags.length !== 0){
 					let title = this.story.currentTags[1];
 					let subtitle = this.story.currentTags[2];
 					let color = title.indexOf('Good') === -1 ? '#ff0000' : '#00ff00';
