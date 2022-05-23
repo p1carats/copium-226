@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
+	mode: 'development',
 	entry: {
 		// phaser custom build (lighter)
 		// WIP engine: './lib/phaser.custom.ts',
@@ -21,15 +22,6 @@ module.exports = {
 		extensions: ['.ts', '.tsx', '.js']
 	},
 	devtool: 'inline-source-map',
-	devServer: {
-		static: {
-			directory: path.join(__dirname, 'assets'),
-    	publicPath: '/assets'
-		},
-    compress: true,
-		hot: true,
-    port: 3000
-  },
 	module: {
 		rules: [
 			{

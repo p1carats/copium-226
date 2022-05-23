@@ -643,6 +643,7 @@ Le devoir m'appelle !
 
 === CHAPTER_4_CD ===
 Alors que j'étais en train de finir ma journée, je suis soudainement convoqué par Amber. Intrigué, je me dirige vers son bureau.
+# location=office_amber
 [George] Vous vouliez me voir Amber?
 [Amber] Ah George, parfait. Assieds toi, j'ai une nouvelle pour toi.
 [George] Bonne ou mauvaise ?
