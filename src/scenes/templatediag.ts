@@ -8,6 +8,7 @@ export default class GameScene extends Phaser.Scene {
 	private story;
 	private emitter: Phaser.Events.EventEmitter;
 	private background: Phaser.GameObjects.Sprite;
+	private bg2: Phaser.GameObjects.TileSprite;
 	private theme: Phaser.Sound.BaseSound;
 	private text: string;
 
@@ -105,9 +106,6 @@ export default class GameScene extends Phaser.Scene {
 			this.emitter.emit('dialog', this.text);
 		});
 
-		// default (void) background
-		this.background = this.add.sprite(0, 0, Assets.VoidScene).setOrigin(0);
-
 		// dialog
 		this.story = loadStory(this);
 
@@ -116,6 +114,14 @@ export default class GameScene extends Phaser.Scene {
 
 		// pause menu and trigger
 		this.scene.launch('PauseScene').bringToTop();
+	}
+
+	update() {
+		try {
+			this.bg2.tilePositionX += 1.2;
+		} catch(TypeError) {
+			//
+		}
 	}
 
 	change_location(location: String) {
@@ -130,61 +136,66 @@ export default class GameScene extends Phaser.Scene {
 		this.cameras.main.fadeOut(750, 0, 0, 0);
 		this.cameras.main.once('camerafadeoutcomplete', () => {
 			this.time.delayedCall(500, () => {
+				try {
+					this.background.destroy();
+				} catch(TypeError) {
+					//
+				}
 				// change background and start music if neccessary
 				if (location == 'room') {
-					this.background.setTexture(Assets.RoomTheme);
+					this.background = this.add.sprite(0, 0, Assets.RoomTheme).setOrigin(0);
 					this.theme = this.sound.add(Assets.RoomTheme);
 					this.theme.play('', { loop: true });
 				} else if (location == 'coffee') {
-					this.background.setTexture(Assets.CoffeeScene);
+					this.background = this.add.sprite(0, 0, Assets.CoffeeScene).setOrigin(0);
 					this.theme = this.sound.add(Assets.CoffeeTheme);
 					this.theme.play('', { loop: true });
 				} else if (location.startsWith('village')) {
 					switch (location) {
 						case 'village_0':
-							this.background.setTexture(Assets.village0Scene);
+							this.bg2 = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, Assets.village0Scene).setOrigin(0);
 							break;
 						case 'village_1':
-							this.background.setTexture(Assets.village1Scene);
+							this.bg2 = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, Assets.village1Scene).setOrigin(0);
 							break;
 						case 'village_2_gh':
-							this.background.setTexture(Assets.village2_GreenHorizonScene);
+							this.bg2 = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, Assets.village2_GreenHorizonScene).setOrigin(0);
 							break;
 						case 'village_2_cd':
-							this.background.setTexture(Assets.village2_CosmicDriveScene);
+							this.bg2 = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, Assets.village2_CosmicDriveScene).setOrigin(0);
 							break;
 						case 'village_3_gh':
-							this.background.setTexture(Assets.village3_GreenHorizonScene);
+							this.bg2 = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, Assets.village3_GreenHorizonScene).setOrigin(0);
 							break;
 						case 'village_3_cd':
-							this.background.setTexture(Assets.village3_CosmicDriveScene);
+							this.bg2 = this.add.tileSprite(0, 0, this.scale.width, this.scale.height, Assets.village3_CosmicDriveScene).setOrigin(0);
 							break;
 					}
 					this.theme = this.sound.add(Assets.VillageTheme);
 					this.theme.play('', { loop: true });
 				} else if (location == 'control_room') {
-					this.background.setTexture(Assets.ControlRoomScene);
+					this.background = this.add.sprite(0, 0, Assets.ControlRoomScene).setOrigin(0);
 					this.theme = this.sound.add(Assets.PowerPlantTheme);
 					this.theme.play('', { loop: true });
 				} else if (location.startsWith('office')) {
 					switch (location) {
 						case 'office_gh':
-							this.background.setTexture(Assets.GreenHorizonOfficeScene);
+							this.background = this.add.sprite(0, 0, Assets.GreenHorizonOfficeScene).setOrigin(0);
 							break;
 						case 'office_cd':
-							this.background.setTexture(Assets.CosmicDriveOfficeScene);
+							this.background = this.add.sprite(0, 0, Assets.CosmicDriveOfficeScene).setOrigin(0);
 							break;
 						case 'office_craig':
-							this.background.setTexture(Assets.CraigOfficeScene);
+							this.background = this.add.sprite(0, 0, Assets.CraigOfficeScene).setOrigin(0);
 							break;
 						case 'office_amber':
-							this.background.setTexture(Assets.AmberOfficeScene);
+							this.background = this.add.sprite(0, 0, Assets.AmberOfficeScene).setOrigin(0);
 							break;
 					}
 					this.theme = this.sound.add(Assets.CorpoTheme);
 					this.theme.play('', { loop: true });
 				} else {
-					this.background.setTexture(Assets.VoidScene);
+					this.background = this.add.sprite(0, 0, Assets.VoidScene).setOrigin(0);
 				}
 				this.cameras.main.fadeIn(750, 0, 0, 0);
 			});

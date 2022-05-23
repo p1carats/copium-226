@@ -20,8 +20,7 @@ export default class PauseScene extends Phaser.Scene {
 		// pause menu elements
 		let title = this.add.text(this.scale.width/2, this.scale.height/3, 'Pause', { font: '108px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
 		let resume = this.add.text(this.scale.width/2, (this.scale.height/2), 'Reprendre', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
-		let options = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Options', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
-		let quit = this.add.text(this.scale.width/2, (this.scale.height/2)+100, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+		let quit = this.add.text(this.scale.width/2, (this.scale.height/2)+50, 'Quitter', { font: '52px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
 
 		// pause button
 		let pauseButton = this.add.sprite(30, 30, Assets.PauseButton).setOrigin(0).setInteractive();
@@ -34,7 +33,6 @@ export default class PauseScene extends Phaser.Scene {
 			// pause menu elements
 			title.setAlpha(1).setInteractive();
 			resume.setAlpha(1).setInteractive();
-			options.setAlpha(1).setInteractive();
 			quit.setAlpha(1).setInteractive();
 		});
 
@@ -46,20 +44,7 @@ export default class PauseScene extends Phaser.Scene {
 			// pause menu elements
 			title.setAlpha(0).removeInteractive();
 			resume.setAlpha(0).removeInteractive();
-			options.setAlpha(0).removeInteractive();
 			quit.setAlpha(0).removeInteractive();
-		});
-
-		// option menu
-		options.on('pointerdown', () => {
-			this.input.enabled = false;
-			pauseOutSound.play();
-			this.cameras.main.fadeOut(1000, 0, 0, 0);
-			this.cameras.main.once('camerafadeoutcomplete', () => {
-				this.time.delayedCall(2000, () => {
-					this.scene.start('SettingsScene', { sceneFrom: this.scene.key });
-				});
-			});
 		});
 
 		// quit game
@@ -72,7 +57,6 @@ export default class PauseScene extends Phaser.Scene {
 					// pause menu elements
 					title.setAlpha(0).removeInteractive();
 					resume.setAlpha(0).removeInteractive();
-					options.setAlpha(0).removeInteractive();
 					quit.setAlpha(0).removeInteractive();
 					this.scene.start('TitleScreen');
 					gameScene.scene.stop();
