@@ -35,8 +35,8 @@ export function assetsLoader(game) {
 	game.load.image('village_1', 'assets/scenes/village_1.png');
 	game.load.image('village_2_gh', 'assets/scenes/village_2_gh.png');
 	game.load.image('village_3_gh', 'assets/scenes/village_3_gh.png');
-	game.load.image('village_2_cc', 'assets/scenes/village_2_cd.png');
-	game.load.image('village_3_cc', 'assets/scenes/village_3_cd.png');
+	game.load.image('village_2_cd', 'assets/scenes/village_2_cd.png');
+	game.load.image('village_3_cd', 'assets/scenes/village_3_cd.png');
 	game.load.image('control_room', 'assets/scenes/control_room.png');
 	game.load.image('coffee', 'assets/scenes/coffee.png');
 	game.load.image('office_gh', 'assets/scenes/office_gh.png');

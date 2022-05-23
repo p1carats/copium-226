@@ -37,7 +37,7 @@ export default class TitleScreen extends Phaser.Scene {
 		// layout (background and title)
 		let background: Phaser.GameObjects.Sprite = this.add.sprite(0, 0, Assets.TitleScreen1).setOrigin(0).play('titlescreenAnim');
 		let title: Phaser.GameObjects.Image = this.add.image(this.scale.width/2, this.scale.height/4, Assets.Title).setAlpha(0);
-		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/10)*9, 'Copyright 2022 Copium 226 GOTY Edition', { font: '42px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
+		let text: Phaser.GameObjects.Text = this.add.text(this.scale.width/2, (this.scale.height/10)*9, 'Copyright 2022 Copium 226', { font: '42px monogramextended', color: 'white' }).setOrigin(0.5).setAlpha(0);
 
 		// buttons
 		let playButton: Phaser.GameObjects.Sprite = this.add.sprite(850, 540, Assets.PlayButton).setAlpha(0);
